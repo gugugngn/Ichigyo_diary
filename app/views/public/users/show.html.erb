@@ -1,0 +1,8 @@
+<h1>Public::Users#show</h1>
+<p>Find me in app/views/public/users/show.html.erb</p>
+
+<% if user_signed_in? && @user == current_user %>
+  <% unless @user.email == "guest@example.com" %>
+    <%= link_to "退会",user_path(current_user.id),method: :delete, "data-confirm"=> "本当に退会しますか？" %>
+  <% end %>
+<% end %>
