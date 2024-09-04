@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
   
+  # guest_sign_in用のルート
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+  end
+  
   # Public側の記述
    root to: "public/homes#top"
   
