@@ -6,13 +6,14 @@ class Public::UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def update
   end
 
   def destroy
-    @user = Usesr.find(params[:id])
+    @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "ユーザーを削除しました"
     redirect_to root_path
