@@ -1,5 +1,9 @@
 <h1>Public::Users#show</h1>
 <p>Find me in app/views/public/users/show.html.erb</p>
+ <%= image_tag @user.get_profile_image(100, 100) %>
+ <p>user</p>
+ <%= @user.name %>
+
 
 <% if user_signed_in? && @user == current_user %>
   <% unless @user.email == "guest@example.com" %>
