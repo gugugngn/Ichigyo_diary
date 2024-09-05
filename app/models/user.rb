@@ -4,8 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+ has_many :posts, dependent: :destroy
+ has_one_attached :profile_image
   
-  # ゲストユーザーの記述↓
+  validates :name, presence: true
+  
+  # ゲストログインユーザーの記述↓
   GUEST_USER_EMAIL = "guest@example.com"
 
   def self.guest
@@ -13,5 +17,9 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
+  end
+  
+  def guest_user?
+    email == GUEST_USER_EMAIL
   end
 end
