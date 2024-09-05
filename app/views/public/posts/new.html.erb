@@ -1,2 +1,22 @@
 <h1>新規投稿画面</h1>
 <p>Find me in app/views/public/post/new.html.erb</p>
+<p><%= @current_date.strftime("%-m月%-d日") %></p>
+<%= form_with model:@post, local:true do |f| %>
+  <div class="form-group">
+    <%= f.text_area :body, class: 'form-control post_body' %>
+  </div>
+  <div class="form-group">
+    <%= f.file_field :post_image, accept: "image/jpg" %>
+  </div>
+  <div class="form-group">
+    <%= f.label "気分" %>
+    <!--%= f.text_area :body, class: 'form-control book_body' %>-->
+  </div>
+  <div class="form-group">
+    <%= f.label "明日の自分へ" %>
+    <%= f.text_area :message, class: 'form-control book_body' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>

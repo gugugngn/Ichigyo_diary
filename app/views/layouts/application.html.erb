@@ -33,6 +33,9 @@
             <%= link_to "マイページ", mypage_user_path(current_user) %>
           </li>
           <li>
+            <%= link_to "日記を書く", new_post_path %>
+          </li>
+          <li>
             <%= link_to edit_user_path(current_user) do %>
               <i class="fa-solid fa-gear"></i> プロフィール編集
             <% end %>
