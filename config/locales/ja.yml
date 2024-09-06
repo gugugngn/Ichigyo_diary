@@ -1,4 +1,11 @@
 ja:
+  enums:
+    message:
+      body:
+        keep_going: "今日も１日お疲れ様でした！明日もいい日になりますように"
+        cheer_up: "大変な１日でしたね、明日はゆっくり過ごせるように願っています"
+        good_job: "充実した１日を過ごされているようで元気をもらえました、明日ものんびり頑張りましょうね"
+        good_day_to: "明日もいい日になりますように"
   activerecord:
     errors:
       messages:
