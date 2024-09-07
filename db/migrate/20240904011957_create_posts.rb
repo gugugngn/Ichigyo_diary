@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :mood_id
       t.text :body, null: false
       t.text :message
+      t.date :date, null: false
 
       t.timestamps
     end

@@ -13,3 +13,46 @@
  *= require_tree .
  *= require_self
  */
+ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.content-test{
+  background: linear-gradient(to bottom, #e3ecf8, #e6adcd);
+}
+
+  /* 中央寄せの内容を囲むカスタムクラス */
+  .central-content {
+    color: transparent; /* 最初は透明 */
+    font-size: 2rem;
+    animation: fadeInText 4s forwards;  /* 4秒でフェードインするアニメーション */
+  }
+
+  /* フェードインアニメーション */
+  @keyframes fadeInText {
+    0% {
+      color: transparent;
+      transform: translateY(20px); /* 下から浮き上がる動き */
+      opacity: 0;
+    }
+    100% {
+      color: #ffffff; /* 浮き出たときの文字色 */
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* ボタンのスタイルを調整 */
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* ボタンの間隔 */
+  }
+
+  .btn-container .btn {
+    width: 200px; /* ボタンの幅 */
+    align-self: center; /* ボタンを中央揃え */
+  }

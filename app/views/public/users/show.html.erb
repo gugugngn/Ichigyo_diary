@@ -12,3 +12,10 @@
     <% end %>
   </div>
 </div>
+
+<% @user.received_messages.each do |message| %>
+  <%= message.message_text.content  %>
+<% end %>
+
+
+<%= render "public/messages/form", reciever: @user %>

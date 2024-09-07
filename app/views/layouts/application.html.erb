@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <%= stylesheet_link_tag 'application' %>
     <header class="mx-auto text-center border-bottom list-unstyled">
       <% if user_signed_in? %>
         <% if current_user.guest_user? %>
@@ -56,6 +57,8 @@
         <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %> 
     </main>
+    <div class="main-decoration">
     <%= yield %>
+    </div>
   </body>
 </html>

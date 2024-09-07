@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
- 
- 
-  namespace :public do
-    get 'messages/new'
-    get 'messages/index'
-    get 'resources/create'
-    get 'messages/destroy'
-  end
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
   }
@@ -20,21 +12,24 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
-  
+ 
  # Public側の記述
    root to: "public/homes#top"
 
   scope module: :public do
-     resources :users, only: [:mypage, :edit, :show, :update, :destroy] do
+     resources :users, only: [:edit, :show, :update, :destroy] do
+      resources :messages, only: [:new, :index, :create, :destroy]
        member do
           get :mypage
        end
      end
-     resources :posts
-     resources :messages, only: [:new, :index, :create, :destroy]
+     resources :posts do
+      
+     end
   end
   
-
   
+  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
