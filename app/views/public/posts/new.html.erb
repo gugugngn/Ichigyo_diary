@@ -9,8 +9,14 @@
     <%= f.file_field :post_image, accept: "image/jpg" %>
   </div>
   <div class="form-group">
-    <%= f.label "気分" %>
-    <!--%= f.text_area :body, class: 'form-control book_body' %>このままだとpostモデルのbodyだと勘違いされる-->
+    <%= f.collection_check_boxes(:mood_ids, Mood.all, :id, :name) do |b| %>
+      <% mood = Mood.find(b.value) %>
+      <label class="mood-color" style="background-color: <%= mood.color %>; padding: 6px; border-radius: 9px; color: #fff;">
+        <%= b.check_box class: "mood_checkbox" %>
+        <%= b.label { b.text } %>
+      </label>
+    <% end %>
+  </div> 
   </div>
   <div class="form-group">
     <%= f.label "明日の自分へ" %>

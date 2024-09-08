@@ -30,7 +30,7 @@ Rails.application.routes.draw do
  # admin側の記述
   namespace :admin do
     resources :message_text, only: [:new, :create, :destroy]
-    resources :mood, only: [:new, :create, :destroy]
+    resources :moods, only: [:new, :create, :destroy]
   end
 
 

@@ -1,2 +1,18 @@
 <h1>Admin::Moods#new</h1>
 <p>Find me in app/views/admin/moods/new.html.erb</p>
+
+<% @moods.each do |mood| %>
+  <p>
+    <span style="background-color: <%= mood.color %>; padding: 6px; border-radius: 9px; color: #fff;">
+      <%= mood.name %>
+    </span>
+    <%= link_to "削除", admin_mood_path(mood), method: :delete, class: "btn btn-danger pull-right m-1" %>
+  </p>
+<% end %>
+
+<%= form_with model: @mood, url: admin_moods_path, local: true do |f| %>
+  <%= f.label :name, "新しい気分の作成" %>
+  <%= f.text_area :name, class: 'form-control' %>
+  <%= f.color_field :color, class: 'form-control' %>
+  <%= f.submit '保存', class: 'btn btn-primary' %>
+<% end %>

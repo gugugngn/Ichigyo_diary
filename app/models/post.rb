@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :mood, optional: true
+  has_many :post_moods, dependent: :destroy
+  has_many :moods, through: :post_moods
   has_many :messages, dependent: :destroy
   has_one_attached :post_image
   

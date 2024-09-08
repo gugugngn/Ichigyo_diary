@@ -19,6 +19,8 @@ class Admin::MessageTextController < ApplicationController
     redirect_to request.referer
   end
   
+  private
+  
   def message_text_params
     params.require(:message_text).permit(:content)
   end
