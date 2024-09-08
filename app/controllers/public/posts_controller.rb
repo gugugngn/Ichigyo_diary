@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post)
     else
-      render 'new'
+      redirect_to request.referer, alert: '入力内容に不備があります。'
     end
   end
 
@@ -37,6 +37,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body,:post_image,:message)
+    params.require(:post).permit(:body, :post_image, :mood_id, :message)
   end
 end

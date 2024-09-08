@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   def mypage
+    @user = current_user
   end
 
   def edit
@@ -8,7 +9,7 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-     @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update

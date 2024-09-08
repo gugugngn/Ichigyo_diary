@@ -1,2 +1,16 @@
 <h1>Public::Users#mypage</h1>
 <p>Find me in app/views/public/users/mypage.html.erb</p>
+
+<h4>もらったメッセージ</h4>
+<% @user.received_messages.each do |received_message| %>
+  <p><%= received_message.message_text.content %>
+  <%= received_message.sender.name %> さんより</p>
+<% end %>
+
+
+<h4>メッセージを送った人</h4>
+<% @user.sent_messages.each do |message| %>
+  <p><%= message.message_text.content %>
+  <%= message.receiver.name %> さんに向けて</p>
+<% end %>
+
