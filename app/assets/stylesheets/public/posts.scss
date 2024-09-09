@@ -13,6 +13,25 @@
   margin-bottom: 20px; /* 各投稿の下にスペースを追加 */
 }
 
+.post-date{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mood-details {
+  text-align: center; /* アイテムを中央揃えにする（任意） */
+}
+
+.mood-item {
+  display: inline-block; /* 横並びにするためにinline-blockを指定 */
+  margin-right: 10px; /* アイテム間のスペースを指定 */
+}
+
+.mood-name {
+  display: block; /* 横並びにするためにblockを指定 */
+  font-weight: bold;
+}
+
 .mood-container {
   position: relative;
   display: flex;
