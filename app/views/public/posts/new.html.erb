@@ -1,7 +1,7 @@
 <h1>新規投稿画面</h1>
 <p>Find me in app/views/public/post/new.html.erb</p>
 <!--<p>%= @current_date.strftime("%-m月%-d日") %></p>-->
-<%= form_with model: @post, url: posts_path, local: true do |f| %>
+<%= form_with model: @post, url: posts_path, local: false do |f| %>
   <div class="form-group">
     <%= f.text_area :body, class: 'form-control' %>
   </div>

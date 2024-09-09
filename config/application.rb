@@ -13,6 +13,9 @@ module IchigyoDiary
     
     # 日本語化↓
     config.i18n.default_locale = :ja
+    
+    # ブラウザ画面左上の表示を削除↓
+    config.middleware.delete(Rack::MiniProfiler)
 
     # Configuration for the application, engines, and railties goes here.
     #

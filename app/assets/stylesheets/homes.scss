@@ -1,3 +1,44 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.top-content{
+  background: linear-gradient(to bottom, #e3ecf8, #c6dbee);
+  border: 3px solid #e3ecf8;
+  color: transparent; /* 最初は透明 */
+  animation: fadeback 8s forwards;
+}
+
+
+  /* 中央寄せの内容を囲むカスタムクラス */
+  .central-content {
+    color: transparent; /* 最初は透明 */
+    font-size: 50px;
+    animation: fadeInText 4s forwards;  /* 4秒でフェードインするアニメーション */
+  }
+  
+  /* フェードインアニメーション */
+  @keyframes fadeInText {
+    0% {
+      color: transparent;
+      transform: translateY(20px); /* 下から浮き上がる動き */
+      opacity: 0; /*要素を完全に表示*/
+    }
+    100% {
+      color: #a0a7c5; /* 浮き出たときの文字色 */
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* ボタンのスタイルを調整 */
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* ボタンの間隔 */
+  }
+
+  .btn-container .btn {
+    width: 200px; /* ボタンの幅 */
+    align-self: center; /* ボタンを中央揃え */
+  }

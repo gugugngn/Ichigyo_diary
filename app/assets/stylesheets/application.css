@@ -20,39 +20,31 @@
   box-sizing: border-box;
 }
 
-.content-test{
-  background: linear-gradient(to bottom, #e3ecf8, #e6adcd);
+
+html body {
+  background-color: #fff;
+  
 }
 
-  /* 中央寄せの内容を囲むカスタムクラス */
-  .central-content {
-    color: transparent; /* 最初は透明 */
-    font-size: 2rem;
-    animation: fadeInText 4s forwards;  /* 4秒でフェードインするアニメーション */
-  }
+a{
+  text-decoration: none;
+}
 
-  /* フェードインアニメーション */
-  @keyframes fadeInText {
-    0% {
-      color: transparent;
-      transform: translateY(20px); /* 下から浮き上がる動き */
-      opacity: 0;
-    }
-    100% {
-      color: #ffffff; /* 浮き出たときの文字色 */
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
+.logo a{
+    font-family: "SUSE", sans-serif;
+    font-size: 4rem;
+    color: #c6dbee;
+    text-shadow: 3px 3px 5px #a0a7c5;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-  /* ボタンのスタイルを調整 */
-  .btn-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* ボタンの間隔 */
-  }
+.navbar{
+  border-bottom: 3px solid #e3ecf8;
+}
 
-  .btn-container .btn {
-    width: 200px; /* ボタンの幅 */
-    align-self: center; /* ボタンを中央揃え */
-  }
+.nav-item a {
+  font-size: 25px;
+  color: #a0a7c5;
+  margin: 15px;
+}
