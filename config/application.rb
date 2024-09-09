@@ -14,6 +14,9 @@ module IchigyoDiary
     # 日本語化↓
     config.i18n.default_locale = :ja
     
+    # 日本時間に設定↓
+    config.time_zone = 'Asia/Tokyo'
+    
     # ブラウザ画面左上の表示を削除↓
     config.middleware.delete(Rack::MiniProfiler)
 

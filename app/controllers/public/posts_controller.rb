@@ -8,6 +8,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @posts = Post.latest
   end
 
   def show

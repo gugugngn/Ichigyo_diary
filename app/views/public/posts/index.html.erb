@@ -5,13 +5,14 @@
 <div class="container">
   <% @posts.each do |post| %>
     <div class="post-item">
+      <%= l post.created_at, format: :short %>
       <%= link_to user_path(post.user) do %>
         <%= image_tag post.user.get_profile_image(100,100) %>
       <% end %>
       <%= link_to user_path(post.user) do %>
         <%= post.user.name %>
       <% end %>
-     
+  
       <% colors = post.moods.map(&:color).join(', ') %>
       <div class="mood-container" style="background: <%= post.moods.any? ? "linear-gradient(to right, #{colors})" : '#f5f5f5' %>;">
         <div class="post-body">
