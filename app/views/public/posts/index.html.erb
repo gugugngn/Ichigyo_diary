@@ -19,24 +19,9 @@
             <% end %>
             </div>
           </div>
-          <div class="post-box">
-            <div class="mood-details">
-              <% post.moods.each do |mood| %>
-                <div class="mood-item" style="color: <%= mood.color %>;">
-                  <h5 class="mood-name">
-                    <%= mood.name %>
-                  </h5>
-                </div>
-              <% end %>
-            </div>
-            <% colors = post.moods.map(&:color).join(', ') %>
-            <div class="mood-container" style="background: <%= post.moods.any? ? "linear-gradient(to right, #{colors})" : '#f5f5f5' %>;">
-              <div class="post-body">
-                <h5><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</h5>
-                <h5><%= post.body %></>
-              </div>
-            </div>
-          </div>
+          <%= link_to post_path(post) do %>
+            <%= render "diary", moods: post.moods, post: post %>
+          <% end %>
         <% end %>
     <% end %>
   </div>
