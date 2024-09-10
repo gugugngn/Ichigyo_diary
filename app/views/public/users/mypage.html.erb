@@ -1,16 +1,43 @@
-<h1>Public::Users#mypage</h1>
-<p>Find me in app/views/public/users/mypage.html.erb</p>
-
-<h4>もらったメッセージ</h4>
-<% @user.received_messages.each do |received_message| %>
-  <p><%= received_message.message_text.content %>
-  <%= received_message.sender.name %> さんより</p>
+<%= image_tag @user.get_profile_image(150,150), class: "rounded-circle" %>
+<p><%= @user.name %></p>
+<h5>昨日の自分からのメッセージ</h5>
+  <% if @yesterday_post %>
+    <p><%= @yesterday_post.message %></p>
+  <% else %>
+    <p>昨日のメッセージはありません。</p>
+  <% end %>
+  
+<!--送受信したメッセージ一覧　@user = current_user-->
+<h5>もらったメッセージ</h5>
+<% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.to_date } %>
+  <% grouped_received_messages.each do |date, messages| %>
+    <h5><%= l date, format: :short %></h5>
+      <% messages.each do |received_message| %>
+        <p>
+          <%= received_message.message_text.content %>
+           <%= received_message.sender.name %> さんより
+        </p>
+      <% end %>
 <% end %>
 
 
-<h4>メッセージを送った人</h4>
-<% @user.sent_messages.each do |message| %>
-  <p><%= message.message_text.content %>
-  <%= message.receiver.name %> さんに向けて</p>
+<h5>メッセージを送った人</h5>
+<% grouped_sent_messages = @user.sent_messages.group_by { |message| message.created_at.to_date } %>
+  <% grouped_sent_messages.each do |date, messages| %>
+    <h5><%= l date, format: :short %></h5>
+    <% messages.each do |sent_message| %>
+      <p>
+        <%= sent_message.message_text.content %>
+        <%= sent_message.receiver.name %> さんに向けて
+      </p>
+    <% end %>
 <% end %>
+
+<!--過去の日記-->
+<h5>⚪︎過去の日記たち⚪︎</h5>
+<% @posts.each do |post| %>
+  <h5><%= l post.created_at, format: :short %></h5>
+  <%= render "public/posts/diary", moods: post.moods, post: post %>
+<% end %>
+
 

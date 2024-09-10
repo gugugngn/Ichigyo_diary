@@ -4,10 +4,10 @@ class Post < ApplicationRecord
   has_many :moods, through: :post_moods
   has_many :messages, dependent: :destroy
   has_one_attached :post_image
-  
+
   # 投稿心着順↓
   scope :latest, -> { order(created_at: :desc) }
-  
+
   def get_post_image(width,height)
     unless post_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

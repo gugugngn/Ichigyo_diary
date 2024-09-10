@@ -48,3 +48,43 @@ a{
   color: #a0a7c5;
   margin: 15px;
 }
+
+
+/*--------------------------------１行日記ここから------------------------------------*/
+.mood-details {
+  text-align: center; /* アイテムを中央揃えにする（任意） */
+}
+
+.mood-item {
+  display: inline-block; /* 横並びにするためにinline-blockを指定 */
+  margin-right: 10px; /* アイテム間のスペースを指定 */
+}
+
+.mood-name {
+  display: block; /* 横並びにするためにblockを指定 */
+  font-weight: bold;
+}
+
+.mood-container {
+  position: relative;
+  display: flex;
+  justify-content: center; /* 中央に配置 */
+  align-items: center;     /* 中央に配置 */
+  height: 150px;           /* 必要に応じて高さを調整 */
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;      /* 角丸 */
+  overflow: hidden;        /* コンテンツがはみ出さないように設定 */
+}
+
+.post-body {
+  color: white;            /* 背景と対比する文字色 */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1); /* 背景を透過して本文を強調 */
+  border-radius: 5px;      /* 本文の背景を角丸にする場合 */
+  max-width: 90%;          /* コンテンツの幅を制限して余白を確保 */
+}
+/*--------------------------------１行日記ここまで------------------------------------*/

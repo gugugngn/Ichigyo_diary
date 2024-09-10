@@ -3,32 +3,40 @@
 </div>
 
 <div class="container">
-  <% @posts.each do |post| %>
-    <div class="post-item">
-      <p class="post-date"><%= l post.created_at, format: :short %></p>
-      <%= link_to user_path(post.user) do %>
-        <%= image_tag post.user.get_profile_image(100,100) %>
-      <% end %>
-      <%= link_to user_path(post.user) do %>
-        <%= post.user.name %>
-      <% end %>
-  
-      <div class="mood-details">
-        <% post.moods.each do |mood| %>
-          <div class="mood-item" style="color: <%= mood.color %>;">
-            <div class="mood-name">
-              <%= mood.name %>
+  <% grouped_posts = @posts.group_by { |post| post.created_at } %>
+    <% grouped_posts.each do |date, posts| %>
+      <p class="post-date"><%= l date, format: :short %></p>
+        <% @posts.each do |post| %>
+          <div class="post-item">
+            <div class="row">
+            <%= link_to user_path(post.user) do %>
+              <%= image_tag post.user.get_profile_image(150,150), class: "rounded-circle" %>
+            <% end %>
+            </div>
+            <div class="row">
+            <%= link_to user_path(post.user) do %>
+              <%= post.user.name %>
+            <% end %>
+            </div>
+          </div>
+          <div class="post-box">
+            <div class="mood-details">
+              <% post.moods.each do |mood| %>
+                <div class="mood-item" style="color: <%= mood.color %>;">
+                  <h5 class="mood-name">
+                    <%= mood.name %>
+                  </h5>
+                </div>
+              <% end %>
+            </div>
+            <% colors = post.moods.map(&:color).join(', ') %>
+            <div class="mood-container" style="background: <%= post.moods.any? ? "linear-gradient(to right, #{colors})" : '#f5f5f5' %>;">
+              <div class="post-body">
+                <h5><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</h5>
+                <h5><%= post.body %></>
+              </div>
             </div>
           </div>
         <% end %>
-      </div>
-  
-      <% colors = post.moods.map(&:color).join(', ') %>
-      <div class="mood-container" style="background: <%= post.moods.any? ? "linear-gradient(to right, #{colors})" : '#f5f5f5' %>;">
-        <div class="post-body">
-          <%= post.body %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>

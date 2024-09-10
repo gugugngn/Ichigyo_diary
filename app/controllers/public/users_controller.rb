@@ -1,7 +1,15 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
+  
   def mypage
     @user = current_user
+    yesterday = Date.today - 1
+    @yesterday_post = @user.posts.find_by(created_at: yesterday.all_day)
+    three_days_ago = Date.today - 3
+    @three_daysreceived_messages = @user.received_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
+    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
+    # 9行目⇨今日送られたメッセージも反映される、明日以降に見れるようにするにはcreated_at: three_days_ago..Date.todayにする
   end
 
   def edit
