@@ -1,0 +1,17 @@
+<h1>Admin::MessageText#newあ</h1>
+<p>Find me in app/views/admin/message_text/new.html.erb</p>
+
+<% @message_texts.each do |message_text| %>
+  <p>
+    <%= message_text.content %>
+    <%= link_to "削除", admin_message_text_path(message_text), method: :delete, class: "btn btn-danger pull-right" %>
+  </p>
+<% end %>
+
+<%= form_with model: @message_text, url: admin_message_text_index_path, local: true do |f| %>
+  <%= f.label :content, "新しくメッセージの選択肢を作成" %>
+  <%= f.text_area :content, class: 'form-control' %>
+  <%= f.submit class: 'btn btn-success' %>
+  
+<% end %>
+

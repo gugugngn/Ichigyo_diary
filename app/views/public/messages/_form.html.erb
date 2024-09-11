@@ -1,0 +1,7 @@
+<%= form_with model: [reciever, Message.new], local: true do |f| %>
+  <%= f.label :body, '小さなエールを送る' %>
+  <%= f.collection_select(:message_text_id, MessageText.all, :id, :content) %>
+  <%= f.hidden_field :sender_id, value: current_user.id %>
+  <%= f.hidden_field :receiver_id, value: reciever.id %>
+  <%= f.submit "送信" %>
+<% end %>

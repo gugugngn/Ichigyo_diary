@@ -10,6 +10,15 @@ module IchigyoDiary
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    
+    # 日本語化↓
+    config.i18n.default_locale = :ja
+    
+    # 日本時間に設定↓
+    config.time_zone = 'Asia/Tokyo'
+    
+    # ブラウザ画面左上の表示を削除↓
+    config.middleware.delete(Rack::MiniProfiler)
 
     # Configuration for the application, engines, and railties goes here.
     #

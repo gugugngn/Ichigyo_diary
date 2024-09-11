@@ -1,0 +1,21 @@
+<div class='container'>
+  <div class='row'>
+    <%= image_tag @user.get_profile_image(100, 100) %>
+
+    <p><%= @user.name %></p>
+    <p><%= @user.introduction %></p>
+
+    <% if user_signed_in? && @user == current_user %>
+      <% unless @user.email == "guest@example.com" %>
+        <%= link_to "退会",user_path(current_user.id),method: :delete, "data-confirm"=> "本当に退会しますか？" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% @user.received_messages.each do |message| %>
+  <%= message.message_text.content  %>
+<% end %>
+
+
+<%= render "public/messages/form", reciever: @user %>

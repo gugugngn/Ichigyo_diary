@@ -1,0 +1,14 @@
+// Place all the styles related to the public/post controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.post-date{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* 各投稿アイテムを左揃え */
+.post-item {
+  text-align: left; /* テキストを左揃え */
+  margin-bottom: 20px; /* 各投稿の下にスペースを追加 */
+}

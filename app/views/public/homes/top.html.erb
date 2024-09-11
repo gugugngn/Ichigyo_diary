@@ -1,0 +1,25 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container top vh-100 d-flex flex-column justify-content-center align-items-center">
+  <!-- 中央寄せの内容 -->
+  <div class="row top-content w-100 h-75 justify-content-center align-items-center mb-3">
+    <div class="col-12  d-flex justify-content-center align-items-center">
+      <div class="central-content">
+        <p>1Gyo diaryへ<br>
+          　ようこそ
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ボタンの配置 -->
+  <div class="row w-100">
+    <div class="col-12 btn-container">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary btn-sm mb-3 sign_in" %>
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn-sm mb-3 sign_in" %>
+      <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm mb-3 sign_in", method: :post %>
+    </div>
+  </div>
+
+  <h1 class="my-4">About</h1>
+</div>

@@ -1,0 +1,2 @@
+module Admin::MessageTextHelper
+end

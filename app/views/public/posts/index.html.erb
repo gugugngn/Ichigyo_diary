@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center">
+  <h1>みんなの１行</h1>
+</div>
+
+<div class="container">
+  <% grouped_posts = @posts.group_by { |post| post.created_at } %>
+    <% grouped_posts.each do |date, posts| %>
+      <p class="post-date"><%= l date, format: :short %></p>
+        <% @posts.each do |post| %>
+          <div class="post-item">
+            <div class="row">
+            <%= link_to user_path(post.user) do %>
+              <%= image_tag post.user.get_profile_image(150,150), class: "rounded-circle" %>
+            <% end %>
+            </div>
+            <div class="row">
+            <%= link_to user_path(post.user) do %>
+              <%= post.user.name %>
+            <% end %>
+            </div>
+          </div>
+          <%= link_to post_path(post) do %>
+            <%= render "diary", moods: post.moods, post: post %>
+          <% end %>
+        <% end %>
+    <% end %>
+  </div>
