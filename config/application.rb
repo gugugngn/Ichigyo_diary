@@ -18,7 +18,9 @@ module IchigyoDiary
     config.time_zone = 'Asia/Tokyo'
     
     # ブラウザ画面左上の表示を削除↓
-    config.middleware.delete(Rack::MiniProfiler)
+    unless Rails.env.production?
+      config.middleware.delete(Rack::MiniProfiler)
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #
