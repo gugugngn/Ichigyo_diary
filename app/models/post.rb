@@ -15,4 +15,14 @@ class Post < ApplicationRecord
     end
     post_image.variant(resize_to_fill: [width, height ]).processed
   end
+  
+  def background_color
+    if moods.empty?
+      '#f5f5f5'
+    elsif moods.size == 1
+      moods.first.color
+    else
+      colors = moods.map(&:color).join(', ')
+    end
+  end
 end

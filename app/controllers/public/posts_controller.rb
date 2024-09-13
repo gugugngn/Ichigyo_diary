@@ -19,10 +19,10 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save
+    if @post.save!
       redirect_to post_path(@post)
     else
-      redirect_to request.referer, alert: '入力内容に不備があります。'
+      render :new
     end
   end
 
