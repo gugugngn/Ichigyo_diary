@@ -3,10 +3,10 @@
 </div>
 
 <div class="container">
-  <% grouped_posts = @posts.group_by { |post| post.created_at } %>
+  <% grouped_posts = @posts.group_by { |post| post.created_at.to_date } %>
     <% grouped_posts.each do |date, posts| %>
       <p class="post-date"><%= l date, format: :short %></p>
-        <% @posts.each do |post| %>
+        <% posts.each do |post| %>
           <div class="post-item">
             <div class="row">
             <%= link_to user_path(post.user) do %>

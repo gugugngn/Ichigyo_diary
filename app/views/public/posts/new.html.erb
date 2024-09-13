@@ -1,7 +1,8 @@
 <h1>新規投稿画面</h1>
 <p>Find me in app/views/public/post/new.html.erb</p>
+<%= render "layouts/errors", post: @post %>
 <p><%= @current_date.strftime("%-m月%-d日") %></p>
-<%= form_with model: @post, url: posts_path, local: false do |f| %>
+<%= form_with model: @post, url: posts_path, local: true do |f| %>
   <div class="form-group">
     <%= f.text_area :body, class: 'form-control' %>
   </div>
@@ -17,7 +18,6 @@
         <%= b.label { b.text } %>
       </label>
     <% end %>
-  </div>
   </div>
   <div class="form-group">
     <%= f.label "明日の自分へ" %>

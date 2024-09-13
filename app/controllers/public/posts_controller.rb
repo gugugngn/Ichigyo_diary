@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def new
-    @current_date = Date.today
+    @current_date = Time.zone.today
     @post = Post.new
   end
 
@@ -22,7 +22,8 @@ class Public::PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post)
     else
-      redirect_to request.referer, alert: '入力内容に不備があります。'
+      @current_date = Time.zone.today
+      render :new
     end
   end
 

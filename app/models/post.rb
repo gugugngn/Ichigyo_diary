@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_many :moods, through: :post_moods
   has_many :messages, dependent: :destroy
   has_one_attached :post_image
+  
+  validates :body, presence: true
 
   # 投稿心着順↓
   scope :latest, -> { order(created_at: :desc) }
@@ -14,5 +16,16 @@ class Post < ApplicationRecord
       post_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
     end
     post_image.variant(resize_to_fill: [width, height ]).processed
+  end
+  
+  def background_color
+    if moods.empty?
+      '#f5f5f5'
+    elsif moods.size == 1
+      moods.first.color
+    else
+      colors = moods.map(&:color).join(', ')
+      "linear-gradient(to right, #{colors})"
+    end
   end
 end

@@ -85,10 +85,8 @@ ActiveRecord::Schema.define(version: 2024_09_08_075204) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "mood_id"
     t.text "body", null: false
     t.text "message"
-    t.date "date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
