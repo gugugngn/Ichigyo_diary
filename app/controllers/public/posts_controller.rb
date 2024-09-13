@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def new
-    @current_date = Date.today
+    @current_date = Time.zone.today
     @post = Post.new
   end
 
@@ -19,9 +19,10 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save!
+    if @post.save
       redirect_to post_path(@post)
     else
+      @current_date = Time.zone.today
       render :new
     end
   end

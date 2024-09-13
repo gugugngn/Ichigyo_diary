@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_many :moods, through: :post_moods
   has_many :messages, dependent: :destroy
   has_one_attached :post_image
+  
+  validates :body, presence: true
 
   # 投稿心着順↓
   scope :latest, -> { order(created_at: :desc) }
