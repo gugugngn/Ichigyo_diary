@@ -31,8 +31,16 @@ end
 # Moodデータの中身
 moods_data = [
    { name: "幸せ", color: "#fbe2eb" },
+   { name: "楽しい", color: "#fde2a6" },
+   { name: "絶好調", color: "#f09597" },
+   { name: "ワクワク", color: "#f4aa86" },
+   { name: "スッキリ", color: "#ebf5e9" },
+   { name: "普通", color: "#eee900" },
+   { name: "モヤモヤ", color: "#89c122" },
+   { name: "イライラ", color: "#ff4d4d" },
    { name: "悲しい", color: "#c6dbee" },
    { name: "疲れた", color: "#e4dfef" },
+   
 ]
 
 

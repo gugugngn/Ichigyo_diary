@@ -25,6 +25,7 @@ class Post < ApplicationRecord
       moods.first.color
     else
       colors = moods.map(&:color).join(', ')
+      "linear-gradient(to right, #{colors})"
     end
   end
 end
