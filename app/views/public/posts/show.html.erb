@@ -3,20 +3,17 @@
 
 <div class="container">
   <div class="row  justify-content-center pb-3">
-    <%= image_tag @post.user.get_profile_image(150,150), class: "rounded-circle" %>
-    <%= @post.user.name %>
+    <%= link_to user_path(@post.user) do %>
+      <%= render "public/users/name", user: @post.user %>
+    <% end %>
   </div>
   <div class="post-itemimage">
     <% if @post.post_image.attached? %>
       <div class="mood-text">
-        <h5>今日の気分</h5>
-          <% @post.moods.each do |mood| %>
-            <div class="mood-item" style="color: <%= mood.color %>;">
-              <h5 class="mood-name">
-                <%= mood.name %>
-              </h5>
-            </div>
-          <% end %>
+        <% if @post.moods.any? %>
+        <h5><%= l @post.created_at, format: :short %>の気分</h5>
+          <%= render "mood", moods: @post.moods %>
+        <% end %>
       </div>
       <div class="background-image-container">
         <%= image_tag @post.get_post_image(700, 400), class: "background-image"  %>
@@ -26,8 +23,25 @@
         </div>
       </div>
       
+      <div class="to_myself_message">
+          <% if @post.user == current_user %>
+            <h5>明日の自分へメッセージ</h5>
+            <%= @post.message %>
+          <% end %>
+      </div>
+      
     <% else %>
       <%= render "diary", moods: @post.moods, post: @post %>
+    <% end %>
+  </div>
+  <div class="row">
+    <% if @post.user == current_user && @post.today_post? %>
+      <div class="edit_btn"><%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-secondary" %></div>
+      <div class="delete_btn"><%= link_to "削除", post_path(@post), class: "btn btn-outline-danger", method: :delete %></div>
+    <% elsif @post.user == current_user %>
+      <p>過去の投稿は編集できません</p>
+      <%= link_to "削除", post_path(@post), class: "btn btn-outline-danger", method: :delete %>
+    <% else %>
     <% end %>
   </div>
 </div>

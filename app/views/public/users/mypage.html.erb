@@ -1,5 +1,6 @@
-<%= image_tag @user.get_profile_image(150,150), class: "rounded-circle" %>
-<p><%= @user.name %></p>
+
+<%= render "name",  user: @user %>
+
 <h5>昨日の自分からのメッセージ</h5>
   <% if @yesterday_post %>
     <p><%= @yesterday_post.message %></p>
@@ -37,7 +38,12 @@
 <h5>⚪︎過去の日記たち⚪︎</h5>
 <% @posts.each do |post| %>
   <h5><%= l post.created_at, format: :short %></h5>
-  <%= render "public/posts/diary", moods: post.moods, post: post %>
+  <div class="post-box">
+    <%= link_to post_path(post) do %>
+      <%= render "public/posts/mood", moods: post.moods %>
+      <%= render "public/posts/diary",  post: post %>
+    <% end %>
+  </div>
 <% end %>
 
 

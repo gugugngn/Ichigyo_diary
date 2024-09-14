@@ -1,0 +1,9 @@
+<div class="mood-details">
+  <% moods.each do |mood| %>
+    <div class="mood-item" style="color: <%= mood.color %>;">
+      <h5 class="mood-name">
+        <%= mood.name %>
+      </h5>
+    </div>
+  <% end %>
+</div>
