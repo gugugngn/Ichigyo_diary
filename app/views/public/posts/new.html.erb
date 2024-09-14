@@ -1,29 +1,10 @@
-<h1>新規投稿画面</h1>
-<p>Find me in app/views/public/post/new.html.erb</p>
-<%= render "layouts/errors", post: @post %>
-<p><%= @current_date.strftime("%-m月%-d日") %></p>
-<%= form_with model: @post, url: posts_path, local: true do |f| %>
-  <div class="form-group">
-    <%= f.text_area :body, class: 'form-control' %>
+<div class='container'>
+  <div class='row'>
+    <div class="mx-auto">
+      <h1>新規投稿画面</h1>
+        <%= render "layouts/errors", obj: @post %>
+        <p><%= @current_date.strftime("%-m月%-d日") %></p>
+        <%= render 'form', post: @post, url: posts_path %>
+    </div>
   </div>
-  <div class="form-group">
-    <p>本日の一枚</p>
-    <%= f.file_field :post_image, accept: "image/jpg" %>
-  </div>
-  <div class="form-group">
-    <%= f.collection_check_boxes(:mood_ids, Mood.all, :id, :name) do |b| %>
-      <% mood = Mood.find(b.value) %>
-      <label class="mood-color" style="background-color: <%= mood.color %>; padding: 6px; border-radius: 9px; color: #fff;">
-        <%= b.check_box class: "mood_checkbox" %>
-        <%= b.label { b.text } %>
-      </label>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label "明日の自分へ" %>
-    <%= f.text_area :message, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
-  </div>
-<% end %>
+</div>

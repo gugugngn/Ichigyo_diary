@@ -28,12 +28,25 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
+    unless @post.user == current_user && @post.today_post?
+      redirect_to post_path(@post), alert: 'この投稿は編集できません。'
+    end
   end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post), notice: "更新しました。"
+    else
+      render "edit"
+    end
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to mypage_users_path
   end
 
   private
