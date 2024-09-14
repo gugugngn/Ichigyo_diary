@@ -3,7 +3,7 @@
   <div class='row'>
     <div class="mx-auto">
   		<h1>投稿の編集</h1>
-  		<%= render 'layouts/errors', post: @post %>
+  		<%= render 'layouts/errors', ob: @post %>
   		<%= render 'form', post: @post, url: post_path(@post) %>
   		<%= link_to "削除", post_path(@post), class: "btn btn-outline-danger", method: :delete %>
   		<%= link_to '詳細画面に戻る', post_path(@post), class: "btn btn-outline-success" %>
