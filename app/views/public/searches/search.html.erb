@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row ">
+    <h3>Users search for "<%= @content %>"</h3>
+  </div>
+  <div class="row">
+     <% if @users.any? %>
+       <table>
+         <thead>
+           <tr>
+             <th>Name</th>
+           </tr>
+         </thead>
+         <tbody>
+           <% @users.each do |user| %>
+             <tr>
+               <td>
+                 <%= link_to user_path(user) do %>
+                   <%= render "public/users/name", user: user %>
+                 <% end %>
+               </td>
+             </tr>
+           <% end %>
+         </tbody>
+       </table>
+     <% else %>
+       <p>No users found for "<%= @content %>"</p>
+     <% end %>
+  </div>
+</div>

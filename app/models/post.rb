@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :post_moods, dependent: :destroy
   has_many :moods, through: :post_moods
+  has_many :comments, dependent: :destroy
   has_one_attached :post_image
   
   validates :body, presence: true

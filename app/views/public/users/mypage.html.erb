@@ -9,7 +9,7 @@
   <% end %>
   
 <!--送受信したメッセージ一覧　@user = current_user-->
-<h5>もらったメッセージ</h5>
+<h5>3日間でもらったメッセージ</h5>
 <% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.to_date } %>
   <% grouped_received_messages.each do |date, messages| %>
     <h5><%= l date, format: :short %></h5>

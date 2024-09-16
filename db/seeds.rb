@@ -100,10 +100,31 @@ end
 
   
   # 明日へのメッセージ＆小さなエールの配列
-  to_messages = [
+  message_texts = [
     { content: "今日も１日お疲れ様でした。明日もいい日になりますように。"},
     { content: "今日も１日お疲れ様でした！明日もマイペースに頑張りましょう。"},
     { content: "素敵な日記ですね！元気をもらえました、ありがとうございます。"},
-    { content: "今日も１日お疲れ様でした。明日はごゆっくりなさってください。"},
+    { content: "今日も１日お疲れ様でした。明日はごゆっくりなさってください。"}
     ]
+  
+  message_texts.each do |message_text|
+    MessageText.find_or_create_by!(content: message_text[:content])
+  end
+  
+  to_messages = [
+    { 
+      sender_id: 1,
+      receiver_id: 2,
+      message_text_id: 1 
+    },
+    { 
+      sender_id: 2,
+      receiver_id: 1,
+      message_text_id: 3 
+    },
+   ]
+  
+  to_messages.each do |to_message|
+    Message.find_or_create_by!(sender_id: to_message[:sender_id], receiver_id: to_message[:receiver_id], message_text_id: to_message[:message_text_id])
+  end
   

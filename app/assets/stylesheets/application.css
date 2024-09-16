@@ -27,7 +27,12 @@ html body {
 }
 
 a{
-  text-decoration: none;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.rounded-circle a:hover{
+  text-shadow: 3px 3px 5px #a0a7c5 !important;
 }
 
 .logo a{
@@ -35,7 +40,6 @@ a{
     font-size: 4rem;
     color: #c6dbee;
     text-shadow: 3px 3px 5px #a0a7c5;
-    text-decoration: none;
     font-weight: bold;
 }
 
@@ -112,13 +116,6 @@ a{
 /*--------------------------------１行日記の本文ここまで------------------------------------*/
 
 /*--------------------------------投稿詳細画面の画像の設定ここから------------------------------------*/
-.post-item-image {
-  display: flex; /* フレックスボックスを使用 */
-  justify-content: center; /* 水平方向に中央揃え */
-  align-items: center; /* 垂直方向に中央揃え */
-  height: 400px; /* 必要に応じて高さを設定 */
-  position: relative; /* 子要素の位置合わせを相対的にするため */
-}
 
 .background-image-container {
   position: relative; /* 子要素の位置を相対的に配置 */

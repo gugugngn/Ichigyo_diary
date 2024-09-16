@@ -2,14 +2,12 @@
 <p>Find me in app/views/public/post/show.html.erb</p>
 
 <div class="container">
-  <div class="row  justify-content-center pb-3">
-    <%= link_to user_path(@post.user) do %>
-      <%= render "public/users/name", user: @post.user %>
-    <% end %>
-  </div>
-  <div class="post-itemimage">
+  <%= link_to user_path(@post.user) do %>
+    <%= render "public/users/name", user: @post.user %>
+  <% end %>
+  <div class="post-item-image">
     <% if @post.post_image.attached? %>
-      <div class="mood-text">
+      <div class="row mood-text">
         <% if @post.moods.any? %>
         <h5><%= l @post.created_at, format: :short %>の気分</h5>
           <%= render "mood", moods: @post.moods %>
@@ -37,11 +35,14 @@
   <div class="row">
     <% if @post.user == current_user && @post.today_post? %>
       <div class="edit_btn"><%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-secondary" %></div>
-      <div class="delete_btn"><%= link_to "削除", post_path(@post), class: "btn btn-outline-danger", method: :delete %></div>
+      <div class="delete_btn"><%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-danger" %></div>
     <% elsif @post.user == current_user %>
       <p>過去の投稿は編集できません</p>
-      <%= link_to "削除", post_path(@post), class: "btn btn-outline-danger", method: :delete %>
+      <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-danger" %>
     <% else %>
     <% end %>
   </div>
+  
+  <%= render "public/comments/index", post: @post %>
+  <%= render "public/comments/form", post: @post, comment: @comment %>
 </div>

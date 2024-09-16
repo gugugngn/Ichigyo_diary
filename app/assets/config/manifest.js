@@ -3,5 +3,6 @@
 //= link public/messages.css
 //= link public/posts.css
 //= link public/users.css
+//= link public/comments.css
 //= link admin/message_text.css
 //= link admin/moods.css

@@ -7,9 +7,9 @@ class User < ApplicationRecord
  has_many :posts, dependent: :destroy
  has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
  has_many :received_messages, class_name: "Message", foreign_key: "receiver_id"
+ has_many :comments, dependent: :destroy
  has_one_attached :profile_image
  
-  
   validates :name, presence: true
   
   # ゲストログインユーザーの記述↓
@@ -26,6 +26,7 @@ class User < ApplicationRecord
     email == GUEST_USER_EMAIL
   end
   
+  # プロフィール画像のサイズ調整定義＆デフォルト画像の差し込み
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -34,4 +35,11 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_fill: [width, height]).processed
   end
   
+  def self.search_for(content,method)
+    if method == 'perfect'
+      User.where(name: content)
+    else
+      User.where('name LIKE ?', '%' +  content  + '%')
+    end
+  end
 end

@@ -18,13 +18,17 @@ Rails.application.routes.draw do
    root to: "public/homes#top"
 
   scope module: :public do
-     resources :users, only: [:edit, :show, :update, :destroy] do
+    resources :users, only: [:edit, :show, :update, :destroy] do
       resources :messages, only: [:new, :index, :create, :destroy]
       collection do
-          get :mypage
-       end
-     end
-     resources :posts
+        get :mypage
+      end
+    end
+    resources :posts do
+      resources :comments, only: [:create, :destroy]
+    end
+
+    get 'searches/search', to: 'searches#search'
   end
 
  # admin側の記述

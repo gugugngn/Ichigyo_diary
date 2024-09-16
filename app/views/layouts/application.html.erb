@@ -45,18 +45,16 @@
               <li class="nav-item"><%= link_to "ログイン", new_user_session_path %></li>
             </ul>
           <% end %>
-    </div> <!-- container divを閉じる -->
-</nav>
+        </div> <!-- container divを閉じる -->
+      </nav>
     </header>
     <main>
-       <main class="mt-5">
-      <% flash.each do |message_type, message| %>
-        <div class="flash-message <%= message_type %>"><%= message %></div>
-      <% end %>
+      <div class="mt-5">
+        <% flash.each do |message_type, message| %>
+          <div class="flash-message <%= message_type %>"><%= message %></div>
+        <% end %>
+      </div>
     </main>
-    </main>
-    <div class="main-decoration">
-    <%= yield %>
-    </div>
+      <%= yield %>
   </body>
 </html>
