@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+  <%= link_to admin_user_path(user) do %>
+    <%= render "public/users/name", user: user %>
+  <% end %>
+<% end %>
+<div style="display: flex; justify-content: center;">
+</div>
