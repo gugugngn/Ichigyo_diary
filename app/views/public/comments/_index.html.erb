@@ -7,7 +7,7 @@
       <%= comment.body %>
     </p>
     <% if comment.user == current_user %>
-      <%= link_to "削除",post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger" %>
+      <%= link_to "削除",post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger",remote:true, data: {"turbolinks" => false} %>
     <% end %>
   </div>
 <% end %>

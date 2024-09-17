@@ -42,7 +42,8 @@
     <% else %>
     <% end %>
   </div>
-  
-  <%= render "public/comments/index", post: @post %>
-  <%= render "public/comments/form", post: @post, comment: @comment %>
+  <div id="post-comments">
+    <%= render "public/comments/index", post: @post %>
+  </div>
+    <%= render "public/comments/form", post: @post, comment: @comment %>
 </div>
