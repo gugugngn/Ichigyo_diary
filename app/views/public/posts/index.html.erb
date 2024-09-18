@@ -17,8 +17,11 @@
             <div class="index-box">
               <%= link_to post_path(post) do %>
                 <%= render "mood", moods: post.moods %>
-                <%= render "diary",  post: post %>
+                <%= render "diary", post: post %>
               <% end %>
+              <div id="favorite_btn_<%= post.id %>">
+                <%= render "public/favorites/btn", post: post %>
+              </div>
             </div>
           </div>
         <% end %>

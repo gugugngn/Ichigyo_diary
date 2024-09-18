@@ -30,6 +30,9 @@
     <% else %>
       <%= render "diary", moods: @post.moods, post: @post %>
     <% end %>
+    <div id="favorite_btn_<%= @post.id %>">
+      <%= render "public/favorites/btn", post: @post %>
+    </div>
   </div>
   <div class="row">
     <% if @post.user == current_user && @post.today_post? %>

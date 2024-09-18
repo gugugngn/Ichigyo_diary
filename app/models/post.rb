@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :post_moods, dependent: :destroy
   has_many :moods, through: :post_moods
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_one_attached :post_image
   
   validates :body, presence: true
@@ -31,5 +32,10 @@ class Post < ApplicationRecord
       colors = moods.map(&:color).join(', ')
       "linear-gradient(to right, #{colors})"
     end
+  end
+  
+  # いいねが重複しないように定義↓
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 end
