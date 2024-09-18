@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      # redirect_to post_path(@post)
+       redirect_to post_path(@post)
     else
       @current_date = Time.zone.today
       render :new
@@ -47,7 +47,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    # redirect_to mypage_users_path
+    redirect_to mypage_users_path
   end
 
   private

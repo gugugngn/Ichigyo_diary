@@ -1,2 +1,26 @@
 <h1>Admin::Users#show</h1>
 <p>Find me in app/views/admin/users/show.html.erb</p>
+
+<%= render "public/users/name",  user: @user %>
+<%= link_to "退会させる",user_path(@user),method: :delete,class: "btn btn-danger", "data-confirm"=> "本当に退会させますか？" %>
+
+<p>送ったコメント</p>
+<% if @comments %>
+  <% @comments.each do |comment| %>
+   <p><%= comment.body %>　⇦ <%= comment.post.user.name %>さんに</p>
+  <% end %>
+<% else %>
+  <p>コメントはありません。</p>
+<% end %>
+
+<!--過去の日記-->
+<h5>⚪︎過去の日記たち⚪︎</h5>
+<% @posts.each do |post| %>
+  <h5><%= l post.created_at, format: :short %></h5>
+  <div class="post-box">
+    <%= link_to post_path(post) do %>
+      <%= render "public/posts/mood", moods: post.moods %>
+      <%= render "public/posts/diary",  post: post %>
+    <% end %>
+  </div>
+<% end %>
