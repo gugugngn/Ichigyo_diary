@@ -9,9 +9,7 @@
         <% posts.each do |post| %>
           <div class="index-item">
             <div class="name-box">
-              <%= link_to user_path(post.user) do %>
-                <%= render "public/users/name", user: post.user %>
-              <% end %>
+              <%= render "public/users/name", user: post.user, post: post %>
             </div>
       
             <div class="index-box">

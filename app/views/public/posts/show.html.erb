@@ -1,9 +1,7 @@
 <h1>投稿詳細画面</h1>
 <p>Find me in app/views/public/post/show.html.erb</p>
 <div class="container">
-  <%= link_to user_path(@post.user) do %>
-    <%= render "public/users/name", user: @post.user %>
-  <% end %>
+  <%= render "public/users/name", user: @post.user %>
   <div class="post-item-image">
     <% if @post.post_image.attached? %>
       <div class="row mood-text">
