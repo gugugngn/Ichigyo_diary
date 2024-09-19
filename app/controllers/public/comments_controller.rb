@@ -9,8 +9,8 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find_by(id: params[:id], post_id:params[:post_id]).destroy
     @post = Post.find(params[:post_id])
+    Comment.find_by(id: params[:id], post_id:params[:post_id]).destroy
   end
   
   private

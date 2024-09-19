@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users, only: [:edit, :show, :update, :destroy] do
+      member do
+        get :favorites
+      end
       resources :messages, only: [:new, :index, :create, :destroy]
       collection do
         get :mypage

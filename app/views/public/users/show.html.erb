@@ -1,10 +1,8 @@
 <div class='container'>
   <div class='row'>
-    <%= image_tag @user.get_profile_image(100, 100) %>
-
-    <p><%= @user.name %></p>
+   <%= render "name", user: @user %>
     <p><%= @user.introduction %></p>
-    
+    <%= link_to "いいねした一覧", favorites_user_path(@user) %>
   </div>
   <div class='row'>
     <%= render "info", user: @user %>

@@ -12,6 +12,12 @@ class Public::UsersController < ApplicationController
     @posts = @user.posts.order(created_at: :desc)
     # 10行目⇨今日送られたメッセージも反映される、明日以降に見れるようにするにはcreated_at: three_days_ago..Date.todayにする
   end
+  
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
 
   def edit
     @user = User.find(params[:id])
@@ -43,6 +49,7 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
   
+  # 現在ログインしているユーザーだけを許可↓
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user

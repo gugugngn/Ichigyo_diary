@@ -1,6 +1,8 @@
 
 <%= render "name",  user: @user %>
 
+<%= link_to "いいねした一覧", favorites_user_path(@user) %>
+
 <h5>昨日の自分からのメッセージ</h5>
   <% if @yesterday_post %>
     <p><%= @yesterday_post.message %></p>
