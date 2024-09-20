@@ -38,14 +38,24 @@
 
 <!--過去の日記-->
 <h5>⚪︎過去の日記たち⚪︎</h5>
+
+
 <% @posts.each do |post| %>
-  <h5><%= l post.created_at, format: :short %></h5>
-  <div class="post-box">
-    <%= link_to post_path(post) do %>
-      <%= render "public/posts/mood", moods: post.moods %>
-      <%= render "public/posts/diary",  post: post %>
-    <% end %>
-  </div>
+  <% if post.post_image.attached? %>
+    <div class="mood-text">
+      <% if post.moods.any? %>
+      <h5><%= l post.created_at, format: :short %>の気分</h5>
+        <%= render "public/posts/mood", moods: post.moods %>
+      <% end %>
+    </div>
+    <div class="background-image-container">
+      <%= image_tag post.get_post_image(700, 400), class: "background-image"  %>
+      <div class="overlay-content">
+        <h5><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</h5>
+        <p><%= post.body %></p>
+      </div>
+    </div>
+   <% else %>
+    <%= render "public/posts/diary", moods: post.moods, post: post %>
+  <% end %>
 <% end %>
-
-

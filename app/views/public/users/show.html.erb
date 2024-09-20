@@ -1,17 +1,20 @@
-<div class='container'>
-  <div class='row'>
-   <%= render "name", user: @user %>
-    <p><%= @user.introduction %></p>
-    <%= link_to "いいねした一覧", favorites_user_path(@user) %>
+<div class="container">
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <div class='row justify-content-center'>
+      <div class="text-center py-2 ">
+     <%= render "name", user: @user %>
+      <p><%= @user.introduction %></p>
+      <p><%= link_to "いいね一覧", favorites_user_path(@user) %></p>
+      </div>
+    </div>
+      <%= render "info", user: @user %>
+    <div class='row justify-content-center py-2'>
+      <% @user.received_messages.each do |message| %>
+        <p class="border p-2"><%= message.message_text.content  %></p>
+      <% end %>
+    </div>
+    <div class='row justify-content-center py-2'>
+      <%= render "public/messages/form", reciever: @user %>
+    </div>
   </div>
-  <div class='row'>
-    <%= render "info", user: @user %>
-  </div>
-  <% @user.received_messages.each do |message| %>
-    <%= message.message_text.content  %>
-  <% end %>
-
-  <%= render "public/messages/form", reciever: @user %>
-
 </div>
-

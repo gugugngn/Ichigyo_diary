@@ -1,21 +1,18 @@
 <!--フォロー数とフォロワー数とその一覧リンクの表示＋フォローする,外すボタンの表示,もしくは非表示-->
-
-<tr>
-  <th>フォロー</th>
-  <th>
+<div class="row  justify-content-center flex-nowrap">
+  <div class="col-sm-4 col-md-3 d-flex align-items-center">
     <%= link_to user_followings_path(user) do %>
-    <h6><%= user.followings.count %></h6>
+      <h6>フォロー　<%= user.followings.count %></h6>
     <% end %>
-  </th>
-  <th>フォロワー</th>
-    <th>  
-      <%= link_to user_followers_path(user) do %>
-        <h6><%= user.followers.count %></h6>
-      <% end %>
-    </th>
-</tr>
-<td>
-  <% if current_user != user %>
-    <%= render "public/relationships/btn", user: user %>
-  <% end %>
-</td>
+  </div>
+  <div class="col-sm-4 col-md-3 d-flex align-items-center">
+    <%= link_to user_followers_path(user) do %>
+      <h6>フォロワー　<%= user.followers.count %></h6>
+    <% end %>
+  </div>
+  <div class="col-sm-4 col-md-3">
+    <% if current_user != user %>
+      <%= render "public/relationships/btn", user: user %>
+    <% end %>
+  </div>
+</div>
