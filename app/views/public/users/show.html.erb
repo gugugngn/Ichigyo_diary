@@ -1,13 +1,6 @@
-<div class="container">
+<div class="container"
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
-    <div class='row justify-content-center'>
-      <div class="text-center py-2 ">
-     <%= render "name", user: @user %>
-      <p><%= @user.introduction %></p>
-      <p><%= link_to "いいね一覧", favorites_user_path(@user) %></p>
-      </div>
-    </div>
-      <%= render "info", user: @user %>
+    <%= render "info", user: @user %>
     <div class='row justify-content-center py-2'>
       <% @user.received_messages.each do |message| %>
         <p class="border p-2"><%= message.message_text.content  %></p>

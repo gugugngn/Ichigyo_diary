@@ -13,7 +13,6 @@
               <i class="fa-solid fa-house"></i>　みんなの１行
             <% end %>
           </li>
-        </ul>
       <% else %>
         <!-- ログインユーザー用のリンク -->
           <li class="nav-item ">
@@ -46,13 +45,20 @@
               <span class="d-none d-lg-inline">　プロフィール編集</span>
             <% end %>
           </li>
-        </ul>
       <% end %>
     <% else %>
+      <% if admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to destroy_admin_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span class="d-none d-lg-inline">　ログアウト</span>
+          <% end %>
+        </li>
+      <% else %>
       <!-- ログアウト状態のリンク -->
         <li class="nav-item"><%= link_to "新規登録", new_user_registration_path %></li>
         <li class="nav-item"><%= link_to "ログイン", new_user_session_path %></li>
-      </ul>
+      <% end %>
     <% end %>
   </ul>
  </div>

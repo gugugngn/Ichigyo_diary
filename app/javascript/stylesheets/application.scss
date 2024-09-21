@@ -77,12 +77,10 @@ a{
 }
 
 .mood-item {
-  display: inline-block; /* 横並びにするためにinline-blockを指定 */
   margin-right: 10px; /* アイテム間のスペースを指定 */
 }
 
 .mood-name {
-  display: block; /* 横並びにするためにblockを指定 */
   font-weight: bold;
 }
 
@@ -92,8 +90,6 @@ a{
   justify-content: center; /* 中央に配置 */
   align-items: center;     /* 中央に配置 */
   height: 150px;           /* 必要に応じて高さを調整 */
-  margin-top: 10px;
-  padding: 10px;
   border-radius: 8px;      /* 角丸 */
   overflow: hidden;        /* コンテンツがはみ出さないように設定 */
 }
@@ -122,6 +118,7 @@ a{
   width: 100%; /* 親要素に合わせて画像を引き伸ばす */
   height: 100%; /* 親要素に合わせて画像を引き伸ばす */
   object-fit: cover; /* 画像を枠に合わせてトリミング */
+  border-radius: 5px;
 }
 
 .overlay-content {

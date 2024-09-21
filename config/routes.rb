@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     get 'searches/search', to: 'searches#search'
   end
 
- # admin側の記述
+  # admin側の記述
   namespace :admin do
     resources :message_text, only: [:new, :create, :destroy]
     resources :moods, only: [:new, :create, :destroy]

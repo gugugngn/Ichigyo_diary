@@ -1,3 +1,10 @@
+<div class='row justify-content-center'>
+  <div class="text-center py-2 ">
+    <%= render "name", user: user %>
+    <p><%= user.introduction %></p>
+    <p><%= link_to "いいね一覧", favorites_user_path(user) %></p>
+  </div>
+</div>
 <!--フォロー数とフォロワー数とその一覧リンクの表示＋フォローする,外すボタンの表示,もしくは非表示-->
 <div class="row  justify-content-center flex-nowrap">
   <div class="col-sm-4 col-md-3 d-flex align-items-center">
@@ -5,14 +12,14 @@
       <h6>フォロー　<%= user.followings.count %></h6>
     <% end %>
   </div>
-  <div class="col-sm-4 col-md-3 d-flex align-items-center">
+  <div class="col-sm-4 col-md-3">
     <%= link_to user_followers_path(user) do %>
       <h6>フォロワー　<%= user.followers.count %></h6>
     <% end %>
   </div>
-  <div class="col-sm-4 col-md-3">
     <% if current_user != user %>
-      <%= render "public/relationships/btn", user: user %>
+      <div class="col-sm-4 col-md-3">
+        <%= render "public/relationships/btn", user: user %>
+      </div> 
     <% end %>
-  </div>
 </div>

@@ -13,7 +13,9 @@
       </div>
     </div>
     <% if @post.post_image.attached? %>
-      <%= image_tag @post.get_post_image(400, 300), class: "background-image"  %>
+      <div class="mx-auto">
+        <%= image_tag @post.get_post_image(700, 500), class: "background-image"  %>
+      </div>
     <% end %>
     <div class="card-body">
       <div class="row justify-content-center">
@@ -22,18 +24,24 @@
             <p>次の日の自分へ　<%= @post.message %></p>
           <% end %>
           <%= render "public/posts/diary", post: @post %>
-          <span>
-            <div id="favorite_btn_<%= @post.id %>">
-              <%= render "public/favorites/btn", post: @post %>
+          <div class="d-flex justify-content-between pb-3">
+            <div class="d-flex justify-content-start pl-3">
+              <span>
+                <div id="favorite_btn_<%= @post.id %>">
+                  <%= render "public/favorites/btn", post: @post %>
+                </div>
+              </span>
             </div>
-          </span>
-          <% if @post.user == current_user && @post.today_post? %>
-            <div class="edit_btn"><%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-secondary" %></div>
-            <div class="delete_btn"><%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-danger" %></div>
-          <% elsif @post.user == current_user %>
-            <p>過去の投稿は編集できません　<%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-danger" %></p>
-          <% else %>
-          <% end %>
+            <div class="d-flex justify-content-end">
+              <% if @post.user == current_user && @post.today_post? %>
+                <%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-secondary" %>
+                <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-danger" %>
+              <% elsif @post.user == current_user %>
+                <p>過去の投稿は編集できません　<%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-danger" %></p>
+              <% else %>
+              <% end %>
+            </div>
+          </div>
           <div id="post-comments">
             <%= render "public/comments/index", post: @post %>
           </div>

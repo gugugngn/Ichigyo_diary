@@ -6,10 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-admin = Admin.find_or_create_by!(email: "admin@example.com") do |admin|
+Admin.find_or_create_by(id: 1) do |admin|
+  admin.email = "admin@example.com"
   admin.password = "A123456"
   admin.password_confirmation = "A123456"
 end
+
+Admin.find_or_create_by(id: 2) do |admin|
+  admin.email = "sample@example.com"
+  admin.password = "A123456"
+  admin.password_confirmation = "A123456"
+end
+
 
 momoko = User.find_or_create_by!(email: "momoko@example.com") do |user|
   user.name = "ももこ"

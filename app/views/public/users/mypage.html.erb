@@ -1,61 +1,76 @@
-
-<%= render "name",  user: @user %>
-
-<%= link_to "いいねした一覧", favorites_user_path(@user) %>
-
-<h5>昨日の自分からのメッセージ</h5>
-  <% if @yesterday_post %>
-    <p><%= @yesterday_post.message %></p>
-  <% else %>
-    <p>昨日のメッセージはありません。</p>
-  <% end %>
-  
-<!--送受信したメッセージ一覧　@user = current_user-->
-<h5>3日間でもらったメッセージ</h5>
-<% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.to_date } %>
-  <% grouped_received_messages.each do |date, messages| %>
-    <h5><%= l date, format: :short %></h5>
-      <% messages.each do |received_message| %>
-        <p>
-          <%= received_message.message_text.content %>
-           <%= received_message.sender.name %> さんより
-        </p>
+<div class="container">
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <%= render "info", user: @user %>
+      <div class="mx-auto pt-3">
+        <h5>昨日の自分からのメッセージ</h5>
+      </div>
+      <div class="mx-auto">
+        <% if @yesterday_post %>
+          <p><%= @yesterday_post.message %></p>
+        <% else %>
+          <p>昨日のメッセージはありません。</p>
+        <% end %>
+      </div>
+      <!--送受信したメッセージ一覧　@user = current_user-->
+      
+      <% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.to_date } %>
+      <% if grouped_received_messages.present? %>
+        <div class="mx-auto py-2">
+          <h5>3日間でもらったメッセージ</h5>
+        </div>
+        <div class="mx-auto">
+          <% grouped_received_messages.each do |date, messages| %>
+            <h5><%= l date, format: :short %></h5>
+            <% messages.each do |received_message| %>
+              <p>
+                <%= received_message.message_text.content %>
+                <%= received_message.sender.name %> さんより
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
       <% end %>
-<% end %>
-
-
-<h5>メッセージを送った人</h5>
-<% grouped_sent_messages = @user.sent_messages.group_by { |message| message.created_at.to_date } %>
-  <% grouped_sent_messages.each do |date, messages| %>
-    <h5><%= l date, format: :short %></h5>
-    <% messages.each do |sent_message| %>
-      <p>
-        <%= sent_message.message_text.content %>
-        <%= sent_message.receiver.name %> さんに向けて
-      </p>
-    <% end %>
-<% end %>
+      <% grouped_sent_messages = @user.sent_messages.group_by { |message| message.created_at.to_date } %>
+      <% if grouped_sent_messages.present? %>
+        <div class="mx-auto py-2">
+          <h5>メッセージを送った人</h5>
+        </div>
+        <div class="mx-auto">
+          <% grouped_sent_messages.each do |date, messages| %>
+            <h5><%= l date, format: :short %></h5>
+            <% messages.each do |sent_message| %>
+              <p>
+                <%= sent_message.message_text.content %>
+                <%= sent_message.receiver.name %> さんへ
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+      <% end %>
 
 <!--過去の日記-->
-<h5>⚪︎過去の日記たち⚪︎</h5>
-
-
-<% @posts.each do |post| %>
-  <% if post.post_image.attached? %>
-    <div class="mood-text">
-      <% if post.moods.any? %>
-      <h5><%= l post.created_at, format: :short %>の気分</h5>
-        <%= render "public/posts/mood", moods: post.moods %>
+    <h5 class="ml-2">⚪︎過去の日記たち⚪︎</h5>
+    <% @posts.each do |post| %>
+      <% if post.post_image.attached? %>
+        <div class="mx-auto">
+          <% if post.moods.any? %>
+          <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
+            <%= render "public/posts/mood", moods: post.moods %>
+          <% end %>
+        </div>
+        <div class="background-image-container mx-auto">
+          <%= image_tag post.get_post_image(700, 400), class: "background-image"  %>
+          <div class="overlay-content">
+            <h5><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</h5>
+            <p><%= post.body %></p>
+          </div>
+        </div>
+      <% else %>
+        <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
+        <%= render "public/posts/diary", moods: post.moods, post: post %>
       <% end %>
-    </div>
-    <div class="background-image-container">
-      <%= image_tag post.get_post_image(700, 400), class: "background-image"  %>
-      <div class="overlay-content">
-        <h5><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</h5>
-        <p><%= post.body %></p>
-      </div>
-    </div>
-   <% else %>
-    <%= render "public/posts/diary", moods: post.moods, post: post %>
-  <% end %>
-<% end %>
+    <% end %>
+  </div>
+</div>
