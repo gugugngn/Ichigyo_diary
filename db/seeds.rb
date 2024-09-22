@@ -12,13 +12,6 @@ Admin.find_or_create_by(id: 1) do |admin|
   admin.password_confirmation = "A123456"
 end
 
-Admin.find_or_create_by(id: 2) do |admin|
-  admin.email = "sample@example.com"
-  admin.password = "A123456"
-  admin.password_confirmation = "A123456"
-end
-
-
 momoko = User.find_or_create_by!(email: "momoko@example.com") do |user|
   user.name = "ももこ"
   user.password = "m11111"

@@ -10,7 +10,16 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
-    Comment.find_by(id: params[:id], post_id:params[:post_id]).destroy
+    comment = @post.comments.find(params[:id])
+    
+    if comment.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_user_path(comment.user), notice: "コメントが削除されました。" }  # 管理者の場合のリダイレクト
+      format.js   # 非同期通信の場合のレスポンス
+    end
+    else
+    # エラーハンドリング（必要に応じて）
+    end
   end
   
   private

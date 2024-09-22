@@ -49,6 +49,24 @@
     <% else %>
       <% if admin_signed_in? %>
         <li class="nav-item">
+          <%= link_to admin_users_path do %>
+            <i class="fa-solid fa-user-group"></i>
+            <span class="d-none d-lg-inline">　ユーザー一覧</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_admin_mood_path do %>
+            <i class="fa-regular fa-heart"></i>
+            <span class="d-none d-lg-inline">　気分変更</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_admin_message_text_path do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span class="d-none d-lg-inline">　メッセージ追加</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to destroy_admin_session_path, method: :delete do %>
             <i class="fa-solid fa-right-from-bracket"></i>
             <span class="d-none d-lg-inline">　ログアウト</span>

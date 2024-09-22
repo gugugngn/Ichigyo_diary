@@ -1,0 +1,21 @@
+<h5 class="ml-2">⚪︎過去の日記たち⚪︎</h5>
+<% posts.each do |post| %>
+  <% if post.post_image.attached? %>
+    <div class="mx-auto">
+      <% if post.moods.any? %>
+      <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
+        <%= render "public/posts/mood", moods: post.moods %>
+      <% end %>
+    </div>
+    <div class="background-image-container mx-auto">
+      <%= image_tag post.get_post_image(700, 400), class: "background-image"  %>
+      <div class="overlay-content">
+        <h5><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</h5>
+        <p><%= post.body %></p>
+      </div>
+    </div>
+  <% else %>
+    <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
+    <%= render "public/posts/diary", moods: post.moods, post: post %>
+  <% end %>
+<% end %>

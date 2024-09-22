@@ -1,17 +1,22 @@
-<h1>Admin::MessageText#newあ</h1>
-<p>Find me in app/views/admin/message_text/new.html.erb</p>
-
-<% @message_texts.each do |message_text| %>
-  <p>
-    <%= message_text.content %>
-    <%= link_to "削除", admin_message_text_path(message_text), method: :delete, class: "btn btn-danger pull-right" %>
-  </p>
-<% end %>
-
-<%= form_with model: @message_text, url: admin_message_text_index_path, local: true do |f| %>
-  <%= f.label :content, "新しくメッセージの選択肢を作成" %>
-  <%= f.text_area :content, class: 'form-control' %>
-  <%= f.submit class: 'btn btn-success' %>
-  
-<% end %>
-
+<div class='container'>
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <div class="mx-auto py-4">
+      <p><strong>メッセージ一覧</strong></p>
+      <% @message_texts.each do |message_text| %>
+        <p>
+          <%= message_text.content %>
+          <%= link_to "削除", admin_message_text_path(message_text), method: :delete, class: "btn btn-light m-1" %>
+        </p>
+      <% end %>
+      <div class="mx-auto py-4">
+        <%= form_with model: @message_text, url: admin_message_text_index_path, local: true do |f| %>
+          <p><strong><%= f.label :content, "新しくメッセージの選択肢を作成" %></strong></p>
+          <%= f.text_area :content, class: 'form-control' %>
+          <div class="d-flex justify-content-end pt-2">
+          <%= f.submit class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
