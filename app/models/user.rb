@@ -15,7 +15,9 @@ class User < ApplicationRecord
  has_many :followers, through: :passive_relationships, source: :follower
  has_one_attached :profile_image
  
-  validates :name, presence: true
+validates :name, presence: true
+
+validates :profile_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpng, jpg, jpegいずれかの形式にして下さい"}
   
   # ゲストログインユーザーの記述↓
   GUEST_USER_EMAIL = "guest@example.com"

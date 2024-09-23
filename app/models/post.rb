@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   
   validates :body, presence: true
   validate :one_post_per_day, on: :create
+  validates :post_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpng, jpg, jpegいずれかの形式にして下さい"}
 
   # 投稿心着順↓
   scope :latest, -> { order(created_at: :desc) }

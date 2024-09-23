@@ -42,11 +42,28 @@ a{
 .sidebar{
   border-right: 2px solid #c0c0c0;
   flex-grow: 1;
-  height: 100vh;
+  // height: 100vh;
 }
 
+/* スマホサイズ (最大 768px) の時にサイドバーをフッターに固定 */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed; /* 画面下部に固定 */
+    bottom: 0; /* 画面下端 */
+    left: 0;
+    width: 100%; /* 横幅全体に */
+    height: 60px; /* 高さ指定 */
+    z-index: 1000; /* 他の要素より前面に */
+    background-color: #f8f9fa; /* 背景色 */
+    display: flex; /* フレックスボックスで横並び */
+    justify-content: space-around; /* 均等に配置 */
+    align-items: center; /* 中央揃え */
+  }
 
-
+  main {
+    margin-bottom: 60px; /* メインコンテンツとフッターが重ならないよう余白 */
+  }
+}
 
 /*--------------------------------ユーザーネームと画像ここから------------------------------------*/
 .user_name{
