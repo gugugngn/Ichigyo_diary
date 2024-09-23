@@ -7,20 +7,21 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
-    @posts = Post.latest
+    @posts = Post.all.order(created_at: :desc).page(params[:page])
+    @grouped_posts = @posts.group_by { |post| post.created_at.to_date }
   end
 
   def show
     @post = Post.find(params[:id])
     @post_message = Message.new
+    @comment = Comment.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to post_path(@post)
+       redirect_to post_path(@post)
     else
       @current_date = Time.zone.today
       render :new

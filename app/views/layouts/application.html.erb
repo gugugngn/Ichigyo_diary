@@ -12,51 +12,21 @@
   </head>
 
   <body>
-    <%= stylesheet_link_tag 'application' %>
-    <header>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <div class="logo"><%= link_to "1Gyo diary", posts_path %></div>
-          <% if user_signed_in? %>
-            <% if current_user.guest_user? %>
-              <!-- ゲストユーザー用のリンク -->
-              <ul class="nav nav-pills justify-content-end">
-                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-                <li class="nav-item"><%= link_to "みんなの１行", posts_path %></li>
-              </ul>
-            <% else %>
-              <!-- ログインユーザー用のリンク -->
-              <ul class="nav nav-pills justify-content-end">
-                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-                <li class="nav-item"><%= link_to "みんなの１行", posts_path %></li>
-                <li class="nav-item"><%= link_to "マイページ", mypage_users_path %></li>
-                <li class="nav-item"><%= link_to "日記を書く", new_post_path %></li>
-                <li class="nav-item">
-                  <%= link_to edit_user_path(current_user) do %>
-                    <i class="fa-solid fa-gear"></i> プロフィール編集
-                  <% end %>
-                </li>
-              </ul>
-            <% end %>
-          <% else %>
-            <!-- ログアウト状態のリンク -->
-            <ul class="nav nav-pills justify-content-end">
-              <li class="nav-item"><%= link_to "新規登録", new_user_registration_path %></li>
-              <li class="nav-item"><%= link_to "ログイン", new_user_session_path %></li>
-            </ul>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+          <h1 class="d-none d-lg-inline logo">
+            <%= link_to "1Gyo diary", root_path %>
+          </h1>
+          <%= render "layouts/sideber" %>
+        </nav>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <% flash.each do |message_type, message| %>
+            <div class="flash-message <%= message_type %>"><%= message %></div>
           <% end %>
-    </div> <!-- container divを閉じる -->
-</nav>
-    </header>
-    <main>
-       <main class="mt-5">
-      <% flash.each do |message_type, message| %>
-        <div class="flash-message <%= message_type %>"><%= message %></div>
-      <% end %>
-    </main>
-    </main>
-    <div class="main-decoration">
-    <%= yield %>
+          <%= yield %>
+        </main>
+      </div>
     </div>
   </body>
 </html>

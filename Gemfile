@@ -60,7 +60,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追記しました↓
 gem 'devise'
-gem "enum_help"
+gem 'active_storage_validations'
+gem 'kaminari','~> 1.2.1'
 
 gem 'dotenv-rails'
 group :production do

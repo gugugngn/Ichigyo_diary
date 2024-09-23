@@ -1,16 +1,13 @@
-<div class='container'>
-  <div class='row'>
-    <%= image_tag @user.get_profile_image(100, 100) %>
-
-    <p><%= @user.name %></p>
-    <p><%= @user.introduction %></p>
-    
+<div class="container">
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <%= render "info", user: @user %>
+    <div class='row justify-content-center py-2'>
+      <% @user.received_messages.each do |message| %>
+        <p class="border p-2"><%= message.message_text.content  %></p>
+      <% end %>
+    </div>
+    <div class='row justify-content-center py-2'>
+      <%= render "public/messages/form", reciever: @user %>
+    </div>
   </div>
 </div>
-
-<% @user.received_messages.each do |message| %>
-  <%= message.message_text.content  %>
-<% end %>
-
-
-<%= render "public/messages/form", reciever: @user %>

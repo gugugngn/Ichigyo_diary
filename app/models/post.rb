@@ -2,12 +2,14 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :post_moods, dependent: :destroy
   has_many :moods, through: :post_moods
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_one_attached :post_image
   
   validates :body, presence: true
+  validate :one_post_per_day, on: :create
+  validates :post_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpng, jpg, jpegいずれかの形式にして下さい"}
 
-  # 投稿心着順↓
-  scope :latest, -> { order(created_at: :desc) }
 
   def get_post_image(width,height)
     unless post_image.attached?
@@ -17,10 +19,12 @@ class Post < ApplicationRecord
     post_image.variant(resize_to_fill: [width, height ]).processed
   end
   
+  # 投稿が1日以内に作成されたかどうかを判定↓
   def today_post?
     created_at > 1.day.ago
   end
   
+  # 気分が空の時、選択された気分が１つの時、選択が複数の際の条件分岐
   def background_color
     if moods.empty?
       '#f5f5f5'
@@ -29,6 +33,20 @@ class Post < ApplicationRecord
     else
       colors = moods.map(&:color).join(', ')
       "linear-gradient(to right, #{colors})"
+    end
+  end
+  
+  # いいねが重複しないように定義↓
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+  
+  private
+
+  # 1日1投稿のバリデーション↓
+  def one_post_per_day
+    if Post.where(user_id: user_id, created_at: Time.zone.today.all_day).exists?
+      errors.add(:base, "本日は既に投稿済みです")
     end
   end
 end

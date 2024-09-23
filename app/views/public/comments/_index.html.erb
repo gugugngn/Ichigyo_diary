@@ -1,0 +1,13 @@
+<% post.comments.each do |comment| %>
+  <div>
+    <p>
+      <%= link_to user_path(comment.user) do %>
+        <%= comment.user.name %>
+      <% end %>
+      <%= comment.body %>
+    </p>
+    <% if comment.user == current_user %>
+      <%= link_to "削除",post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger",remote:true, data: {"turbolinks" => false} %>
+    <% end %>
+  </div>
+<% end %>

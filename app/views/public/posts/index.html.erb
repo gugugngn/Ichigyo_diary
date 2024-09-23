@@ -1,26 +1,37 @@
-<div class="d-flex justify-content-center">
-  <h1>みんなの１行</h1>
-</div>
-
 <div class="container">
-  <% grouped_posts = @posts.group_by { |post| post.created_at.to_date } %>
-    <% grouped_posts.each do |date, posts| %>
+  <p><%= render  "public/searches/form" %></p>
+  <h1>みんなの１行</h1>
+    <% @grouped_posts.each do |date, posts| %>
       <p class="post-date"><%= l date, format: :short %></p>
         <% posts.each do |post| %>
-          <div class="index-item">
-            <div class="name-box">
-              <%= link_to user_path(post.user) do %>
-                <%= render "public/users/name", user: post.user %>
-              <% end %>
-            </div>
-      
-            <div class="index-box">
+        <div class="index-item">
+          <div class="name-box">
+            <%= render "public/users/name", user: post.user, post: post %>
+          </div>
+          <div class="index-box">
+            <%= link_to post_path(post) do %>
+              <%= render "mood", moods: post.moods %>
+              <%= render "diary", post: post %>
+            <% end %>
+            <% if user_signed_in? %>
+              <div class="d-flex justify-content-between pb-3">
+                <div class="d-flex justify-content-start pl-3">
+                  <div id="favorite_btn_<%= post.id %>">
+                    <%= render "public/favorites/btn", post: post %>
+                  </div>
+                </div>
+              <div class="d-flex justify-content-end mr-3">
+            <% end %>
+            <% if post.post_image.attached? %>
               <%= link_to post_path(post) do %>
-                <%= render "mood", moods: post.moods %>
-                <%= render "diary",  post: post %>
+                <span><i class="fa-regular fa-image" style="font-size: 25px;"></i></span>
               <% end %>
+            <% end %>
+            </div>
             </div>
           </div>
+        </div>
         <% end %>
     <% end %>
-  </div>
+  <%= paginate @posts %>
+</div>

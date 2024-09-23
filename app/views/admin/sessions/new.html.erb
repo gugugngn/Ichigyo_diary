@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row py-3">
-    <h2>Log in</h2>
+    <h2>管理者側　ログイン</h2>
   </div>
   <div class="row">
-    <%= form_with model: @user, url: admin_session_path do |f| %>
+    <%= form_with model: Admin.new, url: admin_session_path do |f| %>
       <div class="field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -22,7 +22,7 @@
       <% end %>
     
       <div class="actions">
-        <%= f.submit "Log in" %>
+        <%= f.submit "ログイン" %>
       </div>
     <% end %>
 

@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Admin.find_or_create_by(id: 1) do |admin|
+  admin.email = "admin@example.com"
+  admin.password = "A123456"
+  admin.password_confirmation = "A123456"
+end
 
 momoko = User.find_or_create_by!(email: "momoko@example.com") do |user|
   user.name = "ももこ"
@@ -96,3 +101,35 @@ posts_data.each do |post_data|
     post.save!
   end
 end
+
+
+  
+  # 明日へのメッセージ＆小さなエールの配列
+  message_texts = [
+    { content: "今日も１日お疲れ様でした。明日もいい日になりますように。"},
+    { content: "今日も１日お疲れ様でした！明日もマイペースに頑張りましょう。"},
+    { content: "素敵な日記ですね！元気をもらえました、ありがとうございます。"},
+    { content: "今日も１日お疲れ様でした。明日はごゆっくりなさってください。"}
+    ]
+  
+  message_texts.each do |message_text|
+    MessageText.find_or_create_by!(content: message_text[:content])
+  end
+  
+  to_messages = [
+    { 
+      sender_id: 1,
+      receiver_id: 2,
+      message_text_id: 1 
+    },
+    { 
+      sender_id: 2,
+      receiver_id: 1,
+      message_text_id: 3 
+    },
+   ]
+  
+  to_messages.each do |to_message|
+    Message.find_or_create_by!(sender_id: to_message[:sender_id], receiver_id: to_message[:receiver_id], message_text_id: to_message[:message_text_id])
+  end
+  

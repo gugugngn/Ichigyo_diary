@@ -1,49 +1,58 @@
-
-<%= render "name",  user: @user %>
-
-<h5>昨日の自分からのメッセージ</h5>
-  <% if @yesterday_post %>
-    <p><%= @yesterday_post.message %></p>
-  <% else %>
-    <p>昨日のメッセージはありません。</p>
-  <% end %>
-  
-<!--送受信したメッセージ一覧　@user = current_user-->
-<h5>もらったメッセージ</h5>
-<% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.to_date } %>
-  <% grouped_received_messages.each do |date, messages| %>
-    <h5><%= l date, format: :short %></h5>
-      <% messages.each do |received_message| %>
-        <p>
-          <%= received_message.message_text.content %>
-           <%= received_message.sender.name %> さんより
-        </p>
+<div class="container">
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <%= render "info", user: @user %>
+      <div class="mx-auto pt-3">
+        <h5>昨日の自分からのメッセージ</h5>
+      </div>
+      <div class="mx-auto">
+        <% if @yesterday_post %>
+          <p><%= @yesterday_post.message %></p>
+        <% else %>
+          <p>昨日のメッセージはありません。</p>
+        <% end %>
+      </div>
+      <!--送受信したメッセージ一覧　@user = current_user-->
+      
+      <% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.to_date } %>
+      <% if grouped_received_messages.present? %>
+        <div class="mx-auto py-2">
+          <h5>3日間でもらったメッセージ</h5>
+        </div>
+        <div class="mx-auto">
+          <% grouped_received_messages.each do |date, messages| %>
+            <h5><%= l date, format: :short %></h5>
+            <% messages.each do |received_message| %>
+              <p>
+                <%= received_message.message_text.content %>
+                <%= received_message.sender.name %> さんより
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
       <% end %>
-<% end %>
-
-
-<h5>メッセージを送った人</h5>
-<% grouped_sent_messages = @user.sent_messages.group_by { |message| message.created_at.to_date } %>
-  <% grouped_sent_messages.each do |date, messages| %>
-    <h5><%= l date, format: :short %></h5>
-    <% messages.each do |sent_message| %>
-      <p>
-        <%= sent_message.message_text.content %>
-        <%= sent_message.receiver.name %> さんに向けて
-      </p>
-    <% end %>
-<% end %>
-
-<!--過去の日記-->
-<h5>⚪︎過去の日記たち⚪︎</h5>
-<% @posts.each do |post| %>
-  <h5><%= l post.created_at, format: :short %></h5>
-  <div class="post-box">
-    <%= link_to post_path(post) do %>
-      <%= render "public/posts/mood", moods: post.moods %>
-      <%= render "public/posts/diary",  post: post %>
-    <% end %>
+      <% grouped_sent_messages = @user.sent_messages.group_by { |message| message.created_at.to_date } %>
+      <% if grouped_sent_messages.present? %>
+        <div class="mx-auto py-2">
+          <h5>メッセージを送った人</h5>
+        </div>
+        <div class="mx-auto">
+          <% grouped_sent_messages.each do |date, messages| %>
+            <h5><%= l date, format: :short %></h5>
+            <% messages.each do |sent_message| %>
+              <p>
+                <%= sent_message.message_text.content %>
+                <%= sent_message.receiver.name %> さんへ
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+      <% end %>
+      <!--過去の日記-->
+      <%= render "public/posts/index", posts: @posts %>
+      <div class="mx-auto">
+        <%= paginate @posts %>
+      </div>
   </div>
-<% end %>
-
-
+</div>

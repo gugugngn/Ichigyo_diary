@@ -1,5 +1,7 @@
 
   <div class="text-center py-2 ">
-    <%= image_tag user.get_profile_image(150,150), class: "rounded-circle" %>
-    <p class="user_name"><%= user.name %></p>
+    <%= link_to user_path(user) do %>
+      <%= image_tag user.get_profile_image(100,100), class: "rounded-circle" %>
+      <div class="user_name"><%= user.name %></p></div>
+    <% end %>
   </div>
