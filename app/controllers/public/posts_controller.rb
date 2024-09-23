@@ -7,8 +7,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
-    @posts = Post.latest
+    @posts = Post.all.order(created_at: :desc).page(params[:page])
+    @grouped_posts = @posts.group_by { |post| post.created_at.to_date }
   end
 
   def show

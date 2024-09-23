@@ -1,22 +1,21 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update]
-  
+
   def mypage
     @user = current_user
+    @posts = @user.posts.order(created_at: :desc).page(params[:page])
     yesterday = Date.today - 1
     @yesterday_post = @user.posts.find_by(created_at: yesterday.all_day)
     three_days_ago = Date.today - 3
     @three_days_received_messages = @user.received_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
-    @posts = @user.posts
-    @posts = @user.posts.order(created_at: :desc)
     # 10行目⇨今日送られたメッセージも反映される、明日以降に見れるようにするにはcreated_at: three_days_ago..Date.todayにする
   end
-  
+
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
+    @favorite_posts = Post.where(id: favorites).page(params[:page])
   end
 
   def edit
@@ -42,13 +41,13 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "ユーザーを削除しました"
     redirect_to root_path
   end
-  
+
   private
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
-  
+
   # 現在ログインしているユーザーだけを許可↓
   def ensure_correct_user
     @user = User.find(params[:id])

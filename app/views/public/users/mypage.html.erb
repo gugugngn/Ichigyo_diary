@@ -51,5 +51,8 @@
       <% end %>
       <!--過去の日記-->
       <%= render "public/posts/index", posts: @posts %>
+      <div class="mx-auto">
+        <%= paginate @posts %>
+      </div>
   </div>
 </div>

@@ -1,9 +1,7 @@
-
 <div class="container">
   <p><%= render  "public/searches/form" %></p>
   <h1>みんなの１行</h1>
-  <% grouped_posts = @posts.group_by { |post| post.created_at.to_date } %>
-    <% grouped_posts.each do |date, posts| %>
+    <% @grouped_posts.each do |date, posts| %>
       <p class="post-date"><%= l date, format: :short %></p>
         <% posts.each do |post| %>
         <div class="index-item">
@@ -33,6 +31,7 @@
             </div>
           </div>
         </div>
+        <% end %>
     <% end %>
-  <% end %>
+  <%= paginate @posts %>
 </div>

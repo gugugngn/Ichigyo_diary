@@ -7,12 +7,16 @@
         <%= image_tag user.get_profile_image(150,150), class: "rounded-circle" %>
         <div class="user_name"><%= user.name %></p></div>
       <% end %>
-    
-        <p>フォロー：<%= link_to user_followings_path(user) do %>
-                     <%= user.followings.count %>
-                    <% end %>
-           フォロワー：<%= link_to user_followers_path(user) do %>
-                      <%= user.followers.count %>
-                    <% end %></p>
+      <p>
+        フォロー：
+        <%= link_to user_followings_path(user) do %>
+          <%= user.followings.count %>
+        <% end %>
+        フォロワー：
+       <%= link_to user_followers_path(user) do %>
+         <%= user.followers.count %>
+       <% end %>
+      </p>
     <% end %>
+  <%= paginate @users %>
 </div>
