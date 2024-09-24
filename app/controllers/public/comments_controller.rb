@@ -12,7 +12,7 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     comment = @post.comments.find(params[:id])
     
-    #ユーザー側と管理者側でコメント削除を可能にするために記述↓
+    #ユーザー側と管理者側でコメント削除を可能にするため↓
     if comment.destroy
       respond_to do |format|
         format.html { redirect_to admin_user_path(comment.user), notice: "コメントが削除されました。" }

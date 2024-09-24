@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!
+  before_action :ensure_normal_user, except: [:index]
 
   def new
     @current_date = Time.zone.today
