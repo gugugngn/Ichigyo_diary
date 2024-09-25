@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-       redirect_to post_path(@post)
+       redirect_to post_path(@post), alert: '日記を投稿しました。本日もお疲れ様でした！'
     else
       @current_date = Time.zone.today
       render :new

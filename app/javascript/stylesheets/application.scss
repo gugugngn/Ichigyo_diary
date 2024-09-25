@@ -26,6 +26,9 @@ a{
     font-weight: bold;
 }
 
+p {
+  margin-bottom: 0;
+}
 
 .nav-list-item {
   display: flex;
@@ -187,6 +190,29 @@ a{
 }
 
 /*----------------------------------気分マークの設定ここまで--------------------------------------*/
+
+/*------------------------------------マイページここから----------------------------------------*/
+.original-border{
+  border-top: 5px solid #e4dfef;
+  border-bottom: 5px solid #e4dfef;
+  margin-bottom: 10px;
+  width: 70%;
+}
+
+.received-border {
+  border-top: 5px solid #e3ecf8;
+  border-bottom: 5px solid #e3ecf8;
+  margin-bottom: 10px;
+  width: 70%;
+}
+.sender-border {
+  border-top: 5px solid #c6dbee;
+  border-bottom: 5px solid #c6dbee;
+  margin-bottom: 10px;
+  width: 70%;
+}
+
+/*------------------------------------マイページここまで----------------------------------------*/
 
 
 /*-------------------------------ページネーション自体ここから------------------------------------*/

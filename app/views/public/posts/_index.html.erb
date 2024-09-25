@@ -1,21 +1,27 @@
-<h5 class="ml-2">⚪︎過去の日記たち⚪︎</h5>
+<h5 class="mx-auto">⚪︎過去の日記たち⚪︎</h5>
 <% posts.each do |post| %>
   <% if post.post_image.attached? %>
-    <div class="mx-auto">
+    <div class="ml-4">
       <% if post.moods.any? %>
-      <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
-        <%= render "public/posts/mood", moods: post.moods %>
+        <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
+        <%= link_to post_path(post) do %>
+          <%= render "public/posts/mood", moods: post.moods %>
+        <% end %>
       <% end %>
     </div>
-    <div class="background-image-container mx-auto">
-      <%= image_tag post.get_post_image, class: "background-image" %>
-      <div class="overlay-content">
-        <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
-        <p><%= post.body %></p>
+    <%= link_to post_path(post) do %>
+      <div class="mx-auto mb-2 background-image-container">
+        <%= image_tag post.get_post_image, class: "background-image" %>
+        <div class="overlay-content">
+          <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
+          <p><%= post.body %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% else %>
     <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
-    <%= render "public/posts/diary", moods: post.moods, post: post %>
+    <%= link_to post_path(post) do %>
+      <%= render "public/posts/diary", moods: post.moods, post: post %>
+    <% end %>
   <% end %>
 <% end %>

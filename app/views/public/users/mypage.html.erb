@@ -1,9 +1,7 @@
 <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
   <%= render "info", user: @user %>
-    <div class="mx-auto pt-3">
-      <h5>昨日の自分からのメッセージ</h5>
-    </div>
-    <div class="mx-auto">
+    <div class="mx-auto pb-2 original-border">
+      <strong><i class="fa-regular fa-flag" style="color: dimgray;"></i></i> 昨日の自分からのメッセージ</strong>
       <% if @yesterday_post %>
         <p><%= @yesterday_post.message %></p>
       <% else %>
@@ -14,16 +12,16 @@
     
     <% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.to_date } %>
     <% if grouped_received_messages.present? %>
-      <div class="mx-auto py-2">
-        <h5>3日間でもらったメッセージ</h5>
-      </div>
-      <div class="mx-auto">
+      <div class="mx-auto pb-2 received-border">
+        <strong><i class="fa-regular fa-envelope-open style="color: dimgray;""></i> もらったメッセージ</strong>
         <% grouped_received_messages.each do |date, messages| %>
-          <h5><%= l date, format: :short %></h5>
+          <p><%= l date, format: :short %></p>
           <% messages.each do |received_message| %>
             <p>
               <%= received_message.message_text.content %>
-              <%= received_message.sender.name %> さんより
+              <%= link_to user_path(received_message.sender) do %>
+                <%= received_message.sender.name %> さんより
+              <% end %>
             </p>
           <% end %>
         <% end %>
@@ -32,16 +30,16 @@
     <% end %>
     <% grouped_sent_messages = @user.sent_messages.group_by { |message| message.created_at.to_date } %>
     <% if grouped_sent_messages.present? %>
-      <div class="mx-auto py-2">
-        <h5>メッセージを送った人</h5>
-      </div>
-      <div class="mx-auto">
+      <div class="mx-auto pb-2 received-border">
+        <strong><i class="fa-regular fa-envelope style="color: dimgray;""></i> メッセージを送った人</strong>
         <% grouped_sent_messages.each do |date, messages| %>
-          <h5><%= l date, format: :short %></h5>
+          <p><%= l date, format: :short %></p>
           <% messages.each do |sent_message| %>
             <p>
               <%= sent_message.message_text.content %>
-              <%= sent_message.receiver.name %> さんへ
+              <%= link_to user_path(sent_message.receiver) do %>
+                <%= sent_message.receiver.name %> さんへ
+              <% end %>
             </p>
           <% end %>
         <% end %>
