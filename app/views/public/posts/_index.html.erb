@@ -8,9 +8,9 @@
       <% end %>
     </div>
     <div class="background-image-container mx-auto">
-      <%= image_tag post.get_post_image(700, 400), class: "background-image"  %>
+      <%= image_tag post.get_post_image, class: "background-image" %>
       <div class="overlay-content">
-        <h5><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</h5>
+        <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
         <p><%= post.body %></p>
       </div>
     </div>
