@@ -11,12 +11,12 @@ class Post < ApplicationRecord
   validates :post_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpng, jpg, jpegいずれかの形式にして下さい"}
 
 
-  def get_post_image(width,height)
+  def get_post_image
     unless post_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       post_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
     end
-    post_image.variant(resize_to_fill: [width, height ]).processed
+    post_image
   end
   
   # 投稿が1日以内に作成されたかどうかを判定↓
