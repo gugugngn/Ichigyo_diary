@@ -1,22 +1,18 @@
-<div class="container">
-  <div class="row">
-    <h2>ユーザー一覧</h2>
-  </div>
+<div class='container'>
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <div class="mx-auto py-4">
+      <h4>ユーザー一覧</h4>
+    </div>
     <% @users.each do |user| %>
-      <%= link_to admin_user_path(user) do %>
-        <%= image_tag user.get_profile_image(150,150), class: "rounded-circle" %>
-        <div class="user_name"><%= user.name %></p></div>
-      <% end %>
-      <p>
-        フォロー：
-        <%= link_to user_followings_path(user) do %>
-          <%= user.followings.count %>
+      <div class="row justify-content-center py-3">
+        <%= link_to admin_user_path(user) do %>
+          <%= image_tag user.get_profile_image(150,150), class: "rounded-circle" %>
+          <div class="user_name"><%= user.name %></p></div>
         <% end %>
-        フォロワー：
-       <%= link_to user_followers_path(user) do %>
-         <%= user.followers.count %>
-       <% end %>
-      </p>
+      </div>
     <% end %>
-  <%= paginate @users %>
+    <div class="row justify-content-center py-3">
+      <%= paginate @users %>
+    </div>
+  </div>
 </div>
