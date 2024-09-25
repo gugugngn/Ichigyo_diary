@@ -14,7 +14,7 @@
     </div>
     <% if @post.post_image.attached? %>
       <div class="mx-auto">
-        <%= image_tag @post.get_post_image(700, 500), class: "background-image"  %>
+        <%= image_tag @post.get_post_image, class: "background-image"  %>
       </div>
     <% end %>
     <div class="card-body">
@@ -34,11 +34,8 @@
             </div>
             <div class="d-flex justify-content-end">
               <% if @post.user == current_user && @post.today_post? %>
-                <%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-secondary" %>
+                <%= link_to "編集", edit_post_path(@post), class: "btn btn-outline-secondary mr-1" %>
                 <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-danger" %>
-              <% elsif @post.user == current_user %>
-                <p>過去の投稿は編集できません　<%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-outline-danger" %></p>
-              <% else %>
               <% end %>
             </div>
           </div>

@@ -1,5 +1,6 @@
 @use '~bootstrap/scss/bootstrap';
 
+
 * {
   margin: 0;
   padding: 0;
@@ -17,11 +18,6 @@ a{
   color: dimgray;
 }
 
-
-.rounded-circle a:hover{
-  text-shadow: 3px 3px 5px #a0a7c5 !important;
-}
-
 .logo a{
     font-family: "SUSE", sans-serif;
     font-size: 30px;
@@ -30,7 +26,51 @@ a{
     font-weight: bold;
 }
 
-.nav-item a {
+/*--------------------------------トップ画面ここから------------------------------------*/
+.top-content{
+  background: linear-gradient(to bottom, #e3ecf8, #c6dbee);
+  color: transparent; /* 最初は透明 */
+  animation: fadeback 8s forwards;
+  width: 100%;
+  height: 70%;
+}
+
+
+  /* 中央寄せの内容を囲むカスタムクラス */
+  .central-content {
+    color: transparent; /* 最初は透明 */
+    font-size: 50px;
+    animation: fadeInText 4s forwards;  /* 4秒でフェードイン */
+  }
+  
+  /* フェードインアニメーション */
+  @keyframes fadeInText {
+    0% {
+      color: transparent;
+      transform: translateY(20px); /* 下から浮き上がる動き */
+      opacity: 0; /*要素を完全に表示*/
+    }
+    100% {
+      color: #a0a7c5; /* 浮き出たときの文字色 */
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* ボタンのスタイルを調整 */
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* ボタンの間隔 */
+  }
+
+  .btn-container .btn {
+    width: 200px; /* ボタンの幅 */
+    align-self: center; /* ボタンを中央揃え */
+  }
+/*--------------------------------トップ画面ここまで------------------------------------*/
+
+.nav-list-item {
   display: flex;
   height: 50px;
   color: black;
@@ -39,30 +79,13 @@ a{
   font-size: 20px;
 }
 
+
 .sidebar{
+  position: sticky;
+  top: 0px;
   border-right: 2px solid #c0c0c0;
   flex-grow: 1;
   height: 100vh;
-}
-
-/* スマホサイズ (最大 768px) の時にサイドバーをフッターに固定 */
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed; /* 画面下部に固定 */
-    bottom: 0; /* 画面下端 */
-    left: 0;
-    width: 100%; /* 横幅全体に */
-    height: 60px; /* 高さ指定 */
-    z-index: 1000; /* 他の要素より前面に */
-    background-color: #f8f9fa; /* 背景色 */
-    display: flex; /* フレックスボックスで横並び */
-    justify-content: space-around; /* 均等に配置 */
-    align-items: center; /* 中央揃え */
-  }
-
-  main {
-    margin-bottom: 60px; /* メインコンテンツとフッターが重ならないよう余白 */
-  }
 }
 
 /*--------------------------------ユーザーネームと画像ここから------------------------------------*/
@@ -88,7 +111,7 @@ a{
 }
 /*--------------------------------ユーザーネームと画像ここまで------------------------------------*/
 
-/*--------------------------------１行日記の本文ここから------------------------------------*/
+/*-----------------------------------１行日記の本文ここから---------------------------------------*/
 .mood-details {
   text-align: center; /* アイテムを中央揃えにする（任意） */
 }
@@ -102,7 +125,6 @@ a{
 }
 
 .mood-container {
-  position: relative;
   display: flex;
   justify-content: center; /* 中央に配置 */
   align-items: center;     /* 中央に配置 */
@@ -121,20 +143,17 @@ a{
   border-radius: 5px;      /* 本文の背景を角丸にする場合 */
   max-width: 90%;          /* コンテンツの幅を制限して余白を確保 */
 }
-/*--------------------------------１行日記の本文ここまで------------------------------------*/
+/*-----------------------------------１行日記の本文ここまで---------------------------------------*/
 
-/*--------------------------------投稿詳細画面の画像の設定ここから------------------------------------*/
+/*-------------------------------投稿詳細画面の画像の設定ここから---------------------------------*/
 
 .background-image-container {
   position: relative; /* 子要素の位置を相対的に配置 */
-  width: 700px; /* 画像の幅に合わせる */
-  height: 400px; /* 画像の高さに合わせる */
 }
 
 .background-image {
   width: 100%; /* 親要素に合わせて画像を引き伸ばす */
   height: 100%; /* 親要素に合わせて画像を引き伸ばす */
-  object-fit: cover; /* 画像を枠に合わせてトリミング */
   border-radius: 5px;
 }
 
@@ -149,9 +168,9 @@ a{
   background-color: rgba(0, 0, 0, 0.08); /* テキストの背景に半透明の黒色を追加して視認性を向上 */
   border-radius: 8px; /* 角を丸める */
 }
-/*--------------------------------投稿詳細画面の画像の設定ここまで------------------------------------*/
+/*-------------------------------投稿詳細画面の画像の設定ここまで---------------------------------*/
 
-/*--------------------------------気分マークの設定ここから------------------------------------*/
+/*----------------------------------気分マークの設定ここから--------------------------------------*/
 .mood-color{
   padding: 6px;
   border-radius: 9px;
@@ -163,4 +182,38 @@ a{
   // flex-wrap: wrap;
 }
 
-/*--------------------------------気分マークの設定ここから------------------------------------*/
+/*----------------------------------気分マークの設定ここまで--------------------------------------*/
+
+
+/* スマホサイズ (最大 768px) の時にサイドバーをフッターに固定 */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed; /* 画面下に固定 */
+    bottom: 0;
+    left: 0; /* 左端に固定 */
+    width: 100%; /* 横幅を全体に広げる */
+    height: 50px; /* 高さを設定 */
+    z-index: 100;
+    background-color: white;
+  }
+
+  .nav-list-item {
+    display: inline-block;
+    height: 50px;
+    color: black;
+    margin: 15px;
+  }
+
+  /* メインコンテンツの上にサイドバーが重ならないように下部に余白を追加 */
+  main {
+    padding-top: 60px;
+  }
+  
+  .name-box{
+    width: 100%;
+  }
+  
+  .index-box{
+    width: 100%;
+  }
+}
