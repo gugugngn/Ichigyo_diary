@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :message_text, only: [:new, :create, :destroy]
     resources :moods, only: [:new, :create, :destroy]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 
 
