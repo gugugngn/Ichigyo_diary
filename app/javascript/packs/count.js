@@ -2,7 +2,8 @@
 import $ from 'jquery';
 
 // 文字数がオーバー(40文字以上)すると表示が赤くなる
-$(function (){
+
+$(document).on('turbolinks:load', function() {
   var count = $(".js-text").val().length;
   var now_count = 40 - count;
 
