@@ -31,7 +31,7 @@
     <% grouped_sent_messages = @user.sent_messages.group_by { |message| message.created_at.to_date } %>
     <% if grouped_sent_messages.present? %>
       <div class="mx-auto pb-2 received-border">
-        <strong><i class="fa-regular fa-envelope style="color: dimgray;""></i> メッセージを送った人</strong>
+        <strong><i class="fa-regular fa-envelope style="color: dimgray;""></i> 送ったメッセージ</strong>
         <% grouped_sent_messages.each do |date, messages| %>
           <p><%= l date, format: :short %></p>
           <% messages.each do |sent_message| %>

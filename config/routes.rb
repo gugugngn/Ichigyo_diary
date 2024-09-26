@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
 
+# 新規登録失敗時のリロードエラーを防ぐ
+ get "users" => redirect("/users/sign_up")
+
  # Public側の記述
    root to: "public/homes#top"
 

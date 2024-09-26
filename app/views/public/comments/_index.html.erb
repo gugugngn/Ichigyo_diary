@@ -4,7 +4,7 @@
       <%= link_to user_path(comment.user) do %>
         <%= comment.user.name %>
       <% end %>
-      <%= comment.body %>
+      <p><%= simple_format(comment.body) %></p>   <!--改行表示用-->
     </p>
     <% if comment.user == current_user %>
       <%= link_to "削除",post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger",remote:true, data: {"turbolinks" => false} %>

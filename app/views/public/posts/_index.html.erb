@@ -9,15 +9,17 @@
         <% end %>
       <% end %>
     </div>
-    <%= link_to post_path(post) do %>
-      <div class="mx-auto mb-2 background-image-container">
-        <%= image_tag post.get_post_image, class: "background-image" %>
-        <div class="overlay-content">
-          <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
-          <p><%= post.body %></p>
+    <div class="mx-auto">
+      <%= link_to post_path(post) do %>
+        <div class="mb-2 background-image-container">
+          <%= image_tag post.get_post_image, class: "background-image" %>
+          <div class="overlay-content">
+            <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
+            <p><%= post.body %></p>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% else %>
     <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
     <%= link_to post_path(post) do %>
