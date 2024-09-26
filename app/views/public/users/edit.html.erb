@@ -1,29 +1,33 @@
  <div class='container'>
-   <%= render "layouts/errors", obj: @user %>
-    <div class='row'>
-      <%= form_with model:@user, local:true do |f| %>
-        <div class="form-group">
-          <%= f.label :"写真" %>
-          <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :"ユーザー名" %>
-          <%= f.text_field :name, class: "form-control name" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :"自己紹介" %>
-          <%= f.text_area :introduction, class: "form-control introduction" %>
-        </div>
-        <div class="form-group">
-          <%= f.submit class: 'btn btn-secondary' %>
-        </div>
-      <% end %>
-    </div>
-    <div class='row'>
-      <% if user_signed_in? && @user == current_user %>
-        <% unless @user.email == "guest@example.com" %>
-          <%= link_to "退会する",user_path(current_user.id),method: :delete,class: "btn btn-danger", "data-confirm"=> "本当に退会しますか？" %>
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <div class="mx-auto py-4">
+      <%= render "layouts/errors", obj: @user %>
+      <div class='row'>
+        <%= form_with model:@user, local:true do |f| %>
+          <div class="form-group">
+            <%= f.label :"写真" %>
+            <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"ニックネーム" %>
+            <%= f.text_field :name, class: "form-control name" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"自己紹介" %>
+            <%= f.text_area :introduction, class: "form-control introduction" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit class: 'btn btn-secondary' %>
+          </div>
         <% end %>
-      <% end %>
+      </div>
+      <div class='row'>
+        <% if user_signed_in? && @user == current_user %>
+          <% unless @user.email == "guest@example.com" %>
+            <%= link_to "退会する",user_path(current_user.id),method: :delete,class: "btn btn-danger", "data-confirm"=> "本当に退会しますか？" %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>
