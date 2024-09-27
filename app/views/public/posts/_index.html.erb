@@ -10,6 +10,7 @@
       <% end %>
     </div>
     <div class="mx-auto">
+      <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
       <%= link_to post_path(post) do %>
         <div class="mb-2 background-image-container">
           <%= image_tag post.get_post_image, class: "background-image" %>
