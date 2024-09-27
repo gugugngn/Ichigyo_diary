@@ -33,7 +33,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    unless @post.user == current_user && @post.today_post?
+    unless @post.user == current_user
       redirect_to post_path(@post), alert: 'この投稿は編集できません。'
     end
   end

@@ -1,15 +1,15 @@
 <% post.comments.each do |comment| %>
-  <div>
-    <p>
+  <div class="d-flex pb-1">
+    <div class="d-flex align-items-center justify-content-start">
+      <%= simple_format(comment.body) %> <!--改行表示用-->
       <%= link_to user_path(comment.user) do %>
-        <%= comment.user.name %>
+        <p>　<%= comment.user.name %>より</p>
       <% end %>
-      <p><%= simple_format(comment.body) %></p>   <!--改行表示用-->
-    </p>
-    <p>
-    <% if comment.user == current_user %>
-      <%= link_to "削除",post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger",remote:true, data: {"turbolinks" => false} %>
-    <% end %>
-    </p>
+    </div>
+    <div class="pl-2">
+      <% if comment.user == current_user %>
+        <%= link_to "削除",post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger btn-sm", remote:true, data: {"turbolinks" => false} %>
+      <% end %>
+    </div>
   </div>
 <% end %>
