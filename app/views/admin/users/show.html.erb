@@ -3,7 +3,7 @@
     <div class="mx-auto py-4">
       <%= render "public/users/name",  user: @user %>
       <div class="text-center py-2 ">
-        <%= link_to "退会させる",user_path(@user),method: :delete,class: "btn btn-danger", "data-confirm"=> "本当に退会させますか？" %>
+        <%= link_to "退会させる",admin_user_path(@user),method: :delete,class: "btn btn-danger", "data-confirm"=> "本当に退会させますか？" %>
       </div>
       <div class ="pl-3">
         <p>送ったコメント</p>

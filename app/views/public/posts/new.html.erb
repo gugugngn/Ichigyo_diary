@@ -2,7 +2,9 @@
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
     <div class="mx-auto py-4">
       <h4>新規投稿画面</h4>
-        <%= render "layouts/errors", obj: @post %>
+        <div id="error_explanation">
+            <!-- エラーメッセージはここに表示されます -->
+        </div>
         <p><%= @current_date.strftime("%-m月%-d日") %></p>
         <%= render 'form', post: @post, url: posts_path %>
     </div>

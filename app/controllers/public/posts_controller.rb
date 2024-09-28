@@ -25,13 +25,15 @@ class Public::PostsController < ApplicationController
        redirect_to post_path(@post), alert: '日記を投稿しました。本日もお疲れ様でした！'
     else
       @current_date = Time.zone.today
-      render :new
+      respond_to do |format|
+        format.js { render 'error' } # エラーメッセージをJavaScriptに返す
+      end
     end
   end
 
   def edit
     @post = Post.find(params[:id])
-    unless @post.user == current_user && @post.today_post?
+    unless @post.user == current_user
       redirect_to post_path(@post), alert: 'この投稿は編集できません。'
     end
   end
@@ -41,7 +43,9 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: "更新しました。"
     else
-      render "edit"
+      respond_to do |format|
+        format.js { render 'error' } # エラーメッセージをJavaScriptに返す
+      end
     end
   end
 
