@@ -1,11 +1,10 @@
-
 <div class='container'>
   <div class="card mx-auto m-4 shadow-lg" style="max-width: 900px;">
     <div class="mx-auto py-4">
   		<h4>投稿の編集</h4>
   		<div id="error_explanation">
-            <!-- エラーメッセージはここに表示されます -->
-        </div>
+        <!-- エラーメッセージはここに表示されます -->
+      </div>
   		<%= render 'layouts/errors', obj: @post %>
   		<%= render 'form', post: @post, url: post_path(@post) %>
   	</div>
