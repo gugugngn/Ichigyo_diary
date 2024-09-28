@@ -10,6 +10,7 @@ class Public::UsersController < ApplicationController
     @yesterday_post = @user.posts.find_by(created_at: yesterday.all_day)
     three_days_ago = Time.zone.today - 3
     @three_days_received_messages = @user.received_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
+    @three_days_sent_messages = @user.sent_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
   end
 
   def favorites
