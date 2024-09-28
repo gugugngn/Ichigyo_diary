@@ -14,7 +14,7 @@ class Public::SearchesController < ApplicationController
       end
     else
       if params[:content].present?
-        @posts = Post.where('body LIKE ?', "%#{@content}%")
+        @posts = Post.where('body LIKE ?', "%#{@content}%").order(created_at: :desc)
         @grouped_posts = @posts.group_by { |post| post.created_at.to_date }
       else
         @posts = Post.all
