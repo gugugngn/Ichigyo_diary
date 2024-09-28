@@ -1,8 +1,9 @@
-
 <% unless current_user&.guest_user? %>
-  <div class="search_form">
+  <div class="p-2 search_form">
     <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :content %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
+      <%= f.text_field :content, placeholder: "ユーザーを検索" %>
+      <%= f.submit "検索", class: "btn btn-outline-secondary" %>
     <% end %>
+  </div>
 <% end %>
+

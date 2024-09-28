@@ -6,11 +6,10 @@ class Public::UsersController < ApplicationController
   def mypage
     @user = current_user
     @posts = @user.posts.order(created_at: :desc).page(params[:page])
-    yesterday = Date.today - 1
+    yesterday = Time.zone.today - 1
     @yesterday_post = @user.posts.find_by(created_at: yesterday.all_day)
-    three_days_ago = Date.today - 3
+    three_days_ago = Time.zone.today - 3
     @three_days_received_messages = @user.received_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
-    # 10行目⇨今日送られたメッセージも反映される、明日以降に見れるようにするにはcreated_at: three_days_ago..Date.todayにする
   end
 
   def favorites
@@ -40,7 +39,7 @@ class Public::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "ユーザーを削除しました"
+    flash[:notice] = "退会しました"
     redirect_to root_path
   end
 

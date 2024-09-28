@@ -1,8 +1,12 @@
 ja:
   activerecord:
+    models:
+      post: "日記"
     attributes:
       post: 
         body: "日記の本文"
+      comment:
+        body: "コメント"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

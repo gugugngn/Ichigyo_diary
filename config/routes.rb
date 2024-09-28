@@ -15,8 +15,12 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
 
+# 新規登録失敗時のリロードエラーを防ぐ
+ get "users" => redirect("/users/sign_up")
+
  # Public側の記述
    root to: "public/homes#top"
+   get 'homes/about', to: 'public/homes#about'
 
   scope module: :public do
     resources :users, only: [:edit, :show, :update, :destroy] do
@@ -43,7 +47,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :message_text, only: [:new, :create, :destroy]
     resources :moods, only: [:new, :create, :destroy]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 
 

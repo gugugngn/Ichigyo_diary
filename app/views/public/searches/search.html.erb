@@ -1,29 +1,23 @@
 <div class="container">
-  <div class="row ">
-    <h3>Users search for "<%= @content %>"</h3>
-  </div>
-  <div class="row">
-     <% if @users.any? %>
-       <table>
-         <thead>
-           <tr>
-             <th>Name</th>
-           </tr>
-         </thead>
-         <tbody>
-           <% @users.each do |user| %>
-             <tr>
-               <td>
-                 <%= link_to user_path(user) do %>
-                   <%= render "public/users/name", user: user %>
-                 <% end %>
-               </td>
-             </tr>
-           <% end %>
-         </tbody>
-       </table>
-     <% else %>
-       <p>No users found for "<%= @content %>"</p>
-     <% end %>
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <div class="mx-auto py-4">
+      <h3>ユーザー検索結果 "<%= @content %>"</h3>
+    </div>
+    <div class="row">
+      <div class="mx-auto">
+        <% if @users.any? %>
+          <p>ユーザー名</p>
+            <% @users.each do |user| %>
+              <div class="row justify-content-center py-3">
+                <%= link_to user_path(user) do %>
+                  <%= render "public/users/name", user: user %>
+                <% end %>
+              </div>
+            <% end %>
+        <% else %>
+        <p>ユーザーが見つかりませんでした "<%= @content %>"</p>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

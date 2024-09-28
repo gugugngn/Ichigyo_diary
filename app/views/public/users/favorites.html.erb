@@ -1,16 +1,20 @@
 <div class="container">
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
-    <div class="mx-auto">
-      <% if @favorite_posts.any? %>
-        <% @favorite_posts.each do |post| %>
-        <div class="row">
+    <% if @favorite_posts.any? %>
+      <% @favorite_posts.each do |post| %>
+      <div class="index-item">
+        <div class="name-box">
           <%= render "name", user: post.user %>
+        </div>
+        <div class="index-box">
           <%= render "public/posts/diary", post: post %>
         </div>
-        <% end %>
-      <% else %>
-        <h2>いいねした投稿はありません</h2>
+      </div>
       <% end %>
+    <% else %>
+      <h2>いいねした投稿はありません</h2>
+    <% end %>
+    <div class ="mx-auto">
       <%= paginate @favorite_posts %>
     </div>
   </div>

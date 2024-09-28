@@ -19,11 +19,6 @@ class Post < ApplicationRecord
     post_image
   end
   
-  # 投稿が1日以内に作成されたかどうかを判定↓
-  def today_post?
-    created_at > 1.day.ago
-  end
-  
   # 気分が空の時、選択された気分が１つの時、選択が複数の際の条件分岐
   def background_color
     if moods.empty?
