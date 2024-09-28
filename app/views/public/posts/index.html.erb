@@ -2,7 +2,7 @@
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
     
       <%= render  "public/searches/form" %>
-      <h4 class ="pl-2">みんなの１行</h4>
+      <h4 class ="pl-2 pt-2">みんなの１行</h4>
         <% @grouped_posts.each do |date, posts| %>
           <p class="pl-2 post-date"><%= l date, format: :short %></p>
             <% posts.each do |post| %>
