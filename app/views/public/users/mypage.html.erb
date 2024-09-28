@@ -1,16 +1,16 @@
 <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
   <%= render "info", user: @user %>
     <div class="mx-auto pb-2 original-border">
-      <strong><i class="fa-regular fa-flag" style="color: dimgray;"></i></i> 昨日の自分からのメッセージ</strong>
+      <strong><i class="fa-regular fa-flag" style="color: dimgray;"></i> 昨日の自分からのメッセージ</strong>
       <% if @yesterday_post %>
         <p><%= @yesterday_post.message %></p>
       <% else %>
         <p>昨日のメッセージはありません。</p>
       <% end %>
     </div>
-    <!--送受信したメッセージ一覧　@user = current_user-->
     
-    <% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.to_date } %>
+    <!--送受信したメッセージ一覧　@user = current_user-->
+    <% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.in_time_zone('Asia/Tokyo').to_date } %>
     <% if grouped_received_messages.present? %>
       <div class="mx-auto pb-2 received-border">
         <strong><i class="fa-regular fa-envelope-open style="color: dimgray;""></i> もらったメッセージ</strong>
@@ -28,10 +28,10 @@
       </div>
     <% else %>
     <% end %>
-    <% grouped_sent_messages = @user.sent_messages.group_by { |message| message.created_at.to_date } %>
+    <% grouped_sent_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.in_time_zone('Asia/Tokyo').to_date } %>
     <% if grouped_sent_messages.present? %>
       <div class="mx-auto pb-2 received-border">
-        <strong><i class="fa-regular fa-envelope style="color: dimgray;""></i> 送ったメッセージ</strong>
+        <strong><i class="fa-regular fa-envelope" style="color: dimgray;"></i> 送ったメッセージ</strong>
         <% grouped_sent_messages.each do |date, messages| %>
           <p><%= l date, format: :short %></p>
           <% messages.each do |sent_message| %>
@@ -46,6 +46,7 @@
       </div>
     <% else %>
     <% end %>
+    
     <!--過去の日記-->
     <%= render "public/posts/index", posts: @posts %>
     <div class="mx-auto">

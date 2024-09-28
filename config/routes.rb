@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
  # Public側の記述
    root to: "public/homes#top"
+   get 'homes/about', to: 'public/homes#about'
 
   scope module: :public do
     resources :users, only: [:edit, :show, :update, :destroy] do

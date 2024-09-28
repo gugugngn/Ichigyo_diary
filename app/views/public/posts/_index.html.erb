@@ -1,16 +1,15 @@
 <h5 class="mx-auto">⚪︎過去の日記たち⚪︎</h5>
 <% posts.each do |post| %>
+<h5 class="ml-4"><%= l post.created_at, format: :short %></h5>
   <% if post.post_image.attached? %>
     <div class="ml-4">
       <% if post.moods.any? %>
-        <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
         <%= link_to post_path(post) do %>
           <%= render "public/posts/mood", moods: post.moods %>
         <% end %>
       <% end %>
     </div>
     <div class="mx-auto">
-      <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
       <%= link_to post_path(post) do %>
         <div class="mb-2 background-image-container">
           <%= image_tag post.get_post_image, class: "background-image" %>
@@ -22,7 +21,6 @@
       <% end %>
     </div>
   <% else %>
-    <h5 class="ml-3"><%= l post.created_at, format: :short %></h5>
     <%= link_to post_path(post) do %>
       <%= render "public/posts/diary", moods: post.moods, post: post %>
     <% end %>
