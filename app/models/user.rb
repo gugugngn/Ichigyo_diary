@@ -15,9 +15,9 @@ class User < ApplicationRecord
  has_many :followers, through: :passive_relationships, source: :follower
  has_one_attached :profile_image
  
-validates :name, presence: true
+ validates :name, presence: true
 
-validates :profile_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpng, jpg, jpegいずれかの形式にして下さい"}
+ validates :profile_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpng, jpg, jpegいずれかの形式にして下さい"}
   
   # ゲストログインユーザーの記述↓
   GUEST_USER_EMAIL = "guest@example.com"
@@ -42,6 +42,7 @@ validates :profile_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpn
     profile_image.variant(resize_to_fill: [width, height]).processed
   end
   
+  # 検索の際に完全一致と部分一致で検索がかかるように
   def self.search_for(content,method)
     if method == 'perfect'
       User.where(name: content)

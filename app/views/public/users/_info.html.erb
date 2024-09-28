@@ -17,9 +17,9 @@
       <p>フォロワー　<%= user.followers.count %></p>
     <% end %>
   </div>
-    <% if current_user != user %>
-      <div class="col-sm-4 col-md-3 pb-2">
-        <%= render "public/relationships/btn", user: user %>
-      </div> 
-    <% end %>
+  <% if current_user != user %>
+    <div class="col-sm-4 col-md-3 pb-2">
+      <%= render "public/relationships/btn", user: user %>
+    </div> 
+  <% end %>
 </div>

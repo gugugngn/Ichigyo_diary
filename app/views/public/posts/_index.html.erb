@@ -1,6 +1,5 @@
-<h5 class="mx-auto">⚪︎過去の日記たち⚪︎</h5>
 <% posts.each do |post| %>
-<h5 class="ml-4"><%= l post.created_at, format: :short %></h5>
+  <h5 class="ml-4"><%= l post.created_at, format: :short %></h5>
   <% if post.post_image.attached? %>
     <div class="ml-4">
       <% if post.moods.any? %>

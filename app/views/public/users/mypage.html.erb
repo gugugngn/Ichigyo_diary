@@ -1,55 +1,54 @@
 <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
   <%= render "info", user: @user %>
-    <div class="mx-auto pb-2 original-border">
-      <strong><i class="fa-regular fa-flag" style="color: dimgray;"></i> 昨日の自分からのメッセージ</strong>
-      <% if @yesterday_post %>
-        <p><%= @yesterday_post.message %></p>
-      <% else %>
-        <p>昨日のメッセージはありません。</p>
+  <div class="mx-auto pb-2 original-border">
+    <strong><i class="fa-regular fa-flag" style="color: dimgray;"></i> 昨日の自分からのメッセージ</strong>
+    <% if @yesterday_post %>
+      <p><%= @yesterday_post.message %></p>
+    <% else %>
+      <p>昨日のメッセージはありません。</p>
+    <% end %>
+  </div>
+  <!--送受信したメッセージ一覧　@user = current_user-->
+  <% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.in_time_zone('Asia/Tokyo').to_date } %>
+  <% if grouped_received_messages.present? %>
+    <div class="mx-auto pb-2 received-border">
+      <strong><i class="fa-regular fa-envelope-open style="color: dimgray;""></i> もらったメッセージ</strong>
+      <% grouped_received_messages.each do |date, messages| %>
+        <p><%= l date, format: :short %></p>
+        <% messages.each do |received_message| %>
+          <p>
+            <%= received_message.message_text.content %>
+            <%= link_to user_path(received_message.sender) do %>
+              <%= received_message.sender.name %> さんより
+            <% end %>
+          </p>
+        <% end %>
       <% end %>
     </div>
-    
-    <!--送受信したメッセージ一覧　@user = current_user-->
-    <% grouped_received_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.in_time_zone('Asia/Tokyo').to_date } %>
-    <% if grouped_received_messages.present? %>
-      <div class="mx-auto pb-2 received-border">
-        <strong><i class="fa-regular fa-envelope-open style="color: dimgray;""></i> もらったメッセージ</strong>
-        <% grouped_received_messages.each do |date, messages| %>
-          <p><%= l date, format: :short %></p>
-          <% messages.each do |received_message| %>
-            <p>
-              <%= received_message.message_text.content %>
-              <%= link_to user_path(received_message.sender) do %>
-                <%= received_message.sender.name %> さんより
-              <% end %>
-            </p>
-          <% end %>
+  <% else %>
+  <% end %>
+  <% grouped_sent_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.in_time_zone('Asia/Tokyo').to_date } %>
+  <% if grouped_sent_messages.present? %>
+    <div class="mx-auto pb-2 received-border">
+      <strong><i class="fa-regular fa-envelope" style="color: dimgray;"></i> 送ったメッセージ</strong>
+      <% grouped_sent_messages.each do |date, messages| %>
+        <p><%= l date, format: :short %></p>
+        <% messages.each do |sent_message| %>
+          <p>
+            <%= sent_message.message_text.content %>
+            <%= link_to user_path(sent_message.receiver) do %>
+              <%= sent_message.receiver.name %> さんへ
+            <% end %>
+          </p>
         <% end %>
-      </div>
-    <% else %>
-    <% end %>
-    <% grouped_sent_messages = @three_days_received_messages.to_a.group_by { |message| message.created_at.in_time_zone('Asia/Tokyo').to_date } %>
-    <% if grouped_sent_messages.present? %>
-      <div class="mx-auto pb-2 received-border">
-        <strong><i class="fa-regular fa-envelope" style="color: dimgray;"></i> 送ったメッセージ</strong>
-        <% grouped_sent_messages.each do |date, messages| %>
-          <p><%= l date, format: :short %></p>
-          <% messages.each do |sent_message| %>
-            <p>
-              <%= sent_message.message_text.content %>
-              <%= link_to user_path(sent_message.receiver) do %>
-                <%= sent_message.receiver.name %> さんへ
-              <% end %>
-            </p>
-          <% end %>
-        <% end %>
-      </div>
-    <% else %>
-    <% end %>
-    
-    <!--過去の日記-->
-    <%= render "public/posts/index", posts: @posts %>
-    <div class="mx-auto">
-      <%= paginate @posts %>
+      <% end %>
     </div>
+  <% else %>
+  <% end %>
+  <!--過去の日記-->
+  <h5 class="mx-auto">⚪︎過去の日記たち⚪︎</h5>
+  <%= render "public/posts/index", posts: @posts %>
+  <div class="mx-auto">
+    <%= paginate @posts %>
+  </div>
 </div>

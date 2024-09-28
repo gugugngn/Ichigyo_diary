@@ -2,14 +2,14 @@
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
     <% if @favorite_posts.any? %>
       <% @favorite_posts.each do |post| %>
-      <div class="index-item">
-        <div class="name-box">
-          <%= render "name", user: post.user %>
+        <div class="index-item">
+          <div class="name-box">
+            <%= render "name", user: post.user %>
+          </div>
+          <div class="index-box">
+            <%= render "public/posts/diary", post: post %>
+          </div>
         </div>
-        <div class="index-box">
-          <%= render "public/posts/diary", post: post %>
-        </div>
-      </div>
       <% end %>
     <% else %>
       <h2>いいねした投稿はありません</h2>

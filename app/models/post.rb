@@ -36,6 +36,15 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
+   # 検索の際に完全一致と部分一致で検索がかかるように
+  def self.search_for(content,method)
+    if method == 'perfect'
+      Post.where(name: content)
+    else
+      Post.where('name LIKE ?', '%' +  content  + '%')
+    end
+  end
+  
   private
 
   # 1日1投稿のバリデーション↓

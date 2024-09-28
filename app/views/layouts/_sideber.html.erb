@@ -2,53 +2,53 @@
   <% if user_signed_in? %>
     <% if current_user.guest_user? %>
       <!-- ゲストユーザー用のリンク -->
-        <li class="nav-list-item">
-          <%= link_to posts_path do %>
-            <i class="fa-solid fa-house"></i>　みんなの１行
-          <% end %>
-        </li>
-        <li class="nav-list-item ">
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fa-solid fa-right-from-bracket"></i>　ログアウト
-          <% end %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to  homes_about_path do %>
-            <i class="fa-regular fa-address-card"></i>　About
-          <% end %>
-        </li>
+      <li class="nav-list-item">
+        <%= link_to posts_path do %>
+          <i class="fa-solid fa-house"></i>　みんなの１行
+        <% end %>
+      </li>
+      <li class="nav-list-item ">
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa-solid fa-right-from-bracket"></i>　ログアウト
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to  homes_about_path do %>
+          <i class="fa-regular fa-address-card"></i>　About
+        <% end %>
+      </li>
     <% else %>
       <!-- ログインユーザー用のリンク -->
-        <li class="nav-list-item">
-          <%= link_to posts_path do %>
-            <i class="fa-solid fa-house"></i>
-            <span class="d-none d-lg-inline">　みんなの１行</span>
-          <% end %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to mypage_users_path do %>
-            <i class="fa-solid fa-user"></i>
-            <span class="d-none d-lg-inline">　マイページ</span>
-          <% end %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to new_post_path do %>
-            <i class="fa-regular fa-square-plus"></i>
-            <span class="d-none d-lg-inline">　日記を書く</span>
-          <% end %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span class="d-none d-lg-inline">　ログアウト</span>
-          <% end %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to edit_user_path(current_user) do %>
-            <i class="fa-solid fa-gear"></i>
-            <span class="d-none d-lg-inline">　プロフィール編集</span>
-          <% end %>
-        </li>
+      <li class="nav-list-item">
+        <%= link_to posts_path do %>
+          <i class="fa-solid fa-house"></i>
+          <span class="d-none d-lg-inline">　みんなの１行</span>
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to mypage_users_path do %>
+          <i class="fa-solid fa-user"></i>
+          <span class="d-none d-lg-inline">　マイページ</span>
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to new_post_path do %>
+          <i class="fa-regular fa-square-plus"></i>
+          <span class="d-none d-lg-inline">　日記を書く</span>
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span class="d-none d-lg-inline">　ログアウト</span>
+        <% end %>
+      </li>
+      <li class="nav-list-item">
+        <%= link_to edit_user_path(current_user) do %>
+          <i class="fa-solid fa-gear"></i>
+          <span class="d-none d-lg-inline">　プロフィール編集</span>
+        <% end %>
+      </li>
     <% end %>
   <% else %>
     <% if admin_signed_in? %>

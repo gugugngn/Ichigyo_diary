@@ -1,23 +1,25 @@
 <div class="container">
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
-    <div class="mx-auto py-4">
-      <h3>ユーザー検索結果 "<%= @content %>"</h3>
-    </div>
-    <div class="row">
-      <div class="mx-auto">
-        <% if @users.any? %>
-          <p>ユーザー名</p>
-            <% @users.each do |user| %>
-              <div class="row justify-content-center py-3">
-                <%= link_to user_path(user) do %>
-                  <%= render "public/users/name", user: user %>
-                <% end %>
-              </div>
-            <% end %>
-        <% else %>
-        <p>ユーザーが見つかりませんでした "<%= @content %>"</p>
-        <% end %>
+    <% if @model == 'user' %>
+      <div class ="mx-auto">
+        <h3 class="p-3">ユーザーの検索結果 "<%= @content %>"</h3>
       </div>
-    </div>
+      <% if @users.any? %>
+        <% @users.each do |user| %>
+          <div class="row justify-content-center py-3">
+            <%= link_to user_path(user) do %>
+              <%= render "public/users/name", user: user %>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+      <p>ユーザーが見つかりませんでした "<%= @content %>"</p>
+      <% end %>
+    <% elsif @model == 'post' %>
+      <div class ="mx-auto">
+        <h3 class="p-3">日記の検索結果 "<%= @content %>"</h3>
+      </div>
+      <%= render "public/posts/diaries", grouped_posts: @grouped_posts %>
+    <% end %>
   </div>
 </div>

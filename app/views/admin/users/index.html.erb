@@ -7,7 +7,7 @@
       <div class="row justify-content-center py-3">
         <%= link_to admin_user_path(user) do %>
           <%= image_tag user.get_profile_image(150,150), class: "rounded-circle" %>
-          <div class="user_name"><%= user.name %></p></div>
+          <div class="user_name"><%= user.name %></div>
         <% end %>
       </div>
     <% end %>

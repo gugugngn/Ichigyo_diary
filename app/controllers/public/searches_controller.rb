@@ -3,12 +3,22 @@ class Public::SearchesController < ApplicationController
   before_action :ensure_normal_user
   
   def search
+    @model = params[:model]
     @content = params[:content]
     
-    if params[:content].present?
-      @users = User.where('name LIKE ?', "%#{@content}%")
+    if @model  == "user"
+      if params[:content].present?
+        @users = User.where('name LIKE ?', "%#{@content}%")
+      else
+        @users = User.all
+      end
     else
-      @users = User.all
+      if params[:content].present?
+        @posts = Post.where('body LIKE ?', "%#{@content}%")
+        @grouped_posts = @posts.group_by { |post| post.created_at.to_date }
+      else
+        @posts = Post.all
+      end
     end
   end
   
