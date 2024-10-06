@@ -2,11 +2,12 @@
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
     <%= render "info", user: @user %>
     <div class='row justify-content-center py-2'>
-      <% @user.received_messages.each do |message| %>
+      <% @three_days_received_messages.each do |message| %>
         <p class="border p-2">
+          <%= l message.created_at, format: :short %>
           <%= message.message_text.content  %>
           <%= link_to user_path(message.sender) do %>
-            <%= message.sender.name %>さんより
+            <%= message.sender.name %>さん
           <% end %>
         </p>
       <% end %>

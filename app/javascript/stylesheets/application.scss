@@ -216,12 +216,16 @@ p {
   border-bottom: 5px solid #e3ecf8;
   margin-bottom: 10px;
   width: 70%;
+  height: 100px;
+  overflow-y: scroll;
 }
 .sender-border {
   border-top: 5px solid #c6dbee;
   border-bottom: 5px solid #c6dbee;
   margin-bottom: 10px;
   width: 70%;
+  height: 100px;
+  overflow-y: scroll;
 }
 
 /*------------------------------------マイページここまで----------------------------------------*/
