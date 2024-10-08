@@ -17,6 +17,9 @@ class Public::MessagesController < ApplicationController
 
 
   def destroy
+    message = Message.find(params[:user_id])
+    message.destroy
+    redirect_to request.referer
   end
   
   private

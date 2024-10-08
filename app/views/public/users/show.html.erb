@@ -9,6 +9,9 @@
           <%= link_to user_path(message.sender) do %>
             <%= message.sender.name %>さん
           <% end %>
+          <% if message.sender == current_user %>
+            <%= link_to "削除", user_message_path(message), method: :delete %>
+          <% end %>
         </p>
       <% end %>
     </div>
