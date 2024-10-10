@@ -169,7 +169,7 @@ p {
 
 .background-image {
   width: auto; /* 親要素に合わせて画像を引き伸ばす */
-  max-width: 700px;
+  max-width: 100%;
   height: auto; /* 親要素に合わせて画像を引き伸ばす */
   max-height: 400px;
   border-radius: 5px;
@@ -254,7 +254,7 @@ p {
 .field_with_errors {
   position: relative;
   flex: 1 1 auto;
-    
+
 }
 
 // スマホサイズ (最大 768px) の時にサイドバーをフッターに固定

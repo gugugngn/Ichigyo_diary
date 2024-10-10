@@ -3,22 +3,21 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
  has_many :posts, dependent: :destroy
- has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
- has_many :received_messages, class_name: "Message", foreign_key: "receiver_id"
+ has_many :sent_messages, class_name: "Message", foreign_key: "sender_id", dependent: :destroy
+ has_many :received_messages, class_name: "Message", foreign_key: "receiver_id", dependent: :destroy
  has_many :comments, dependent: :destroy
  has_many :favorites, dependent: :destroy
- has_many :active_relationships, class_name: "Relationship", foreign_key: 'follower_id'
+ has_many :active_relationships, class_name: "Relationship", foreign_key: 'follower_id', dependent: :destroy
  has_many :followings, through: :active_relationships, source: :followed
- has_many :passive_relationships, class_name: "Relationship", foreign_key: 'followed_id'
+ has_many :passive_relationships, class_name: "Relationship", foreign_key: 'followed_id', dependent: :destroy
  has_many :followers, through: :passive_relationships, source: :follower
  has_one_attached :profile_image
- 
- validates :name, presence: true
 
+ validates :name, presence: true
  validates :profile_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpng, jpg, jpegいずれかの形式にして下さい"}
-  
+
   # ゲストログインユーザーの記述↓
   GUEST_USER_EMAIL = "guest@example.com"
 
@@ -28,11 +27,11 @@ class User < ApplicationRecord
       user.name = "ゲストユーザー"
     end
   end
-  
+
   def guest_user?
     email == GUEST_USER_EMAIL
   end
-  
+
   # プロフィール画像のサイズ調整定義＆デフォルト画像の差し込み
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -41,7 +40,7 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_fill: [width, height]).processed
   end
-  
+
   # 検索の際に完全一致と部分一致で検索がかかるように
   def self.search_for(content,method)
     if method == 'perfect'
@@ -50,18 +49,18 @@ class User < ApplicationRecord
       User.where('name LIKE ?', '%' +  content  + '%')
     end
   end
-  
+
   # フォロー・アンフォロー・フォローの有無を確認するメソッド↓
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
-  
+
   def unfollow(user)
     active_relationships.find_by(followed_id: user.id).destroy
-  end 
-  
+  end
+
   def following?(user)
     followings.include?(user)
-  end 
-  
+  end
+
 end

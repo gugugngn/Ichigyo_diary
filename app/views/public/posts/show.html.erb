@@ -16,13 +16,13 @@
         <%= image_tag @post.get_post_image, class: "background-image"  %>
       </div>
     <% end %>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center pb-2">
       <div class="col-sm-12 col-md-10">
         <% if @post.user == current_user %>
           <p>次の日の自分へ　<%= @post.message %></p>
         <% end %>
         <%= render "public/posts/diary", post: @post %>
-        <div class="d-flex justify-content-between pb-3">
+        <div class="d-flex justify-content-between pb-2">
           <div class="d-flex justify-content-start pl-3">
             <span>
               <div id="favorite_btn_<%= @post.id %>">

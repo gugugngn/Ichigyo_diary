@@ -12,40 +12,46 @@ Admin.find_or_create_by(id: 1) do |admin|
   admin.password_confirmation = "A123456"
 end
 
-momoko = User.find_or_create_by!(email: "momoko@example.com") do |user|
-  user.name = "ももこ"
-  user.password = "m11111"
-  user.password_confirmation = "m11111"
-  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
+test_user = User.find_or_create_by!(email: "test@aaa.jp") do |user|
+  user.name = "てすと"
+  user.password = "123456"
+  user.password_confirmation = "123456"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.png"), filename:"sample-user1.png")
 end
 
 seigi = User.find_or_create_by!(email: "seigi@example.com") do |user|
   user.name = "正義"
   user.password = "S22222"
-  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.jpg")
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.png"), filename:"sample-user2.png")
 end
 
 bushi = User.find_or_create_by!(email: "bushi@example.com") do |user|
   user.name = "Bushi"
   user.password = "b33333"
-  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.jpg"), filename:"sample-user3.jpg")
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user3.png"), filename:"sample-user3.png")
 end
 
 
 
 # Moodデータの中身
 moods_data = [
-   { name: "幸せ", color: "#fbe2eb" },
-   { name: "楽しい", color: "#fde2a6" },
-   { name: "絶好調", color: "#f09597" },
-   { name: "ワクワク", color: "#f4aa86" },
-   { name: "スッキリ", color: "#ebf5e9" },
-   { name: "普通", color: "#eee900" },
-   { name: "モヤモヤ", color: "#89c122" },
-   { name: "イライラ", color: "#ff4d4d" },
-   { name: "悲しい", color: "#c6dbee" },
-   { name: "疲れた", color: "#e4dfef" },
-   
+   { name: "楽しい", color: "#f6bfbc" },
+   { name: "ワクワク", color: "#f6ad49" },
+   { name: "感謝", color: "#f7bd8f" },
+   { name: "面白い", color: "#f4aa86" },
+   { name: "満足", color: "#f2a0a1" },
+   { name: "ドキドキ", color: "#f0908d" },
+   { name: "普通", color: "#ebd842" },
+   { name: "スッキリ", color: "#b9d08b" },
+   { name: "退屈", color: "#ebe1a9" },
+   { name: "穏やか", color: "#c1d8ac" },
+   { name: "モヤモヤ", color: "#e4dc8a" },
+   { name: "緊張", color: "#df7163" },
+   { name: "イライラ", color: "#e45e32" },
+   { name: "後悔", color: "#c4a3bf" },
+   { name: "不安", color: "#abced8" },
+   { name: "悲しい", color: "#8491c3" },
+   { name: "疲れた", color: "#a59aca" },
 ]
 
 
@@ -59,27 +65,27 @@ end
 # 投稿データの配列
 posts_data = [
   {
-    user: momoko,
+    user: test_user,
     body: "今日はとっても疲れた１日だった。元気が出るように食事は豪華にした〜",
     message: "明日も頑張ってね。",
-    image_path: "#{Rails.root}/db/fixtures/sample-post1.jpg",
-    image_filename: "sample-post1.jpg",
-    mood_ids: [3]
+    image_path: "#{Rails.root}/db/fixtures/sample-post1.jpeg",
+    image_filename: "sample-post1.jpeg",
+    mood_ids: [12,17]
   },
   {
     user: seigi,
     body: "海に行ったあらいい写真が撮れた。永久保存版",
     message: "明日も頑張っていこう。",
-    image_path: "#{Rails.root}/db/fixtures/sample-post2.jpg",
-    image_filename: "sample-post2.jpg",
+    image_path: "#{Rails.root}/db/fixtures/sample-post2.png",
+    image_filename: "sample-post2.png",
     mood_ids: [1, 2]
   },
   {
     user: bushi,
     body: "綺麗な夕焼けだ",
     message: "明日も頑張ろう。",
-    image_path: "#{Rails.root}/db/fixtures/sample-post3.jpg",
-    image_filename: "sample-post3.jpg",
+    image_path: "#{Rails.root}/db/fixtures/sample-post3.png",
+    image_filename: "sample-post3.png",
     moods_ids: []
   }
 ]
