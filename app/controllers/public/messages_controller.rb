@@ -11,7 +11,9 @@ class Public::MessagesController < ApplicationController
     if message.save
       redirect_to request.referer, notice: 'エールを送りました。'
     else
-      redirect_to request.referer, alert: 'エールの送信に失敗しました。'
+      # モデルのバリデーションエラーをフラッシュメッセージに含める↓
+      flash[:alert] = message.errors.full_messages.join(', ')
+      redirect_to request.referer
     end
   end
 
