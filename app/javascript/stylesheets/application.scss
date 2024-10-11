@@ -52,6 +52,7 @@ p {
 
 /*-----------------------------------トップ画面ここから---------------------------------------*/
 .top-content{
+  // background-image: image-url('background-image-test.jpg');
   background: linear-gradient(to bottom, #e3ecf8, #c6dbee);
   color: transparent; /* 最初は透明 */
   animation: fadeback 8s forwards;

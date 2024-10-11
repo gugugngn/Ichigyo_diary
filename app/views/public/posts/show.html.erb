@@ -11,6 +11,13 @@
         <% end %>
       </div>
     </div>
+    <div class="mx-auto pb-1">
+      <% if @post.is_public %>
+        <p>この投稿は公開されています</p>
+      <% else %>
+        <p>この投稿は非公開です</p>
+      <% end %>
+    </div>
     <% if @post.post_image.attached? %>
       <div class="mx-auto">
         <%= image_tag @post.get_post_image, class: "background-image"  %>
@@ -19,7 +26,7 @@
     <div class="row justify-content-center pb-2">
       <div class="col-sm-12 col-md-10">
         <% if @post.user == current_user %>
-          <p>次の日の自分へ　<%= @post.message %></p>
+          <p class="pt-2"><strong>次の日の自分へ　<%= @post.message %></strong></p>
         <% end %>
         <%= render "public/posts/diary", post: @post %>
         <div class="d-flex justify-content-between pb-2">
