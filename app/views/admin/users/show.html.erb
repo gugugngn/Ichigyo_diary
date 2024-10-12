@@ -19,7 +19,7 @@
       </div>
       <!--過去の日記-->
       <% @posts.each do |post| %>
-        <%= render "public/posts/index", post: post %>
+        <%= render "public/posts/photo_or_mood_diaries", post: post %>
       <% end %>
       <%= paginate @posts %>
     </div>

@@ -1,7 +1,7 @@
 <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
   <%= render  "public/searches/form" %>
   <h4 class ="pl-2 pt-2">みんなの１行</h4>
-  <%= render "public/posts/diaries", grouped_posts: @grouped_posts %>
+  <%= render "public/posts/mood_background_diaries", grouped_posts: @grouped_posts %>
   <div class ="mx-auto">
     <%= paginate @posts %>
   </div>

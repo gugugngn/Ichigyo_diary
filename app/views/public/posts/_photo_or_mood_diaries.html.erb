@@ -1,11 +1,7 @@
 <% if post.post_image.attached? %>
-  <div class="ml-4 mx-auto">
-    <% if post.moods.any? %>
-      <%= link_to post_path(post) do %>
-        <%= render "public/posts/mood", moods: post.moods %>
-      <% end %>
-    <% end %>
-  </div>
+  <!--色つき気分の名前-->
+  <%= render "public/posts/mood_name", moods: post.moods %>
+  <!--写真背景の日記-->
   <div class="mx-auto">
     <%= link_to post_path(post) do %>
       <div class="mb-2 background-image-container">
@@ -18,8 +14,8 @@
     <% end %>
   </div>
 <% else %>
-  <%= link_to post_path(post) do %>
-    <%= render "public/posts/diary", moods: post.moods, post: post %>
-  <% end %>
+  <!--気分カラー背景の日記-->
+  <%= render "public/posts/mood_background_diary", post: post %>
 <% end %>
-<!--マイページ、投稿詳細画面、管理者側ユーザー詳細画面で引用-->
+
+<!--マイページ(2)、管理者側ユーザー詳細画面で引用-->

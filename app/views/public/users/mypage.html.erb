@@ -45,17 +45,17 @@
     </div>
   <% else %>
   <% end %>
-  
+
   <% if @user.posts.present? %>
   <p class="mx-auto"><strong><%= l @random_post.created_at, format: :short %>の<%= @random_post.user.name %>さん</strong>︎</p>
-    <%= render "public/posts/index", post: @random_post %>
+    <%= render "public/posts/photo_or_mood_diaries", post: @random_post %>
   <% end %>
-    
+
   <!--過去の日記-->
   <p class="mx-auto"><strong>⚪︎過去の日記たち⚪</strong>︎</p>
   <% @posts.each do |post| %>
     <h5 class="ml-4"><%= l post.created_at, format: :short %></h5>
-    <%= render "public/posts/index", post: post %>
+    <%= render "public/posts/photo_or_mood_diaries", post: post %>
   <% end %>
   <div class="mx-auto">
     <%= paginate @posts %>

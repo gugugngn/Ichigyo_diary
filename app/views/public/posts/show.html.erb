@@ -28,7 +28,7 @@
         <% if @post.user == current_user && @post.message.present? %>
           <p class="pt-2"><strong>次の日の自分へ　<%= @post.message %></strong></p>
         <% end %>
-        <%= render "public/posts/diary", post: @post %>
+        <%= render "public/posts/mood_background_diary", post: @post %>
         <div class="d-flex justify-content-between pb-2">
           <div class="d-flex justify-content-start pl-md-3">
             <span>
