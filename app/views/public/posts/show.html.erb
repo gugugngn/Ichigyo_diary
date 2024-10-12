@@ -1,9 +1,9 @@
 <div class="container">
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
     <div class="row flex-nowrap">
-      <div class="col-sm-4 col-md-2 m-3">
+      <div class="col-sm-4 col-md-2 m-md-3">
         <%= link_to user_path(@post.user) do %>
-        <%= image_tag @post.user.get_profile_image(100,100), class: "rounded-circle" %>
+        <%= image_tag @post.user.get_profile_image(70,70), class: "rounded-circle" %>
       </div>
       <div class="col-sm-8 col-md-10 py-4">
         <p><%= l @post.created_at, format: :short %></p>
@@ -30,7 +30,7 @@
         <% end %>
         <%= render "public/posts/diary", post: @post %>
         <div class="d-flex justify-content-between pb-2">
-          <div class="d-flex justify-content-start pl-3">
+          <div class="d-flex justify-content-start pl-md-3">
             <span>
               <div id="favorite_btn_<%= @post.id %>">
                 <%= render "public/favorites/btn", post: @post %>

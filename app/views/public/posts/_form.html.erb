@@ -1,6 +1,7 @@
 <%= form_with model: post, url: url, local: false do |f| %>
   <div class="form-group">
-    <p class="js-text-count" style="float: right;">残り30文字</p>
+    <p class= "form-title" style="float: left;">日記本文</p>
+    <p class="js-text-count" style="float: right;"></p>
     <%= f.text_field :body, class: 'form-control js-text' %>
   </div>
   <div class="form-group">

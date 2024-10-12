@@ -1,11 +1,11 @@
 <% unless current_user&.guest_user? %>
   <% if post.favorited_by?(current_user) %>
     <%= link_to post_favorites_path(post.id), method: :delete, remote: true do %>
-      <i class="fa-solid fa-seedling" style="color: #208604;"></i><%= post.favorites.count %> いいね
+      <p><i class="fa-solid fa-seedling" style="color: #208604;"></i><%= post.favorites.count %> いいね</p>
     <% end %>
   <% else %>
     <%= link_to post_favorites_path(post.id), method: :post, remote: true do %>
-      <i class="fa-solid fa-seedling" style="color: #808185;"></i><%= post.favorites.count %> いいね
+      <p><i class="fa-solid fa-seedling" style="color: #808185;"></i><%= post.favorites.count %> いいね</p>
     <% end %>
   <% end %>
 <% end %>

@@ -2,23 +2,25 @@
   <div class="text-center py-2 ">
     <%= render "name", user: user %>
     <p><%= user.introduction %></p>
-    <p><%= link_to "いいね一覧", favorites_user_path(user), class: "btn btn-light" %></p>
+    <%= link_to favorites_user_path(user), class: "btn btn-light" do %>
+      <p>いいね一覧</p>
+    <% end %>
   </div>
 </div>
 <!--フォロー数とフォロワー数とその一覧リンクの表示＋フォローする,外すボタンの表示,もしくは非表示-->
-<div class="row  justify-content-center flex-nowrap">
-  <div class="col-sm-4 col-md-3 pb-2 d-flex align-items-center">
+<div class="row  justify-content-center flex-nowrap pb-1">
+  <div class="mr-1">
     <%= link_to user_followings_path(user), class: "btn btn-light" do %>
       <p>フォロー　<%= user.followings.count %></p>
     <% end %>
   </div>
-  <div class="col-sm-4 col-md-3 pb-2">
+  <div class="mr-1">
     <%= link_to user_followers_path(user), class: "btn btn-light"  do %>
       <p>フォロワー　<%= user.followers.count %></p>
     <% end %>
   </div>
   <% if current_user != user %>
-    <div class="col-sm-4 col-md-3 pb-2">
+    <div class="mr-1">
       <%= render "public/relationships/btn", user: user %>
     </div> 
   <% end %>

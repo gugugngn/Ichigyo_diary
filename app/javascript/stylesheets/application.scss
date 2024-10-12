@@ -117,13 +117,11 @@ p {
 
 .name-box{
   float: left;
-  padding: 20px 30px;
   width: 20%;
 }
 
 .index-box{
   float: left;
-  padding: 20px 30px;
   width: 70%;
 }
 /*--------------------------------ユーザーネームと画像ここまで------------------------------------*/
@@ -209,14 +207,14 @@ p {
   border-top: 5px solid #e4dfef;
   border-bottom: 5px solid #e4dfef;
   margin-bottom: 10px;
-  width: 70%;
+  width: 85%;
 }
 
 .received-border {
   border-top: 5px solid #e3ecf8;
   border-bottom: 5px solid #e3ecf8;
   margin-bottom: 10px;
-  width: 70%;
+  width: 85%;
   height: 100px;
   overflow-y: scroll;
 }
@@ -224,7 +222,7 @@ p {
   border-top: 5px solid #c6dbee;
   border-bottom: 5px solid #c6dbee;
   margin-bottom: 10px;
-  width: 70%;
+  width: 85%;
   height: 100px;
   overflow-y: scroll;
 }
@@ -260,6 +258,20 @@ p {
 
 // スマホサイズ (最大 768px) の時にサイドバーをフッターに固定
 @media (max-width: 768px) {
+  
+  p {
+    font-size: 12px; 
+  }
+  
+ .delete-link {
+    font-size: 12px;
+  }
+  
+ .btn {
+   font-size: 12px;
+   padding: 5px 5px;
+ }
+  
   .sidebar {
     position: fixed !important; /* 画面下に固定 */
     bottom: 0 !important;
@@ -291,4 +303,14 @@ p {
   .index-box{
     width: 100%;
   }
+  
+  /*投稿フォーム*/ 
+  .shadow-lg {
+    box-shadow: none !important;
+    }
+    
+  .card {
+    border: none !important;
+  }
+  
 }

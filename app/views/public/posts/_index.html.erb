@@ -1,29 +1,25 @@
-<% posts.each do |post| %>
-  <h5 class="ml-4"><%= l post.created_at, format: :short %></h5>
-  <% if post.post_image.attached? %>
-    <div class="ml-4">
-      <% if post.moods.any? %>
-        <%= link_to post_path(post) do %>
-          <%= render "public/posts/mood", moods: post.moods %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="mx-auto">
+<% if post.post_image.attached? %>
+  <div class="ml-4 mx-auto">
+    <% if post.moods.any? %>
       <%= link_to post_path(post) do %>
-        <div class="mb-2 background-image-container">
-          <%= image_tag post.get_post_image, class: "background-image" %>
-          <div class="overlay-content">
-            <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
-            <p><%= post.body %></p>
-          </div>
-        </div>
+        <%= render "public/posts/mood", moods: post.moods %>
       <% end %>
-    </div>
-  <% else %>
-    <%= link_to post_path(post) do %>
-      <%= render "public/posts/diary", moods: post.moods, post: post %>
     <% end %>
+  </div>
+  <div class="mx-auto">
+    <%= link_to post_path(post) do %>
+      <div class="mb-2 background-image-container">
+        <%= image_tag post.get_post_image, class: "background-image" %>
+        <div class="overlay-content">
+          <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
+          <p><%= post.body %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <%= link_to post_path(post) do %>
+    <%= render "public/posts/diary", moods: post.moods, post: post %>
   <% end %>
 <% end %>
-
 <!--マイページ、投稿詳細画面、管理者側ユーザー詳細画面で引用-->

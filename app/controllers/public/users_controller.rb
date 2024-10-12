@@ -6,6 +6,7 @@ class Public::UsersController < ApplicationController
   def mypage
     @user = current_user
     @posts = @user.posts.order(created_at: :desc).page(params[:page])
+    @random_post = @user.posts.order("RANDOM()").first
     yesterday = Time.zone.today - 1
     @yesterday_post = @user.posts.find_by(created_at: yesterday.all_day)
     three_days_ago = Time.zone.today - 3

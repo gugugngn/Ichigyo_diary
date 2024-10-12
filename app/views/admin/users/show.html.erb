@@ -18,7 +18,9 @@
         <% end %>
       </div>
       <!--過去の日記-->
-      <%= render "public/posts/index", posts: @posts %>
+      <% @posts.each do |post| %>
+        <%= render "public/posts/index", post: post %>
+      <% end %>
       <%= paginate @posts %>
     </div>
   </div>
