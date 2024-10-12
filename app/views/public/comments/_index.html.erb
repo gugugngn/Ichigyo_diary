@@ -7,7 +7,7 @@
       <% end %>
     </div>
     <div class="pl-2">
-      <% if comment.user == current_user %>
+      <% if comment.user == current_user || comment.post.user == current_user %>
         <%= link_to "削除",post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger btn-sm", remote:true, data: {"turbolinks" => false} %>
       <% end %>
     </div>

@@ -20,6 +20,10 @@
 誰かからの優しい言葉が欲しい時
 ​
 ## 設計書
+UIFlows :https://app.diagrams.net/#G1ZApx456SJ7w1eCAWYqyRGOdB2TtJHsLM#%7B%22pageId%22%3A%22uCzctld-tadXsYYllt3Y%22%7D
+ER図 :https://app.diagrams.net/#G1ZApx456SJ7w1eCAWYqyRGOdB2TtJHsLM#%7B%22pageId%22%3A%22OrA1fIvhzj4cGss3bubK%22%7D
+テーブル定義書 :https://docs.google.com/spreadsheets/d/1UgMnLoz1Y8rMZ5QvY3jKAwrYWVi_ZdKxdlTpJ7GnCwE/edit?gid=1044500859#gid=1044500859
+アプリケーション詳細設計 :https://docs.google.com/spreadsheets/d/1m8NAi2fSq2hiqs40v5vUIcDXbM2F7umE-ROKHq-ILgI/edit?gid=549108681#gid=549108681
 <!-- 【補足説明】 -->
 <!-- - テーマ提出時点では不要です。 -->
 <!-- - 当項目には「後ほど作成予定」と記載しましょう。 -->

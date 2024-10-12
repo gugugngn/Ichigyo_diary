@@ -12,9 +12,9 @@
       </div>
     </div>
     <div class="mx-auto pb-1">
-      <% if @post.is_public %>
+      <% if @post.is_public && @post.user == current_user %>
         <p>この投稿は公開されています</p>
-      <% else %>
+      <% elsif @post.user == current_user %>
         <p>この投稿は非公開です</p>
       <% end %>
     </div>
@@ -25,7 +25,7 @@
     <% end %>
     <div class="row justify-content-center pb-2">
       <div class="col-sm-12 col-md-10">
-        <% if @post.user == current_user %>
+        <% if @post.user == current_user && @post.message.present? %>
           <p class="pt-2"><strong>次の日の自分へ　<%= @post.message %></strong></p>
         <% end %>
         <%= render "public/posts/diary", post: @post %>
@@ -48,7 +48,7 @@
           <%= render "public/comments/index", post: @post %>
         </div>
         <div class="form-group">
-        <%= render "public/comments/form", post: @post, comment: @comment %>
+        <%= render "public/comments/form", post: @post, comment: @comment, user: @post.user %>
         </div>
       </div>
     </div>

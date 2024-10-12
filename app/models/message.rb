@@ -7,7 +7,7 @@ class Message < ApplicationRecord
   
   def one_message_to_user
     if Message.where(sender_id: sender_id, receiver_id: receiver_id, created_at: Time.zone.today.all_day).exists?
-      errors.add(:base, "メッセージは１ユーザーにつき1日1回までです")
+      errors.add(:base, "小さなエールは１ユーザーにつき1日1回までです")
     end
   end
   
