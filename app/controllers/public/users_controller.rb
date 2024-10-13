@@ -6,12 +6,17 @@ class Public::UsersController < ApplicationController
   def mypage
     @user = current_user
     @posts = @user.posts.order(created_at: :desc).page(params[:page])
-    @random_post = @user.posts.order("RANDOM()").first
     yesterday = Time.zone.today - 1
     @yesterday_post = @user.posts.find_by(created_at: yesterday.all_day)
     three_days_ago = Time.zone.today - 3
     @three_days_received_messages = @user.received_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
     @three_days_sent_messages = @user.sent_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
+    
+    if Rails.env.production?
+      @random_post = @user.posts.order("RAND()").first # MySQL用
+    else
+      @random_post = @user.posts.sample # 開発環境用
+    end
   end
 
   def favorites
