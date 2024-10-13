@@ -1,23 +1,16 @@
-<div class="container">
-  <!-- 中央寄せの内容 -->
-  <div class="row mx-auto my-3 top-content">
-    <div class="col-12  d-flex justify-content-center align-items-center">
-      <div class="central-content">
-        <p>1Gyo diaryへ<br>
-          　ようこそ
-        </p>
+<div class="top-content">
+  <div class="central-content">
+    <strong>1Gyo diary</strong>
+    <div class="button-group">
+      <div class="row justify-content-center btn-container">
+        <%= link_to "新規登録", new_user_registration_path, class: "btn-top" %>
+      </div>
+      <div class="row justify-content-center btn-container">
+        <%= link_to "ログイン", new_user_session_path, class: "btn-top" %>
+      </div>
+      <div class="row justify-content-center btn-container">
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn-top", method: :post %>
       </div>
     </div>
-  </div>
-
-  <!-- ボタンの配置 -->
-  <div class="row  justify-content-center btn-container">
-    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-secondary btn-sm mb-3 sign_in" %>
-  </div>
-  <div class="row  justify-content-center btn-container">
-    <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary btn-sm mb-3 sign_in" %>
-  </div>
-  <div class="row  justify-content-center btn-container">
-    <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm mb-3 sign_in", method: :post %>
   </div>
 </div>

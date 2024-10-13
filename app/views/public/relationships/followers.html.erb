@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
     <div class="mx-auto">
-      <h2>フォロワー</h2>
+      <h4>フォロワー</h4>
       <% if @users.exists? %>
         <% @users.each do |user| %>
           <%= render "public/users/name", user: user %>

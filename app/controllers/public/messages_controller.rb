@@ -9,14 +9,19 @@ class Public::MessagesController < ApplicationController
     message = current_user.sent_messages.new(post_message_params)
     message.sender_id = current_user.id
     if message.save
-      redirect_to request.referer, notice: 'エールを送りました。'
+      redirect_to request.referer, notice: 'エールを送りました。優しさをありがとう！あなたの明日もより良い1日になりますように💫'
     else
-      redirect_to request.referer, alert: 'エールの送信に失敗しました。'
+      # モデルのバリデーションエラーをフラッシュメッセージに含める↓
+      flash[:alert] = message.errors.full_messages.join(', ')
+      redirect_to request.referer
     end
   end
 
 
   def destroy
+    message = Message.find(params[:user_id])
+    message.destroy
+    redirect_to request.referer
   end
   
   private

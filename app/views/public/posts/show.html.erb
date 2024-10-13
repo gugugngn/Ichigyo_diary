@@ -1,9 +1,9 @@
 <div class="container">
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
     <div class="row flex-nowrap">
-      <div class="col-sm-4 col-md-2 m-3">
+      <div class="col-sm-4 col-md-2 m-md-3">
         <%= link_to user_path(@post.user) do %>
-        <%= image_tag @post.user.get_profile_image(100,100), class: "rounded-circle" %>
+        <%= image_tag @post.user.get_profile_image(70,70), class: "rounded-circle" %>
       </div>
       <div class="col-sm-8 col-md-10 py-4">
         <p><%= l @post.created_at, format: :short %></p>
@@ -11,19 +11,26 @@
         <% end %>
       </div>
     </div>
+    <div class="mx-auto pb-1">
+      <% if @post.is_public && @post.user == current_user %>
+        <p>この投稿は公開されています</p>
+      <% elsif @post.user == current_user %>
+        <p>この投稿は非公開です</p>
+      <% end %>
+    </div>
     <% if @post.post_image.attached? %>
       <div class="mx-auto">
         <%= image_tag @post.get_post_image, class: "background-image"  %>
       </div>
     <% end %>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center pb-2">
       <div class="col-sm-12 col-md-10">
-        <% if @post.user == current_user %>
-          <p>次の日の自分へ　<%= @post.message %></p>
+        <% if @post.user == current_user && @post.message.present? %>
+          <p class="pt-2"><strong>次の日の自分へ　<%= @post.message %></strong></p>
         <% end %>
-        <%= render "public/posts/diary", post: @post %>
-        <div class="d-flex justify-content-between pb-3">
-          <div class="d-flex justify-content-start pl-3">
+        <%= render "public/posts/mood_background_diary", post: @post %>
+        <div class="d-flex justify-content-between pb-2">
+          <div class="d-flex justify-content-start pl-md-3">
             <span>
               <div id="favorite_btn_<%= @post.id %>">
                 <%= render "public/favorites/btn", post: @post %>
@@ -41,7 +48,7 @@
           <%= render "public/comments/index", post: @post %>
         </div>
         <div class="form-group">
-        <%= render "public/comments/form", post: @post, comment: @comment %>
+        <%= render "public/comments/form", post: @post, comment: @comment, user: @post.user %>
         </div>
       </div>
     </div>

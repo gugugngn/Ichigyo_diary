@@ -19,7 +19,7 @@ class Post < ApplicationRecord
     post_image
   end
   
-  # 気分が空の時、選択された気分が１つの時、選択が複数の際の条件分岐
+  # 気分が空の時、選択された気分が１つの時、選択が複数の際の条件分岐↓
   def background_color
     if moods.empty?
       '#f5f5f5'
@@ -36,7 +36,7 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
-   # 検索の際に完全一致と部分一致で検索がかかるように
+   # 検索の際に完全一致と部分一致で検索がかかるように↓
   def self.search_for(content,method)
     if method == 'perfect'
       Post.where(name: content)
@@ -53,4 +53,10 @@ class Post < ApplicationRecord
       errors.add(:base, "本日は既に投稿済みです")
     end
   end
+  
+  # 公開非公開設定用↓
+  def self.public_posts
+    where(is_public: true)
+  end
+  
 end

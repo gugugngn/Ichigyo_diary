@@ -7,12 +7,12 @@
             <%= render "name", user: post.user %>
           </div>
           <div class="index-box">
-            <%= render "public/posts/diary", post: post %>
+            <%= render "public/posts/mood_background_diary", post: post %>
           </div>
         </div>
       <% end %>
     <% else %>
-      <h2>いいねした投稿はありません</h2>
+      <h4>いいねした投稿はありません</h4>
     <% end %>
     <div class ="mx-auto">
       <%= paginate @favorite_posts %>

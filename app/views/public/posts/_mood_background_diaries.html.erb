@@ -1,3 +1,5 @@
+<!--気分カラーを背景にした日記 ＆ いいねボタンと写真アイコンの表示-->
+
 <% grouped_posts.each do |date, posts| %>
   <p class="pl-2 post-date"><%= l date, format: :short %></p>
   <% posts.each do |post| %>
@@ -7,15 +9,19 @@
       </div>
       <div class="index-box">
         <%= link_to post_path(post) do %>
-          <%= render "public/posts/mood", moods: post.moods %>
-          <%= render "public/posts/diary", post: post %>
+          <!--色つき気分の名前-->
+            <%= render "public/posts/mood_name", moods: post.moods %>
+          <!--気分カラー背景の日記-->
+            <%= render "public/posts/mood_background_diary", post: post %>
         <% end %>
         <div class="d-flex justify-content-between pb-3">
+          <!--いいね-->
           <div class="d-flex justify-content-start pl-3">
             <div id="favorite_btn_<%= post.id %>">
               <%= render "public/favorites/btn", post: post %>
             </div>
           </div>
+          <!--写真ありの場合のアイコンの表示-->
           <div class="d-flex justify-content-end mr-3">
             <% if post.post_image.attached? %>
               <%= link_to post_path(post) do %>
@@ -28,3 +34,5 @@
     </div>
   <% end %>
 <% end %>
+
+<!--投稿一覧画面、検索結果画面で引用-->

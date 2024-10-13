@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page])
+    @posts = Post.public_posts.order(created_at: :desc).page(params[:page])
     @grouped_posts = @posts.group_by { |post| post.created_at.to_date }
   end
 
@@ -16,6 +16,10 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_message = Message.new
     @comment = Comment.new
+    
+    unless @post.is_public || @post.user == current_user
+      redirect_to posts_path, alert: "この投稿は非公開です。"
+    end
   end
 
   def create
@@ -58,6 +62,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, :post_image, :message, mood_ids: [])
+    params.require(:post).permit(:body, :post_image, :message, :is_public, mood_ids: [])
   end
 end

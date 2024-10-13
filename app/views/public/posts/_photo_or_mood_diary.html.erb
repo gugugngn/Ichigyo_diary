@@ -1,0 +1,21 @@
+<% if post.post_image.attached? %>
+  <!--色つき気分の名前-->
+  <%= render "public/posts/mood_name", moods: post.moods %>
+  <!--写真背景の日記-->
+  <div class="mx-auto">
+    <%= link_to post_path(post) do %>
+      <div class="mb-2 background-image-container">
+        <%= image_tag post.get_post_image, class: "background-image" %>
+        <div class="overlay-content">
+          <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
+          <p><%= post.body %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <!--気分カラー背景の日記-->
+  <%= render "public/posts/mood_background_diary", post: post %>
+<% end %>
+
+<!--マイページ(2)、ユーザー詳細画面管理者側ユーザー詳細画面で引用-->

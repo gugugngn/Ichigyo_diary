@@ -52,21 +52,38 @@ p {
 
 /*-----------------------------------トップ画面ここから---------------------------------------*/
 .top-content{
-  background: linear-gradient(to bottom, #e3ecf8, #c6dbee);
-  color: transparent; /* 最初は透明 */
-  animation: fadeback 8s forwards;
-  width: 100%;
-  aspect-ratio: 3 / 2; /* アスペクト比を1:1に設定 */
+  background-image: url('/assets/top-image.jpg');
   border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  opacity: 0.8;
 }
 
-
   /* 中央寄せの内容を囲むカスタムクラス */
-  .central-content {
-    color: transparent; /* 最初は透明 */
-    font-size: 50px;
-    animation: fadeInText 4s forwards;  /* 4秒でフェードイン */
-  }
+.central-content {
+  color: rgba(255, 255, 255, 0.7); /* テキストを白く */
+  font-size: 200px;
+  animation: fadeInText 4s forwards;  /* 4秒でフェードイン */
+}
+
+.btn-top {
+  background-color: rgba(255, 255, 255, 0.7); /* 白の半透明 */
+  padding: 10px 20px; /* パディングを調整 */
+  margin-bottom: 10px;
+  border-radius: 5px; /* 角を丸く */
+  font-size: 20px; /* 文字サイズ */
+  text-align: center; /* 文字を中央に */
+  width: 50%;
+  transition: background-color 0.3s ease; /* ホバー時のエフェクト */
+}
+
+.btn-top:hover {
+  background-color: rgba(255, 255, 255, 0.9); /* ホバー時に白を少し濃く */
+  color: #343a40; /* ホバー時に文字を少し濃いグレーに */
+}
 
   /* フェードインアニメーション */
   @keyframes fadeInText {
@@ -76,7 +93,7 @@ p {
       opacity: 0; /*要素を完全に表示*/
     }
     100% {
-      color: #a0a7c5; /* 浮き出たときの文字色 */
+      color: white; /* 浮き出たときの文字色 */
       transform: translateY(0);
       opacity: 1;
     }
@@ -116,13 +133,11 @@ p {
 
 .name-box{
   float: left;
-  padding: 20px 30px;
   width: 20%;
 }
 
 .index-box{
   float: left;
-  padding: 20px 30px;
   width: 70%;
 }
 /*--------------------------------ユーザーネームと画像ここまで------------------------------------*/
@@ -169,7 +184,7 @@ p {
 
 .background-image {
   width: auto; /* 親要素に合わせて画像を引き伸ばす */
-  max-width: 700px;
+  max-width: 100%;
   height: auto; /* 親要素に合わせて画像を引き伸ばす */
   max-height: 400px;
   border-radius: 5px;
@@ -208,20 +223,23 @@ p {
   border-top: 5px solid #e4dfef;
   border-bottom: 5px solid #e4dfef;
   margin-bottom: 10px;
-  width: 70%;
+  width: 85%;
 }
 
-.received-border {
+.received-border, .sender-border{
   border-top: 5px solid #e3ecf8;
   border-bottom: 5px solid #e3ecf8;
   margin-bottom: 10px;
-  width: 70%;
+  width: 85%;
+  height: 100px;
+  overflow-y: scroll;
 }
-.sender-border {
+
+.random-pickup-border{
   border-top: 5px solid #c6dbee;
   border-bottom: 5px solid #c6dbee;
-  margin-bottom: 10px;
-  width: 70%;
+  width: 85%;
+  text-align: center;
 }
 
 /*------------------------------------マイページここまで----------------------------------------*/
@@ -250,11 +268,25 @@ p {
 .field_with_errors {
   position: relative;
   flex: 1 1 auto;
-    
+
 }
 
 // スマホサイズ (最大 768px) の時にサイドバーをフッターに固定
 @media (max-width: 768px) {
+  
+  p {
+    font-size: 12px; 
+  }
+  
+ .delete-link {
+    font-size: 12px;
+  }
+  
+ .btn {
+   font-size: 12px;
+   padding: 5px 5px;
+ }
+  
   .sidebar {
     position: fixed !important; /* 画面下に固定 */
     bottom: 0 !important;
@@ -274,6 +306,10 @@ p {
     margin: 15px;
   }
 
+  .central-content {
+    font-size: 150px;
+  }
+  
   /* メインコンテンツの上にサイドバーが重ならないように下部に余白を追加 */
   main {
     padding-top: 60px;
@@ -286,4 +322,14 @@ p {
   .index-box{
     width: 100%;
   }
+  
+  /*投稿フォーム*/ 
+  .shadow-lg {
+    box-shadow: none !important;
+    }
+    
+  .card {
+    border: none !important;
+  }
+  
 }

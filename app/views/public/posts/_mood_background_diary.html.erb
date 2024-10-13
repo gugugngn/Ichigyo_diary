@@ -1,8 +1,8 @@
-<div class="mood-container m-3" style="background: <%= post.background_color %>;">
+<div class="mood-container m-md-3" style="background: <%= post.background_color %>;">
   <div class="post-body">
     <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
     <p><%= post.body %></p>
   </div>
 </div>
 
-<!--renderで引っ張る際はpostに変数を渡す-->
+<!--投稿一覧画面、投稿詳細画面、いいね一覧で引用-->
