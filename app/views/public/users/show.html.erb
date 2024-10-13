@@ -23,7 +23,7 @@
     <h5 class="mx-auto">⚪︎過去の日記たち⚪︎</h5>
     <% @posts.each do |post| %>
       <h5 class="ml-4"><%= l post.created_at, format: :short %></h5>
-      <%= render "public/posts/photo_or_mood_diaries", post: post %>
+      <%= render "public/posts/photo_or_mood_diary", post: post %>
     <% end %>
     <div class="mx-auto">
       <%= paginate @posts %>
