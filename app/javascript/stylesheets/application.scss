@@ -52,7 +52,9 @@ p {
 
 /*-----------------------------------トップ画面ここから---------------------------------------*/
 .top-content{
-  background-image: url('/assets/top-image.jpg');
+  background-image: url("../images/top-image.jpg');
+  // background-image: url("assets/images/top-image.jpg");
+  // background-image: url("../images/top-image.jpg");
   border-radius: 5px;
   background-size: cover;
   background-position: center;
@@ -273,20 +275,20 @@ p {
 
 // スマホサイズ (最大 768px) の時にサイドバーをフッターに固定
 @media (max-width: 768px) {
-  
+
   p {
-    font-size: 12px; 
+    font-size: 12px;
   }
-  
+
  .delete-link {
     font-size: 12px;
   }
-  
+
  .btn {
    font-size: 12px;
    padding: 5px 5px;
  }
-  
+
   .sidebar {
     position: fixed !important; /* 画面下に固定 */
     bottom: 0 !important;
@@ -309,7 +311,7 @@ p {
   .central-content {
     font-size: 150px;
   }
-  
+
   /* メインコンテンツの上にサイドバーが重ならないように下部に余白を追加 */
   main {
     padding-top: 60px;
@@ -322,14 +324,14 @@ p {
   .index-box{
     width: 100%;
   }
-  
-  /*投稿フォーム*/ 
+
+  /*投稿フォーム*/
   .shadow-lg {
     box-shadow: none !important;
     }
-    
+
   .card {
     border: none !important;
   }
-  
+
 }
