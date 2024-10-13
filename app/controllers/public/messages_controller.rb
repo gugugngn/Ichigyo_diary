@@ -9,7 +9,7 @@ class Public::MessagesController < ApplicationController
     message = current_user.sent_messages.new(post_message_params)
     message.sender_id = current_user.id
     if message.save
-      redirect_to request.referer, notice: 'エールを送りました。'
+      redirect_to request.referer, notice: 'エールを送りました。優しさをありがとう！あなたの明日もより良い1日になりますように💫'
     else
       # モデルのバリデーションエラーをフラッシュメッセージに含める↓
       flash[:alert] = message.errors.full_messages.join(', ')

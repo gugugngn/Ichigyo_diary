@@ -29,7 +29,7 @@
   <% end %>
   <% grouped_sent_messages = @three_days_sent_messages.to_a.group_by { |message| message.created_at.in_time_zone('Asia/Tokyo').to_date } %>
   <% if grouped_sent_messages.present? %>
-    <div class="mx-auto pb-2 received-border">
+    <div class="mx-auto pb-2 sender-border">
       <strong><i class="fa-regular fa-envelope" style="color: dimgray;"></i> 送ったメッセージ</strong>
       <% grouped_sent_messages.each do |date, messages| %>
         <p><%= l date, format: :short %></p>
@@ -45,17 +45,20 @@
     </div>
   <% else %>
   <% end %>
-
-  <% if @user.posts.present? %>
-  <p class="mx-auto"><strong><%= l @random_post.created_at, format: :short %>の<%= @random_post.user.name %>さん</strong>︎</p>
-    <%= render "public/posts/photo_or_mood_diaries", post: @random_post %>
+  <% if @user.posts.count >= 3 %>
+  
+      <div class="mx-auto random-pickup-border">
+        <p class="pt-2"><strong>⚪︎ランダムピックアップ⚪</strong>︎</p>
+        <p><strong><%= l @random_post.created_at, format: :short %>の<%= @random_post.user.name %>さん</strong>︎</p>
+        <%= render "public/posts/photo_or_mood_diary", post: @random_post %>
+      </div>
+      
   <% end %>
-
   <!--過去の日記-->
-  <p class="mx-auto"><strong>⚪︎過去の日記たち⚪</strong>︎</p>
+  <p class="mx-auto pt-2"><strong>⚪︎過去の日記たち⚪</strong>︎</p>
   <% @posts.each do |post| %>
     <h5 class="ml-4"><%= l post.created_at, format: :short %></h5>
-    <%= render "public/posts/photo_or_mood_diaries", post: post %>
+    <%= render "public/posts/photo_or_mood_diary", post: post %>
   <% end %>
   <div class="mx-auto">
     <%= paginate @posts %>

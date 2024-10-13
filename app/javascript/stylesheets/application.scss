@@ -210,7 +210,7 @@ p {
   width: 85%;
 }
 
-.received-border {
+.received-border, .sender-border{
   border-top: 5px solid #e3ecf8;
   border-bottom: 5px solid #e3ecf8;
   margin-bottom: 10px;
@@ -218,13 +218,12 @@ p {
   height: 100px;
   overflow-y: scroll;
 }
-.sender-border {
+
+.random-pickup-border{
   border-top: 5px solid #c6dbee;
   border-bottom: 5px solid #c6dbee;
-  margin-bottom: 10px;
   width: 85%;
-  height: 100px;
-  overflow-y: scroll;
+  text-align: center;
 }
 
 /*------------------------------------マイページここまで----------------------------------------*/
