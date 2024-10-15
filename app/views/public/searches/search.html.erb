@@ -12,13 +12,24 @@
             <% end %>
           </div>
         <% end %>
+        <div class ="mx-auto">
+          <%= paginate @users %>
+        </div>
       <% else %>
+        <h4>該当するユーザーはいません</h4>
       <% end %>
     <% elsif @model == 'post' %>
       <div class ="mx-auto">
         <h3 class="p-3">日記の検索結果 "<%= @content %>"</h3>
       </div>
-      <%= render "public/posts/mood_background_diaries", grouped_posts: @grouped_posts %>
+      <% if @posts.any? %>
+        <%= render "public/posts/mood_background_diaries", grouped_posts: @grouped_posts %>
+        <div class ="mx-auto">
+          <%= paginate @posts %>
+        </div>
+      <% else %>
+        <h4>該当する投稿はありません</h4>
+      <% end %>
     <% end %>
   </div>
 </div>
