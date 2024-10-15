@@ -1,5 +1,6 @@
 <div class="container">
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <%= render "name", user: @user %>
     <%= render "info", user: @user %>
     <div class='row justify-content-center py-2'>
       <% @three_days_received_messages.each do |message| %>

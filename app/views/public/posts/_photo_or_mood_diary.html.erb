@@ -15,7 +15,9 @@
   </div>
 <% else %>
   <!--気分カラー背景の日記-->
-  <%= render "public/posts/mood_background_diary", post: post %>
+  <%= link_to post_path(post) do %>
+    <%= render "public/posts/mood_background_diary", post: post %>
+  <% end %>
 <% end %>
 
 <!--マイページ(2)、ユーザー詳細画面管理者側ユーザー詳細画面で引用-->

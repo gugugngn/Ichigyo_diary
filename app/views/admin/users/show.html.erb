@@ -1,4 +1,4 @@
-<div class='container'>
+<div class="container">
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
     <div class="mx-auto py-4">
       <%= render "public/users/name",  user: @user %>
@@ -9,7 +9,7 @@
         <p>送ったコメント</p>
         <% if @comments %>
           <% @comments.each do |comment| %>
-           <p><%= comment.body %>　⇦ <%= comment.post.user.name %>さんに　
+           <p><%= comment.body %>　⇦ <%= comment.post.user.name %>さんに
            <%= link_to "削除",post_comment_path(comment.post, comment),method: :delete,class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" %>
            </p>
           <% end %>
@@ -20,6 +20,9 @@
       <!--過去の日記-->
       <% @posts.each do |post| %>
         <%= render "public/posts/photo_or_mood_diary", post: post %>
+        <p class= "text-right pb-3">
+          <%= link_to "削除",admin_post_path(post),method: :delete,class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" %>
+        </p>
       <% end %>
       <%= paginate @posts %>
     </div>

@@ -1,5 +1,5 @@
 <% post.comments.each do |comment| %>
-  <% if comment.user.following?(comment.post.user) %>
+  <% if comment.user.following?(comment.post.user) || comment.user == current_user %>
     <div class="d-flex pb-1">
       <%= link_to user_path(comment.user) do %>
         <p><%= comment.user.name %>　</p>

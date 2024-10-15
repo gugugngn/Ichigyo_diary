@@ -1,6 +1,5 @@
 <div class='row justify-content-center'>
   <div class="text-center py-2 ">
-    <%= render "name", user: user %>
     <p><%= user.introduction %></p>
     <%= link_to favorites_user_path(user), class: "btn btn-light" do %>
       <p>いいね一覧</p>
@@ -11,7 +10,7 @@
 <div class="row  justify-content-center flex-nowrap pb-1">
   <div class="mr-1">
     <%= link_to user_followings_path(user), class: "btn btn-light" do %>
-      <p>フォロー　<%= user.followings.count %></p>
+      <p>フォロー中　<%= user.followings.count %></p>
     <% end %>
   </div>
   <div class="mr-1">
@@ -25,3 +24,5 @@
     </div> 
   <% end %>
 </div>
+
+<!--ユーザー詳細画面、マイページ-->
