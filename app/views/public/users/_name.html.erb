@@ -1,6 +1,6 @@
 <div class="text-center py-2 ">
-  <%= link_to user_path(user) do %>
-    <%= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>
-    <div class="user_name"><%= user.name %></p></div>
-  <% end %>
+  <%= image_tag user.get_profile_image(70,70), class: "rounded-circle" %>
+  <div class="user_name"><%= user.name %></div>
 </div>
+
+<!--管理者側：ユーザー一覧、ユーザー詳細　会員側：検索結果、いいね一覧、マイページ、ユーザー詳細　部分テンプレート：post/_mood_background_diaries、users/_infoにて引用-->

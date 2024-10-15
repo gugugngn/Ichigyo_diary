@@ -2,6 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_normal_user, except: [:index]
 
+
   def new
     @current_date = Time.zone.today
     @post = Post.new
@@ -16,7 +17,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_message = Message.new
     @comment = Comment.new
-    
+
     unless @post.is_public || @post.user == current_user
       redirect_to posts_path, alert: "この投稿は非公開です。"
     end
@@ -55,8 +56,15 @@ class Public::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to mypage_users_path
+    # @post.destroy
+    # redirect_to mypage_users_path
+
+    if @post.destroy
+      respond_to do |format|
+        format.html { redirect_to mypage_users_path }
+        format.html { redirect_to request.referer, notice: "コメントが削除されました。" }
+      end
+    end
   end
 
   private

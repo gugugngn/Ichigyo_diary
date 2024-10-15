@@ -4,10 +4,14 @@
       <% @favorite_posts.each do |post| %>
         <div class="index-item">
           <div class="name-box">
-            <%= render "name", user: post.user %>
+            <%= link_to user_path(post.user) do %>
+              <%= render "name", user: post.user %>
+            <% end %>
           </div>
           <div class="index-box">
-            <%= render "public/posts/mood_background_diary", post: post %>
+            <%= link_to post_path(post) do %>
+              <%= render "public/posts/mood_background_diary", post: post %>
+            <% end %>
           </div>
         </div>
       <% end %>
