@@ -12,6 +12,11 @@
       </div>
     </div>
     <div class="mx-auto pb-1">
+      <% if @post.user == current_user && @post.message.present? %>
+        <p class="pb-2"><strong>次の日の自分へ　<%= @post.message %></strong></p>
+      <% end %>
+      </div>
+      <div class="mx-auto pb-1">
       <% if @post.is_public && @post.user == current_user %>
         <p>この投稿は公開されています</p>
       <% elsif @post.user == current_user %>
@@ -19,15 +24,12 @@
       <% end %>
     </div>
     <% if @post.post_image.attached? %>
-      <div class="mx-auto">
+      <div class="mx-auto pb-2">
         <%= image_tag @post.get_post_image, class: "background-image"  %>
       </div>
     <% end %>
     <div class="row justify-content-center pb-2">
       <div class="col-sm-12 col-md-10">
-        <% if @post.user == current_user && @post.message.present? %>
-          <p class="pt-2"><strong>次の日の自分へ　<%= @post.message %></strong></p>
-        <% end %>
         <%= render "public/posts/mood_background_diary", post: @post %>
         <div class="d-flex justify-content-between pb-2">
           <div class="d-flex justify-content-start pl-md-3">

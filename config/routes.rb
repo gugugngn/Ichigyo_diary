@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resources :message_text, only: [:new, :create, :destroy]
     resources :moods, only: [:new, :create, :destroy]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
-    resources :posts, only: [:destroy]
+    resources :posts, only: [:show, :destroy]
   end
 
 

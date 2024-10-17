@@ -7,22 +7,44 @@
       </div>
       <div class ="pl-3">
         <p>送ったコメント</p>
-        <% if @comments %>
+        <% if @comments.present? %>
           <% @comments.each do |comment| %>
            <p><%= comment.body %>　⇦ <%= comment.post.user.name %>さんに
            <%= link_to "削除",post_comment_path(comment.post, comment),method: :delete,class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" %>
            </p>
           <% end %>
         <% else %>
-          <p>コメントはありません。</p>
+          <p>送ったコメントはありません。</p>
         <% end %>
       </div>
       <!--過去の日記-->
       <% @posts.each do |post| %>
-        <%= render "public/posts/photo_or_mood_diary", post: post %>
-        <p class= "text-right pb-3">
-          <%= link_to "削除",admin_post_path(post),method: :delete,class: "btn btn-outline-danger", "data-confirm"=> "本当に削除しますか？" %>
-        </p>
+        <% if post.post_image.attached? %>
+          <!--色つき気分の名前-->
+          <%= render "public/posts/mood_name", moods: post.moods %>
+          <!--写真背景の日記-->
+          <div class="mx-auto">
+            <%= link_to admin_post_path(post) do %>
+              <div class="mb-2 background-image-container">
+                <%= image_tag post.get_post_image, class: "background-image" %>
+                <div class="overlay-content">
+                  <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
+                  <p><%= post.body %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <!--気分カラー背景の日記-->
+          <%= link_to admin_post_path(post) do %>
+            <div class="mood-container m-md-3" style="background: <%= post.background_color %>;">
+              <div class="post-body">
+                <p><%= l post.created_at, format: :long %>の<%= post.user.name %>さんの１行日記</p>
+                <p><%= post.body %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
       <%= paginate @posts %>
     </div>

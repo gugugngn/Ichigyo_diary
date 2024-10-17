@@ -2,11 +2,14 @@ ja:
   activerecord:
     models:
       post: "日記"
+      user: "ユーザー"
     attributes:
       post: 
         body: "日記の本文"
       comment:
         body: "コメント"
+      user: 
+        introduction: "自己紹介"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

@@ -15,7 +15,7 @@ class Public::CommentsController < ApplicationController
     #ユーザー側と管理者側でコメント削除を可能にするため↓
     if comment.destroy
       respond_to do |format|
-        format.html { redirect_to admin_user_path(comment.user), notice: "コメントが削除されました。" }
+        format.html { redirect_to request.referer, notice: "コメントが削除されました。" }
         format.js
       end
     end

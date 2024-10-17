@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
+    <div class="row flex-nowrap">
+      <div class="col-sm-4 col-md-2 m-md-3">
+        <%= link_to admin_user_path(@post.user) do %>
+          <%= render "public/users/name",  user: @post.user %>
+        <% end %>
+      </div>
+    </div>
+    <div class="mx-auto pb-1">
+      <% if @post.is_public %>
+        <p>この投稿は公開されています</p>
+      <% else %>
+        <p>この投稿は非公開です</p>
+      <% end %>
+    </div>
+    <% if @post.post_image.attached? %>
+      <div class="mx-auto">
+        <%= image_tag @post.get_post_image, class: "background-image"  %>
+      </div>
+    <% end %>
+    <div class="row justify-content-center pb-2">
+      <div class="col-sm-12 col-md-10">
+        <%= render "public/posts/mood_background_diary", post: @post %>
+        <p class= "text-right pb-3">
+          <%= link_to "削除",admin_post_path(@post),method: :delete,class: "btn btn-outline-danger btn-sm", "data-confirm"=> "本当に削除しますか？" %>
+        </p>
+      </div>
+    </div>
+    <% @post.comments.each do |comment| %>
+      <div class="row justify-content-center pb-2">
+        <%= link_to admin_user_path(comment.user) do %>
+          <p><%= comment.user.name %>　</p>
+        <% end %>
+          <%= comment.body %>
+          <%= link_to "削除",post_comment_path(comment.post, comment),method: :delete,class: "btn btn-outline-danger btn-sm", "data-confirm"=> "本当に削除しますか？" %>
+        </div>
+    <% end %>
+  </div>
+</div>

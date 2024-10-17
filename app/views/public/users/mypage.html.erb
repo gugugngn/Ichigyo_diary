@@ -7,7 +7,7 @@
   <%= render "info", user: @user %>
   <div class="mx-auto pb-2 original-border">
     <strong><i class="fa-regular fa-flag" style="color: dimgray;"></i> 昨日の自分からのメッセージ</strong>
-    <% if @yesterday_post %>
+    <% if @yesterday_post.present? %>
       <p><%= @yesterday_post.message %></p>
     <% else %>
       <p>昨日のメッセージはありません。</p>
@@ -51,13 +51,11 @@
   <% else %>
   <% end %>
   <% if @user.posts.count >= 3 %>
-  
-      <div class="mx-auto random-pickup-border">
-        <p class="pt-2"><strong>⚪︎ランダムピックアップ⚪</strong>︎</p>
-        <p><strong><%= l @random_post.created_at, format: :short %>の<%= @random_post.user.name %>さん</strong>︎</p>
-        <%= render "public/posts/photo_or_mood_diary", post: @random_post %>
-      </div>
-      
+    <div class="mx-auto random-pickup-border">
+      <p class="pt-2"><strong>⚪︎ランダムピックアップ⚪</strong>︎</p>
+      <p><strong><%= l @random_post.created_at, format: :short %>の<%= @random_post.user.name %>さん</strong>︎</p>
+      <%= render "public/posts/photo_or_mood_diary", post: @random_post %>
+    </div>
   <% end %>
   <!--過去の日記-->
   <p class="mx-auto pt-2"><strong>⚪︎過去の日記たち⚪</strong>︎</p>
