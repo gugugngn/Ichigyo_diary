@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user), notice:"プロフィール編集の更新に成功しました！"
+      redirect_to mypage_users_path, notice:"プロフィール編集の更新に成功しました！"
     else
       render "edit"
     end

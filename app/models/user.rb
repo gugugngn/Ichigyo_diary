@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
  validates :name, presence: true
  validates :profile_image, content_type: {in:[:png, :jpg, :jpeg], message: "はpng, jpg, jpegいずれかの形式にして下さい"}
+ validates :introduction, length: { maximum: 40 }
 
   # ゲストログインユーザーの記述↓
   GUEST_USER_EMAIL = "guest@example.com"

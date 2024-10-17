@@ -7,6 +7,11 @@ ja:
         body: "日記の本文"
       comment:
         body: "コメント"
+    models:
+      user: "ユーザー"
+    attributes:
+      user: 
+        introduction: "自己紹介"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
