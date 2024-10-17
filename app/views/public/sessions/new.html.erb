@@ -15,7 +15,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-lock"></i></span>
               </div>
-              <%= f.password_field :password, placeholder: "パスワード(#{@minimum_password_length}文字以上)", class: "form-control" %>
+              <%= f.password_field :password, placeholder: "パスワード", class: "form-control" %>
             </div>
             <% if devise_mapping.rememberable? %>
               <div class="field">
