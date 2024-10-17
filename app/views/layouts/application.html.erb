@@ -16,9 +16,13 @@
     <div class="container-fluid">
       <div class="row">
         <nav class="col-md-3 col-lg-2 d-md-block sidebar">
-          <h1 class="d-none d-lg-inline logo mx-3">
-            <%= link_to "1Gyo diary", root_path %>
-          </h1>
+          <% if current_user&.guest_user? %>
+            <h1 class="d-none d-lg-inline logo mx-3">1Gyo diary</h1>
+          <% else %>
+            <h1 class="d-none d-lg-inline logo mx-3">
+              <%= link_to "1Gyo diary", root_path %>
+            </h1>
+          <% end %>
           <%= render "layouts/sideber" %>
         </nav>
         <main class="col-md-9 ms-sm-auto col-lg-10">

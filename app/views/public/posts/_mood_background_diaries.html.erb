@@ -11,16 +11,6 @@
       </div>
       <div class="index-box">
         <%= link_to post_path(post) do %>
-          <!--色つき気分の名前-->
-          <div class="mx-auto px-2 mood-name">
-            <% post.moods.each do |mood| %>
-              <div class="d-inline-block mood-item" style="color: <%= mood.color %>;">
-                <h5 class="d-block mood-name">
-                  <%= mood.name %>
-                </h5>
-              </div>
-            <% end %>
-          </div>
           <!--気分カラー背景の日記-->
             <%= render "public/posts/mood_background_diary", post: post %>
         <% end %>

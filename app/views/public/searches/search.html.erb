@@ -16,7 +16,9 @@
           <%= paginate @users %>
         </div>
       <% else %>
+      <div class ="mx-auto">
         <h4>該当するユーザーはいません</h4>
+       </div>
       <% end %>
     <% elsif @model == 'post' %>
       <div class ="mx-auto">
@@ -28,7 +30,9 @@
           <%= paginate @posts %>
         </div>
       <% else %>
+      <div class ="mx-auto">
         <h4>該当する投稿はありません</h4>
+      </div>
       <% end %>
     <% end %>
   </div>

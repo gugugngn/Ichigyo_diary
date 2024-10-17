@@ -1,9 +1,7 @@
 <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
-  <div class="text-center py-2 ">
-    <%= link_to edit_user_path(@user) do %>
-      <%= render "name", user: @user %>
-    <% end %>
-  </div>
+  <%= link_to edit_user_path(@user) do %>
+    <%= render "name", user: @user %>
+  <% end %>
   <%= render "info", user: @user %>
   <div class="mx-auto pb-2 original-border">
     <strong><i class="fa-regular fa-flag" style="color: dimgray;"></i> 昨日の自分からのメッセージ</strong>
