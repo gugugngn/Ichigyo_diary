@@ -2,7 +2,7 @@
   <div id ="comments-error"></div>
   <%= form_with(model:[post, comment], local: false) do |f| %>
     <div class="form-group mt-2">
-      <%= f.text_area :body, sanitize: true, rows:'3',placeholder: "コメントをここに", class: "form-control" %>
+      <%= f.text_area :body, sanitize: true, rows:'3',placeholder: "コメントをここに(改行は反映されません)", class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.submit "送信", class: 'btn btn-outline-secondary float-right' %>

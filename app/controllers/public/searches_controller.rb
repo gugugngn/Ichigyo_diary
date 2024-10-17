@@ -4,7 +4,7 @@ class Public::SearchesController < ApplicationController
   
   def search
   @model = params[:model]
-  @content = params[:content].to_s.strip  # 検索キーワードの前後の空白を削除
+  @content = params[:content]
 
   if @model == "user"
     if @content.blank?

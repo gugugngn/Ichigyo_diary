@@ -1,10 +1,12 @@
 <div class="container">
   <div class="card mx-auto mt-4 shadow-lg" style="max-width: 900px;">
-    <div class="mx-auto">
-      <h4>フォロワー</h4>
+    <div class="mx-auto pt-2">
+      <h4><%= @user.name %>さんのフォロワー一覧</h4>
       <% if @users.exists? %>
         <% @users.each do |user| %>
-          <%= render "public/users/name", user: user %>
+          <%= link_to user_path(user) do %>
+            <%= render "public/users/name", user: user %>
+          <% end %>
         <% end %>
       <% else %>
         <p>ユーザーはいません</p>
