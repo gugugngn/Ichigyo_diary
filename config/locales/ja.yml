@@ -2,14 +2,12 @@ ja:
   activerecord:
     models:
       post: "日記"
+      user: "ユーザー"
     attributes:
       post: 
         body: "日記の本文"
       comment:
         body: "コメント"
-    models:
-      user: "ユーザー"
-    attributes:
       user: 
         introduction: "自己紹介"
     errors:

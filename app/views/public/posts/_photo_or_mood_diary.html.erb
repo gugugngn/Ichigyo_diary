@@ -1,6 +1,14 @@
 <% if post.post_image.attached? %>
   <!--色つき気分の名前-->
-  <%= render "public/posts/mood_name", moods: post.moods %>
+<div class="mx-auto px-2 mood-name">
+  <% post.moods.each do |mood| %>
+    <div class="d-inline-block mood-item" style="color: <%= mood.color %>;">
+      <h5 class="d-block mood-name">
+        <%= mood.name %>
+      </h5>
+    </div>
+  <% end %>
+</div>
   <!--写真背景の日記-->
   <div class="mx-auto">
     <%= link_to post_path(post) do %>

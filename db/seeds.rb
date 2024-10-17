@@ -52,6 +52,7 @@ moods_data = [
    { name: "不安", color: "#abced8" },
    { name: "悲しい", color: "#8491c3" },
    { name: "疲れた", color: "#a59aca" },
+   { name: "お腹すいた", color: "#e6b422" },
 ]
 
 
@@ -70,22 +71,52 @@ posts_data = [
     message: "明日も頑張ってね。",
     image_path: "#{Rails.root}/db/fixtures/sample-post1.jpeg",
     image_filename: "sample-post1.jpeg",
-    mood_ids: [12,17]
+    mood_ids: [12,17],
+    created_at: 1.days.ago
+  },
+  {
+    user: test_user,
+    body: "1日天気悪くて頭痛かった、晴れてほしいいいい",
+    message: "天気が晴れることを願ってる",
+    mood_ids: [11,13,17],
+    created_at: 2.days.ago
+  },
+  {
+    user: test_user,
+    body: "今日はジム行ったよ、トレーナーさんに褒められた、嬉しい〜",
+    image_path: "#{Rails.root}/db/fixtures/sample-post1-2.jpg",
+    image_filename: "sample-post1-2.jpg",
+    mood_ids: [1,2,5],
+    created_at: 3.days.ago
+  },
+   {
+    user: test_user,
+    body: "何もやる気出ない、日記書けただけ偉いよ",
+    message: "ゆっくり休んでね",
+    mood_ids: [17],
+    created_at: 4.days.ago
+  },
+  {
+    user: test_user,
+    body: "なんか以上にお腹すいて、気づいたら1日5食食べてたよ。。。おそろし",
+    message: "食べ過ぎ注意報",
+    mood_ids: [6,18],
+    created_at: 5.days.ago
   },
   {
     user: seigi,
     body: "海に行ったあらいい写真が撮れた。永久保存版",
     message: "明日も頑張っていこう。",
-    image_path: "#{Rails.root}/db/fixtures/sample-post2.png",
-    image_filename: "sample-post2.png",
+    image_path: "#{Rails.root}/db/fixtures/sample-post2.jpg",
+    image_filename: "sample-post2.jpg",
     mood_ids: [1, 2]
   },
   {
     user: bushi,
     body: "綺麗な夕焼けだ",
     message: "明日も頑張ろう。",
-    image_path: "#{Rails.root}/db/fixtures/sample-post3.png",
-    image_filename: "sample-post3.png",
+    image_path: "#{Rails.root}/db/fixtures/sample-post3.jpg",
+    image_filename: "sample-post3.jpg",
     moods_ids: []
   }
 ]
@@ -94,11 +125,18 @@ posts_data = [
 posts_data.each do |post_data|
   post = Post.find_or_create_by!(user: post_data[:user], body: post_data[:body]) do |p|
     p.message = post_data[:message]
-    p.post_image.attach(
-      io: File.open(post_data[:image_path]),
-      filename: post_data[:image_filename]
-    )
+    p.created_at = post_data[:created_at]  # 過去の日付を設定
+    
+    if post_data[:image_path].present?  # 画像が存在する場合のみ
+      p.post_image.attach(
+        io: File.open(post_data[:image_path]),
+        filename: post_data[:image_filename]
+      )
+    end
   end
+  
+  # バリデーション無効で保存
+  post.save(validate: false)
 
   # mood_idsの関連付け
   if post_data[:mood_ids].present?
@@ -109,7 +147,7 @@ posts_data.each do |post_data|
 end
 
 
-  
+
   # 明日へのメッセージ＆小さなエールの配列
   message_texts = [
     { content: "今日も１日お疲れ様でした。明日もいい日になりますように。"},
@@ -117,25 +155,24 @@ end
     { content: "素敵な日記ですね！元気をもらえました、ありがとうございます。"},
     { content: "今日も１日お疲れ様でした。明日はごゆっくりなさってください。"}
     ]
-  
+
   message_texts.each do |message_text|
     MessageText.find_or_create_by!(content: message_text[:content])
   end
-  
+
   to_messages = [
-    { 
+    {
       sender_id: 1,
       receiver_id: 2,
-      message_text_id: 1 
+      message_text_id: 1
     },
-    { 
+    {
       sender_id: 2,
       receiver_id: 1,
-      message_text_id: 3 
+      message_text_id: 3
     },
    ]
-  
+
   to_messages.each do |to_message|
     Message.find_or_create_by!(sender_id: to_message[:sender_id], receiver_id: to_message[:receiver_id], message_text_id: to_message[:message_text_id])
   end
-  
