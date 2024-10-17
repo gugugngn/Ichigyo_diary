@@ -20,8 +20,6 @@
       <!--過去の日記-->
       <% @posts.each do |post| %>
         <% if post.post_image.attached? %>
-          <!--色つき気分の名前-->
-          <%= render "public/posts/mood_name", moods: post.moods %>
           <!--写真背景の日記-->
           <div class="mx-auto">
             <%= link_to admin_post_path(post) do %>
