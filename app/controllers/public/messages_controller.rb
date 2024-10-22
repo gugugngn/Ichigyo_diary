@@ -19,15 +19,15 @@ class Public::MessagesController < ApplicationController
 
 
   def destroy
-    message = Message.find(params[:user_id])
+    message = Message.find(params[:id])
     message.destroy
     redirect_to request.referer
   end
-  
+
   private
 
   def post_message_params
     params.require(:message).permit(:body, :receiver_id, :message_text_id)
   end
-  
+
 end
