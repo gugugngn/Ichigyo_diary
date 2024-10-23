@@ -20,14 +20,19 @@ class Public::MessagesController < ApplicationController
 
   def destroy
     message = Message.find(params[:id])
-    message.destroy
-    redirect_to request.referer
+    
+    if message.sender_id == current_user.id
+      message.destroy
+      redirect_to request.referer, notice: 'メッセージを削除しました'
+    else
+      redirect_to request.referer, alert: 'メッセージを削除する権限がありません'
+    end
   end
-
+  
   private
 
   def post_message_params
     params.require(:message).permit(:body, :receiver_id, :message_text_id)
   end
-
+  
 end
