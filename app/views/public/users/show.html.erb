@@ -11,7 +11,7 @@
             <%= message.sender.name %>さん
           <% end %>
           <% if message.sender == current_user %>
-            <%= link_to "削除", user_message_path(message), method: :delete %>
+            <%= link_to "削除", user_message_path(current_user, message), method: :delete %>
           <% end %>
         </p>
       <% end %>
