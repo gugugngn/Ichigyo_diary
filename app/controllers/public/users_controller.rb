@@ -7,11 +7,9 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @posts = @user.posts.order(created_at: :desc).page(params[:page])
     @random_post = @user.posts.shuffle.first
-    yesterday = Time.zone.today - 1
-    @yesterday_post = @user.posts.find_by(created_at: yesterday.all_day)
-    three_days_ago = Time.zone.today - 3
-    @three_days_received_messages = @user.received_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
-    @three_days_sent_messages = @user.sent_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
+    @yesterday_post = @user.yesterday_post
+    @three_days_received_messages = @user.three_days_received_messages
+    @three_days_sent_messages = @user.three_days_sent_messages
   end
 
   def favorites
@@ -29,9 +27,8 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.public_posts.order(created_at: :desc).page(params[:page])
-    three_days_ago = Time.zone.today - 3
-    @three_days_received_messages = @user.received_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
-    
+    @three_days_received_messages = @user.three_days_received_messages
+
   end
 
   def update

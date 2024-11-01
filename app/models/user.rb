@@ -63,5 +63,23 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-
+  
+   # 昨日の投稿を取得
+  def yesterday_post
+    yesterday = Time.zone.today - 1
+    posts.find_by(created_at: yesterday.all_day)
+  end
+  
+  # 過去３日間のメッセージを取得
+  def three_days_received_messages
+    three_days_ago = Time.zone.today - 3
+    received_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
+  end
+  
+  # 過去3日間で送ったメッセージを表示
+    def three_days_sent_messages
+      three_days_ago = Time.zone.today - 3
+      sent_messages.where(created_at: three_days_ago.beginning_of_day..Date.today.end_of_day)
+    end
+  
 end
